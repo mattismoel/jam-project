@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx66pk1a3t3bo"]
 
 [ext_resource type="Script" path="res://scene/gondola/test_gondola.gd" id="1_reu4w"]
-[ext_resource type="Texture2D" uid="uid://bj5mmngnvd1s5" path="res://icon.svg" id="2_65s11"]
+[ext_resource type="Texture2D" uid="uid://cq4x4416ve46q" path="res://asset/tower/test-tower/gondola.png" id="2_76f34"]
 
 [node name="TestGondola" type="Node2D"]
 script = ExtResource("1_reu4w")
@@ -9,5 +9,4 @@ max_height_duration = null
 max_seats = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.546875, 0.21875)
-texture = ExtResource("2_65s11")
+texture = ExtResource("2_76f34")

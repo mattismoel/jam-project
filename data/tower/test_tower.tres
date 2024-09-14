@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TowerVisualData" load_steps=6 format=3 uid="uid://dwl8dbd6jg1dm"]
+
+[ext_resource type="Script" path="res://script/tower_visual_data.gd" id="1_0q2p8"]
+[ext_resource type="Texture2D" uid="uid://becxrpbkitoq0" path="res://asset/tower/test-tower/test-tower.png" id="1_d176k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybj2n"]
+atlas = ExtResource("1_d176k")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agn72"]
+atlas = ExtResource("1_d176k")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8hf2"]
+atlas = ExtResource("1_d176k")
+region = Rect2(0, 0, 48, 16)
+
+[resource]
+script = ExtResource("1_0q2p8")
+top_texture = SubResource("AtlasTexture_d8hf2")
+main_texture = SubResource("AtlasTexture_agn72")
+bottom_texture = SubResource("AtlasTexture_ybj2n")
