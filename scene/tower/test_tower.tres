@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TowerStat" load_steps=2 format=3 uid="uid://drrssfs18y014"]
+
+[ext_resource type="Script" path="res://scene/tower/tower_stat.gd" id="1_jxos7"]
+
+[resource]
+script = ExtResource("1_jxos7")
+height = 100.0
+desired_height = 100.0
