@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_jxos7")
 height = 100
-desired_height = 100.0
+desired_height = 100
