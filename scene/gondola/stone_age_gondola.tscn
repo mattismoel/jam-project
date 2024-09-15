@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq0dfva11ynl5"]
+
+[ext_resource type="Script" path="res://scene/gondola/gondola.gd" id="1_gyw8e"]
+[ext_resource type="Texture2D" uid="uid://daa5bch42ldgn" path="res://asset/tower/stoneage-tower/stoneage_gondola.png" id="2_4tbyc"]
+
+[node name="Stone age Gondola" type="Node2D"]
+script = ExtResource("1_gyw8e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4tbyc")
