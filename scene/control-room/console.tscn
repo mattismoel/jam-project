@@ -9,6 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_ebh2x")
 
 [node name="Screen" type="ColorRect" parent="."]
 layout_mode = 0
@@ -18,7 +19,7 @@ offset_right = 95.0
 offset_bottom = 52.0
 color = Color(0.0351958, 0.0332234, 0.073835, 1)
 
-[node name="Console" type="TextureRect" parent="." node_paths=PackedStringArray("lever")]
+[node name="Console" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 135.0
 offset_bottom = 109.0
@@ -27,9 +28,9 @@ size_flags_vertical = 4
 texture = ExtResource("1_k5kls")
 stretch_mode = 5
 script = ExtResource("2_ebh2x")
-lever = NodePath("../Lever")
 
 [node name="Lever" parent="." instance=ExtResource("2_u46fd")]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = 105.0
 offset_top = 44.0

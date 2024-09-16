@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bp5blj4cld7h3"]
+[gd_scene load_steps=13 format=3 uid="uid://bp5blj4cld7h3"]
 
 [ext_resource type="Script" path="res://scene/ui/control-room/lever.gd" id="1_pc5yw"]
 [ext_resource type="Texture2D" uid="uid://blcigctf34you" path="res://asset/control-panel/lever-spritesheet.png" id="2_04rni"]
@@ -7,25 +7,29 @@
 atlas = ExtResource("2_04rni")
 region = Rect2(0, 0, 25, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h1ee7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v8of"]
+atlas = ExtResource("2_04rni")
+region = Rect2(0, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgnk0"]
 atlas = ExtResource("2_04rni")
 region = Rect2(25, 0, 25, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_podgx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrqim"]
 atlas = ExtResource("2_04rni")
 region = Rect2(50, 0, 25, 30)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_awmyy"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_6hmsw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wxklt")
+"texture": SubResource("AtlasTexture_2v8of")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h1ee7")
+"texture": SubResource("AtlasTexture_vgnk0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_podgx")
+"texture": SubResource("AtlasTexture_qrqim")
 }],
 "loop": true,
 "name": &"default",
@@ -51,7 +55,7 @@ offset_bottom = 30.0
 texture = SubResource("AtlasTexture_wxklt")
 stretch_mode = 2
 script = ExtResource("1_pc5yw")
-sprite_frames = SubResource("SpriteFrames_awmyy")
+_sprite_frames = SubResource("SpriteFrames_6hmsw")
 
 [node name="HandleScrollBar" type="VScrollBar" parent="."]
 unique_name_in_owner = true
