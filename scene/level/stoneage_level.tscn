@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0d6r4ok253ej"]
+
+[ext_resource type="Texture2D" uid="uid://bjydeelcjm5ek" path="res://asset/tower/stoneage-tower/background.png" id="1_201v5"]
+[ext_resource type="Script" path="res://scene/minigame/stoneage/stoneage_minigame.gd" id="1_lria8"]
+[ext_resource type="Script" path="res://script/score_manager.gd" id="2_74tog"]
+[ext_resource type="Script" path="res://scene/tower/tower_stat.gd" id="2_al3v5"]
+[ext_resource type="PackedScene" path="res://scene/tower/stoneage_tower.tscn" id="3_d8m5n"]
+[ext_resource type="Script" path="res://scene/tower/stoneage_tower.gd" id="4_714jk"]
+
+[sub_resource type="Resource" id="Resource_ae11u"]
+script = ExtResource("2_al3v5")
+height = 170
+desired_height = 140
+
+[node name="StoneageLevel" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_201v5")
+centered = false
+
+[node name="Minigame" type="Node" parent="."]
+script = ExtResource("1_lria8")
+
+[node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("tower")]
+script = ExtResource("2_74tog")
+tower = NodePath("../Stoneage Tower")
+
+[node name="Stoneage Tower" parent="." node_paths=PackedStringArray("minigame") instance=ExtResource("3_d8m5n")]
+position = Vector2(93, 213)
+script = ExtResource("4_714jk")
+tower_stat = SubResource("Resource_ae11u")
+minigame = NodePath("../Minigame")

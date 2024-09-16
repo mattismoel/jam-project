@@ -2,21 +2,19 @@
 class_name Tower
 extends Node2D
 
-signal begin_ride
+signal began_ride
 signal finished(height: float)
 
 
 @export var tower_stat: TowerStat
 
 @export_category("References")
-@export var minigame: Minigame
 @export var gondola: Gondola
 
 var force: float
 
 func _ready() -> void:
   tower_stat.changed.connect(queue_redraw)
-  minigame.finished.connect(_on_minigame_finished)
   gondola.finished.connect(_on_gondola_ride_finished)
 
 
@@ -29,10 +27,10 @@ func calculate_popularity_score(passenger_count: int, height: float) -> float:
   return height / tower_stat.desired_height
 
 
-func _on_minigame_finished(_force: float) -> void:
+func begin_ride(_force: float) -> void:
   force = _force
   gondola.begin_ride(_force)
-  begin_ride.emit()
+  began_ride.emit()
   pass
 
 
@@ -48,10 +46,8 @@ func _draw_height_markers() -> void:
   var anchor := global_position
 
   # Draws the height bar.
-  print(position)
   var height_marker_start_pos := global_position - position + Vector2.LEFT * offset
   var height_marker_end_pos := height_marker_start_pos + Vector2.UP * tower_stat.height
-  print(height_marker_start_pos)
   draw_line(height_marker_start_pos, height_marker_end_pos, Color.WHITE_SMOKE)
   draw_line(height_marker_end_pos, height_marker_end_pos + Vector2.RIGHT * offset, Color.WHITE_SMOKE)
 
