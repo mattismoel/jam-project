@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg3k3jej6jlfx"]
+
+[ext_resource type="Script" path="res://scene/minigame/stoneage/mammoth.gd" id="1_fffu5"]
+[ext_resource type="Texture2D" uid="uid://cu0np3g0y7ibg" path="res://asset/tower/stoneage-tower/minigame/mammoth_test.png" id="2_4403k"]
+
+[node name="StoneageMinigame" type="Node2D"]
+
+[node name="Mammoth" type="Node2D" parent="."]
+position = Vector2(154, 122)
+script = ExtResource("1_fffu5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mammoth"]
+texture = ExtResource("2_4403k")
