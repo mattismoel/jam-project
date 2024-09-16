@@ -21,4 +21,6 @@ texture = ExtResource("4_71aad")
 
 [node name="TestGondola" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("3_6frv3")]
 position = Vector2(0, -15)
+max_height_duration = 0.8
+max_seats = 100
 tower = NodePath("..")
