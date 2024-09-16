@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bg3k3jej6jlfx"]
+
+[ext_resource type="Script" path="res://scene/minigame/stoneage/mammoth.gd" id="1_fffu5"]
+[ext_resource type="Texture2D" uid="uid://djbuftp8w7et8" path="res://asset/tower/stoneage-tower/minigame/mammoth_animation.png" id="2_icvlg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsd8m"]
+atlas = ExtResource("2_icvlg")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd5mg"]
+atlas = ExtResource("2_icvlg")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0poto"]
+atlas = ExtResource("2_icvlg")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu8ki"]
+atlas = ExtResource("2_icvlg")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bb5h0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsd8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd5mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0poto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu8ki")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.11
+}]
+
+[node name="StoneageMinigame" type="Node2D"]
+
+[node name="Mammoth" type="Node2D" parent="."]
+position = Vector2(154, 122)
+script = ExtResource("1_fffu5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mammoth"]
+sprite_frames = SubResource("SpriteFrames_bb5h0")
+autoplay = "default"
+frame_progress = 0.193592
