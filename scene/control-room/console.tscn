@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://8i6k4bg2tibp"]
 
-[ext_resource type="Texture2D" uid="uid://due8auwqx0vi5" path="res://asset/control-panel/console.png" id="1_k5kls"]
-[ext_resource type="Script" path="res://scene/ui/control-room/console.gd" id="2_ebh2x"]
+[ext_resource type="Texture2D" uid="uid://due8auwqx0vi5" path="res://scene/control-room/asset/console.png" id="1_k5kls"]
+[ext_resource type="Script" path="res://scene/control-room/console.gd" id="2_ebh2x"]
 [ext_resource type="PackedScene" uid="uid://bp5blj4cld7h3" path="res://scene/control-room/lever.tscn" id="2_u46fd"]
 
 [node name="Console" type="Control"]

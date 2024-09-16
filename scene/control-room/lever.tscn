@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bp5blj4cld7h3"]
 
-[ext_resource type="Script" path="res://scene/ui/control-room/lever.gd" id="1_pc5yw"]
-[ext_resource type="Texture2D" uid="uid://blcigctf34you" path="res://asset/control-panel/lever-spritesheet.png" id="2_04rni"]
+[ext_resource type="Script" path="res://scene/control-room/lever.gd" id="1_pc5yw"]
+[ext_resource type="Texture2D" uid="uid://blcigctf34you" path="res://scene/control-room/asset/lever_spritesheet.png" id="2_04rni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wxklt"]
 atlas = ExtResource("2_04rni")

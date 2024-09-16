@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4gvapy7q4vb"]
 
-[ext_resource type="Texture2D" uid="uid://b8xp157rb7o28" path="res://asset/control-panel/control-room-bg.png" id="1_a8q1l"]
+[ext_resource type="Texture2D" uid="uid://b8xp157rb7o28" path="res://scene/control-room/asset/control_room_bg.png" id="1_a8q1l"]
 [ext_resource type="PackedScene" uid="uid://8i6k4bg2tibp" path="res://scene/control-room/console.tscn" id="2_e4mx1"]
 
 [node name="ControlRoom" type="Control"]

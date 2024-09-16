@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx66pk1a3t3bo"]
+
+[ext_resource type="Script" path="res://scene/level/test-level/test_gondola.gd" id="1_reu4w"]
+[ext_resource type="Texture2D" uid="uid://cq4x4416ve46q" path="res://scene/level/test-level/asset/gondola.png" id="2_76f34"]
+
+[node name="TestGondola" type="Node2D"]
+script = ExtResource("1_reu4w")
+max_height_duration = null
+max_seats = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_76f34")
