@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bg3k3jej6jlfx"]
+[gd_scene load_steps=13 format=3 uid="uid://bg3k3jej6jlfx"]
 
 [ext_resource type="Script" path="res://scene/level/stone-age-level/mammoth.gd" id="1_fffu5"]
 [ext_resource type="Script" path="res://script/minigame.gd" id="1_r32ph"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bo7lw7vj7tcr2" path="res://scene/level/stone-age-level/minigame/slingshot.tscn" id="3_jfecu"]
 [ext_resource type="Texture2D" uid="uid://b04n2rtms87qd" path="res://scene/level/stone-age-level/asset/projectile.png" id="4_yfbl7"]
 [ext_resource type="Texture2D" uid="uid://b61p6kbyd4iub" path="res://scene/level/stone-age-level/asset/minigame_background.png" id="6_uh0mi"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/projectile.gd" id="6_vvxqi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsd8m"]
 atlas = ExtResource("2_icvlg")
@@ -59,12 +60,14 @@ frame_progress = 0.749488
 
 [node name="Sling shot" parent="." node_paths=PackedStringArray("_projectile") instance=ExtResource("3_jfecu")]
 z_index = 3
-position = Vector2(169, 156)
+position = Vector2(170, 158)
+movable_radius = 60.0
 _projectile = NodePath("Projectile")
 
 [node name="Projectile" type="Sprite2D" parent="Sling shot"]
 z_index = 4
 texture = ExtResource("4_yfbl7")
+script = ExtResource("6_vvxqi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = 2

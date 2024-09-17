@@ -13,3 +13,9 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
         elif event.is_released() and _is_hold:
             _is_hold = false
             released.emit()
+            
+            
+func _notification(what):
+    if what == NOTIFICATION_WM_MOUSE_EXIT:
+        _is_hold = false
+        released.emit()

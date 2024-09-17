@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/level/stone-age-level/minigame/grabbable.gd" id="1_d0q5g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_02iup"]
-radius = 2.7027
+radius = 3.45946
 height = 11.6667
 
 [node name="Grabbable" type="Area2D"]

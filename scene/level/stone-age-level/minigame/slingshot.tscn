@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d3kueegoo0swu" path="res://scene/level/stone-age-level/minigame/grabbable.tscn" id="2_vvvju"]
 
 [node name="Sling shot" type="Node2D" node_paths=PackedStringArray("_grabbable_area", "_string")]
+position = Vector2(156, 132)
 script = ExtResource("1_4yqt8")
 _grabbable_area = NodePath("Grabbable")
 _string = NodePath("Line2D")
@@ -13,13 +14,12 @@ _string = NodePath("Line2D")
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = 1
-position = Vector2(2, 1.7053e-13)
 scale = Vector2(2.4, 1.85)
-points = PackedVector2Array(-14.1667, -9.21785e-14, 0, 0, 12.5, -9.21785e-14)
-width = 3.3
+points = PackedVector2Array(-15, 0, 0, 0, 15, 0)
+width = 3.2
 default_color = Color(0.454902, 0.247059, 0.223529, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -6)
+position = Vector2(0, -6)
 scale = Vector2(1.00312, 1)
 texture = ExtResource("1_244xu")
