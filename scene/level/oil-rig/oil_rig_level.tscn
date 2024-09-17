@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://h4d3fuao8tjs"]
+[gd_scene load_steps=8 format=3 uid="uid://h4d3fuao8tjs"]
 
 [ext_resource type="PackedScene" uid="uid://ody26jyu8ijn" path="res://scene/level/oil-rig/oil_rig_tower.tscn" id="1_kgynb"]
 [ext_resource type="Texture2D" uid="uid://h4ng4ewm1dew" path="res://scene/level/oil-rig/asset/oil_rig.png" id="2_nn0et"]
 [ext_resource type="PackedScene" uid="uid://dd2ewt7x3a12v" path="res://water/water_body.tscn" id="5_c1pe6"]
+[ext_resource type="PackedScene" uid="uid://dws6q4wcm8i0w" path="res://scene/level/oil-rig/fish_pump.tscn" id="5_xsnah"]
 [ext_resource type="Texture2D" uid="uid://bj5mmngnvd1s5" path="res://icon.svg" id="6_mdnw7"]
 
-[sub_resource type="Curve2D" id="Curve2D_5v60b"]
+[sub_resource type="Curve2D" id="Curve2D_5tspc"]
 _data = {
-"points": PackedVector2Array(6, 0, -6, 0, 0, 0, -6, 0, 6, 0, 24.6154, 0, -6, 0, 6, 0, 49.2308, 0, -6, 0, 6, 0, 73.8462, 0, -6, 0, 6, 0, 98.4615, 0, -6, 0, 6, 0, 123.077, 0, -6, 0, 6, 0, 147.692, 0, -6, 0, 6, 0, 172.308, 0, -6, 0, 6, 0, 196.923, 0, -6, 0, 6, 0, 221.538, 0, -6, 0, 6, 0, 246.154, 0, -6, 0, 6, 0, 270.769, 0, 6, 0, -6, 0, 295.385, 0, 6, 0, -6, 0, 320, 0)
+"points": PackedVector2Array(5, 0, -5, 0, 0, 0, -5, 0, 5, 0, 12.8, 0, -5, 0, 5, 0, 25.6, 0, -5, 0, 5, 0, 38.4, 0, -5, 0, 5, 0, 51.2, 0, -5, 0, 5, 0, 64, 0, -5, 0, 5, 0, 76.8, 0, -5, 0, 5, 0, 89.6, 0, -5, 0, 5, 0, 102.4, 0, -5, 0, 5, 0, 115.2, 0, -5, 0, 5, 0, 128, 0, -5, 0, 5, 0, 140.8, 0, -5, 0, 5, 0, 153.6, 0, -5, 0, 5, 0, 166.4, 0, -5, 0, 5, 0, 179.2, 0, -5, 0, 5, 0, 192, 0, -5, 0, 5, 0, 204.8, 0, -5, 0, 5, 0, 217.6, 0, -5, 0, 5, 0, 230.4, 0, -5, 0, 5, 0, 243.2, 0, -5, 0, 5, 0, 256, 0, -5, 0, 5, 0, 268.8, 0, -5, 0, 5, 0, 281.6, 0, -5, 0, 5, 0, 294.4, 0, 5, 0, -5, 0, 307.2, 0, 5, 0, -5, 0, 320, 0)
 }
-point_count = 14
+point_count = 26
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7n3hv"]
 
@@ -23,21 +24,29 @@ position = Vector2(57, 92)
 texture = ExtResource("2_nn0et")
 centered = false
 
+[node name="FishPump" parent="." node_paths=PackedStringArray("_pin") instance=ExtResource("5_xsnah")]
+position = Vector2(75, 141)
+_pin = NodePath("Pin")
+
+[node name="Pin" type="Marker2D" parent="FishPump"]
+
 [node name="WaterBody" parent="." instance=ExtResource("5_c1pe6")]
 position = Vector2(0, 209)
 _dimensions = Vector2(320, 400)
-_resolution = 13
-_spring_constant = 0.008
+_resolution = 25
+_spring_constant = 0.01
 _dampening = 0.04
-_spread = 0.0004
+_spread = 0.0006
+_pass_count = 10
 _border_thickness = 0.5
+_mouse_motion = true
 
 [node name="BodyPolygon" parent="WaterBody" index="0"]
-polygon = PackedVector2Array(0, 0, 0.471154, 0, 3.56971, 0, 7.80769, 0, 12.6082, 0, 17.3942, 0, 21.5889, 0, 24.6154, 0, 27.1496, 0, 30.149, 0, 33.4585, 0, 36.9231, 0, 40.3876, 0, 43.6971, 0, 46.6965, 0, 49.2308, 0, 51.765, 0, 54.7644, 0, 58.0739, 0, 61.5385, 0, 65.003, 0, 68.3125, 0, 71.3119, 0, 73.8462, 0, 76.3804, 0, 79.3798, 0, 82.6893, 0, 86.1538, 0, 89.6184, 0, 92.9279, 0, 95.9273, 0, 98.4615, 0, 100.996, 0, 103.995, 0, 107.305, 0, 110.769, 0, 114.234, 0, 117.543, 0, 120.543, 0, 123.077, 0, 125.611, 0, 128.611, 0, 131.92, 0, 135.385, 0, 138.849, 0, 142.159, 0, 145.158, 0, 147.692, 0, 150.227, 0, 153.226, 0, 156.535, 0, 160, 0, 163.465, 0, 166.774, 0, 169.773, 0, 172.308, 0, 174.842, 0, 177.841, 0, 181.151, 0, 184.615, 0, 188.08, 0, 191.389, 0, 194.389, 0, 196.923, 0, 199.457, 0, 202.457, 0, 205.766, 0, 209.231, 0, 212.695, 0, 216.005, 0, 219.004, 0, 221.538, 0, 224.073, 0, 227.072, 0, 230.382, 0, 233.846, 0, 237.311, 0, 240.62, 0, 243.62, 0, 246.154, 0, 248.688, 0, 251.687, 0, 254.997, 0, 258.462, 0, 261.926, 0, 265.236, 0, 268.235, 0, 270.769, 0, 273.796, 0, 277.99, 0, 282.776, 0, 287.577, 0, 291.815, 0, 294.913, 0, 295.385, 0, 297.543, 0, 302.118, 0, 304.843, 0, 307.692, 0, 310.542, 0, 313.266, 0, 317.841, 0, 320, 0, 320, 400, 0, 400)
+polygon = PackedVector2Array(0, 0, 2.65, 0, 5.23438, 0, 7.9875, 0, 12.8, 0, 16.2062, 0, 19.2, 0, 22.1938, 0, 25.6, 0, 29.0062, 0, 32, 0, 34.9938, 0, 38.4, 0, 41.8063, 0, 44.8, 0, 47.7938, 0, 51.2, 0, 54.6063, 0, 57.6, 0, 60.5938, 0, 64, 0, 67.4062, 0, 70.4, 0, 73.3938, 0, 76.8, 0, 80.2063, 0, 83.2, 0, 86.1937, 0, 89.6, 0, 93.0062, 0, 96, 0, 98.9938, 0, 102.4, 0, 105.806, 0, 108.8, 0, 111.794, 0, 115.2, 0, 118.606, 0, 121.6, 0, 124.594, 0, 128, 0, 131.406, 0, 134.4, 0, 137.394, 0, 140.8, 0, 144.206, 0, 147.2, 0, 150.194, 0, 153.6, 0, 157.006, 0, 160, 0, 162.994, 0, 166.4, 0, 169.806, 0, 172.8, 0, 175.794, 0, 179.2, 0, 182.606, 0, 185.6, 0, 188.594, 0, 192, 0, 195.406, 0, 198.4, 0, 201.394, 0, 204.8, 0, 208.206, 0, 211.2, 0, 214.194, 0, 217.6, 0, 221.006, 0, 224, 0, 226.994, 0, 230.4, 0, 233.806, 0, 236.8, 0, 239.794, 0, 243.2, 0, 246.606, 0, 249.6, 0, 252.594, 0, 256, 0, 259.406, 0, 262.4, 0, 265.394, 0, 268.8, 0, 272.206, 0, 275.2, 0, 278.194, 0, 281.6, 0, 285.006, 0, 288, 0, 290.994, 0, 294.4, 0, 299.212, 0, 301.966, 0, 304.55, 0, 307.2, 0, 307.794, 0, 310.371, 0, 313.6, 0, 316.829, 0, 319.406, 0, 320, 0, 320, 400, 0, 400)
 
 [node name="WaterBorder" parent="WaterBody" index="1"]
-curve = SubResource("Curve2D_5v60b")
-spline_length = 6.0
+curve = SubResource("Curve2D_5tspc")
+spline_length = 5.0
 width = 0.5
 color = Color(4.52429e-06, 0.539532, 0.745505, 1)
 
@@ -51,5 +60,9 @@ shape = SubResource("RectangleShape2D_7n3hv")
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("6_mdnw7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, 100)
+anchor_mode = 0
 
 [editable path="WaterBody"]

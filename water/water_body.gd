@@ -25,6 +25,9 @@ extends Node2D
 @onready var _body_polygon: Polygon2D = %BodyPolygon
 @onready var _border: SmoothPath = %WaterBorder
 
+@export var _mouse_motion: bool = false
+var _mouse_in_water: bool = false
+
 var _bottom: float = 0.0
 var _target_height = global_position.y
 var _springs: Array[WaterSpring] = []
@@ -91,6 +94,37 @@ func _physics_process(delta: float) -> void:
 
   _draw_border(_smooth)
   _draw_water_body()
+
+
+func _input(event: InputEvent) -> void:
+  if !_mouse_motion:
+    return
+
+  if !event is InputEventMouseMotion:
+    return
+
+  var mouse_pos := get_global_mouse_position()
+  if mouse_pos.y >= global_position.y && !_mouse_in_water:
+    var idx := _global_pos_x_to_idx(mouse_pos.x)
+    var mouse_vel = event.relative
+
+    splash(idx, mouse_vel.y)
+    _mouse_in_water = true
+
+  if mouse_pos.y < global_position.y:
+    _mouse_in_water = false
+
+
+func _global_pos_x_to_idx(pos_x: float) -> int:
+  var fraction := pos_x / _dimensions.x
+
+  var idx := floori(fraction * _resolution)
+
+  if idx == _resolution:
+    return idx - 1
+
+  print(idx)
+  return idx
 
 
 func splash(idx: int, speed: float) -> void:
