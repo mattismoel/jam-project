@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ou0jpupiee4"]
+
+[ext_resource type="Script" path="res://water/water_spring.gd" id="1_42q2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goiuk"]
+size = Vector2(26.6662, 20)
+
+[node name="WaterSpring" type="Node2D"]
+script = ExtResource("1_42q2s")
+motion_factor = 0.015
+
+[node name="SpringDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="SpringCollisionShape" type="CollisionShape2D" parent="SpringDetector"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_goiuk")

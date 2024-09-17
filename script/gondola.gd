@@ -1,6 +1,7 @@
 class_name Gondola
 extends Node2D
 
+signal top_reached
 signal fully_occupied
 signal seats_changed(occupied: int)
 signal finished(reached_height: float, seats_occupied: int)

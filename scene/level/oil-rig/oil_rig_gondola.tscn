@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://3w0fqu46yixl"]
+
+[ext_resource type="Script" path="res://scene/level/oil-rig/oil_rig_gondola.gd" id="1_yyuhh"]
+[ext_resource type="Texture2D" uid="uid://uh58cclc1xlu" path="res://scene/level/oil-rig/asset/rubber_spritesheet.png" id="2_ljpk2"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/rubber.gd" id="3_hcca7"]
+[ext_resource type="Texture2D" uid="uid://cjvmllekrnbnd" path="res://scene/level/oil-rig/asset/gondola.png" id="4_pfj0j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3jac"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(0, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl132"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(32, 0, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_da4rl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3jac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl132")
+}],
+"loop": false,
+"name": &"squish",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxj7c"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(0, 24, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_incg3"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(32, 24, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k7uhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxj7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_incg3")
+}],
+"loop": false,
+"name": &"squish",
+"speed": 30.0
+}]
+
+[node name="OilRigGondola" type="Node2D"]
+script = ExtResource("1_yyuhh")
+
+[node name="RubberTop" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_da4rl")
+animation = &"squish"
+script = ExtResource("3_hcca7")
+unsquished_height = 13
+squished_height = 7
+
+[node name="RubberBottom" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 13)
+sprite_frames = SubResource("SpriteFrames_k7uhs")
+animation = &"squish"
+script = ExtResource("3_hcca7")
+
+[node name="GondolaSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
+texture = ExtResource("4_pfj0j")

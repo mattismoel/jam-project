@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd2ewt7x3a12v"]
+
+[ext_resource type="Script" path="res://water/water_body.gd" id="1_wo4jc"]
+[ext_resource type="PackedScene" uid="uid://c1ou0jpupiee4" path="res://water/water_spring.tscn" id="1_x74oq"]
+[ext_resource type="Shader" path="res://scene/level/oil-rig/water.gdshader" id="3_112d6"]
+[ext_resource type="Script" path="res://script/smooth_path.gd" id="4_7s0bq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dok05"]
+shader = ExtResource("3_112d6")
+shader_parameter/tint = Color(3.85046e-07, 0.409019, 0.648635, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_kcgba"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 128, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 224, 0, 0, 0, 0, 0, 256, 0, 0, 0, 0, 0, 288, 0, 0, 0, 0, 0, 320, 0)
+}
+point_count = 11
+
+[node name="WaterBody" type="Node2D"]
+script = ExtResource("1_wo4jc")
+_dimensions = Vector2(320, 100)
+_spring_scene = ExtResource("1_x74oq")
+
+[node name="BodyPolygon" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_dok05")
+polygon = PackedVector2Array(0, 0, 0.5, 0, 4.5, 0, 7.10938, 0, 10, 0, 13.0781, 0, 16.25, 0, 19.4219, 0, 22.5, 0, 25.3906, 0, 28, 0, 32, 0, 35.3438, 0, 39.25, 0, 43.5312, 0, 48, 0, 52.4688, 0, 56.75, 0, 60.6562, 0, 64, 0, 67.3438, 0, 71.25, 0, 75.5312, 0, 80, 0, 84.4688, 0, 88.75, 0, 92.6562, 0, 96, 0, 99.3438, 0, 103.25, 0, 107.531, 0, 112, 0, 116.469, 0, 120.75, 0, 124.656, 0, 128, 0, 131.344, 0, 135.25, 0, 139.531, 0, 144, 0, 148.469, 0, 152.75, 0, 156.656, 0, 160, 0, 163.344, 0, 167.25, 0, 171.531, 0, 176, 0, 180.469, 0, 184.75, 0, 188.656, 0, 192, 0, 195.344, 0, 199.25, 0, 203.531, 0, 208, 0, 212.469, 0, 216.75, 0, 220.656, 0, 224, 0, 227.344, 0, 231.25, 0, 235.531, 0, 240, 0, 244.469, 0, 248.75, 0, 252.656, 0, 256, 0, 260, 0, 262.609, 0, 265.5, 0, 268.578, 0, 271.75, 0, 274.922, 0, 278, 0, 280.891, 0, 283.5, 0, 287.5, 0, 288, 0, 290.75, 0, 293.488, 0, 296.719, 0, 300.277, 0, 304, 0, 307.723, 0, 311.281, 0, 314.512, 0, 317.25, 0, 320, 0, 320, 100, 0, 100)
+
+[node name="WaterBorder" type="Path2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+curve = SubResource("Curve2D_kcgba")
+script = ExtResource("4_7s0bq")
+spline_length = 8.0
+width = 2.0
+color = Color(0, 0.568834, 0.928015, 1)
+smooth = true
+straighten = true
