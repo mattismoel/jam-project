@@ -59,6 +59,7 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [node name="StoneageMinigame" type="Node2D" node_paths=PackedStringArray("projectile", "mammoth", "animation_of_mammoth")]
+z_index = 5
 script = ExtResource("1_8382s")
 duration_secs = 15.0
 projectile = NodePath("Sling shot/Projectile")
@@ -87,12 +88,14 @@ shape = SubResource("CapsuleShape2D_6uwkn")
 z_index = 3
 position = Vector2(166, 158)
 movable_radius = 60.0
+min_fire_radius = 10.0
 _projectile = NodePath("Projectile")
 
 [node name="Projectile" parent="Sling shot" instance=ExtResource("5_dqgkg")]
 velocity_multiplier = 13
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
 offset_right = 320.0
 offset_bottom = 240.0
 texture = ExtResource("6_uh0mi")

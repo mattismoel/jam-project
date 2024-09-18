@@ -40,8 +40,10 @@ func _on_released() -> void:
     var strength = _string.points[1].length()
     if strength > min_fire_radius:
         _projectile.fire(_string.points[1].normalized(), _string.points[1].length())
+    else:
+        _projectile.reload()
         
-        _grabbable_area.position = start_pos
-        _string.points[1] = start_pos
-        
-        following_mouse = false
+    _grabbable_area.position = start_pos
+    _string.points[1] = start_pos
+    
+    following_mouse = false
