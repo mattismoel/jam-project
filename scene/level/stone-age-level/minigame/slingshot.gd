@@ -1,21 +1,22 @@
 extends Node2D
 
 @export var movable_radius: float
+@export var min_fire_radius: float
 
 @export_category("References")
 @export var _grabbable_area: Area2D
 @export var _string: Line2D
-@export var _projectile: Sprite2D
+@export var _projectile: Node2D
 
-var start_pos = Vector2(0,0)
-var following_mouse = false
+var start_pos = Vector2.ZERO
+var following_mouse: bool = false
 
 func _ready() -> void:
     _grabbable_area.released.connect(_on_released)
     _grabbable_area.grabbed.connect(_on_grabbed)
 
 func _process(delta: float) -> void:
-    if following_mouse:
+    if following_mouse and _projectile.velocity == 0:
         follow_mouse()
 
 func follow_mouse() -> void:
@@ -36,9 +37,11 @@ func _on_grabbed() -> void:
     following_mouse = true
     
 func _on_released() -> void:
-    _projectile.fire(_string.points[1])
-    
-    following_mouse = false
-    _grabbable_area.position = start_pos
-    _string.points[1] = start_pos
-    _projectile.position = start_pos
+    var strength = _string.points[1].length()
+    if strength > min_fire_radius:
+        _projectile.fire(_string.points[1].normalized(), _string.points[1].length())
+        
+        _grabbable_area.position = start_pos
+        _string.points[1] = start_pos
+        
+        following_mouse = false

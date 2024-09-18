@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0d6r4ok253ej"]
+[gd_scene load_steps=15 format=3 uid="uid://d0d6r4ok253ej"]
 
 [ext_resource type="Texture2D" uid="uid://bjydeelcjm5ek" path="res://scene/level/stone-age-level/asset/background.png" id="1_201v5"]
 [ext_resource type="Script" path="res://scene/level/level.gd" id="1_g1t6x"]
@@ -10,11 +10,20 @@
 [ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_tower.gd" id="4_714jk"]
 [ext_resource type="PackedScene" uid="uid://bg3k3jej6jlfx" path="res://scene/level/stone-age-level/stone_age_minigame.tscn" id="4_l611u"]
 [ext_resource type="PackedScene" uid="uid://b4gvapy7q4vb" path="res://scene/control-room/control_room.tscn" id="7_vbjw0"]
+[ext_resource type="Texture2D" uid="uid://cakbc6hr6m7r" path="res://scene/level/stone-age-level/asset/rope.png" id="10_gf7yk"]
 
 [sub_resource type="Resource" id="Resource_ae11u"]
 script = ExtResource("2_al3v5")
 height = 170
 desired_height = 140
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sd2kn"]
+
+[sub_resource type="Curve2D" id="Curve2D_ts367"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 5, 79, 0, 0, 0, 0, 1, -39, 0, 0, 0, 0, 28, 25, 0, 0, 0, 0, 50, 86, 0, 0, 0, 0, 92, 84)
+}
+point_count = 5
 
 [node name="StoneageLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_console")]
 script = ExtResource("1_g1t6x")
@@ -34,10 +43,30 @@ script = ExtResource("2_74tog")
 tower = NodePath("../Stoneage Tower")
 
 [node name="Stoneage Tower" parent="." instance=ExtResource("3_d8m5n")]
-position = Vector2(223, 186)
+z_index = 2
+position = Vector2(160, 198)
 script = ExtResource("4_714jk")
 tower_stat = SubResource("Resource_ae11u")
 
+[node name="Sprite2D" type="Sprite2D" parent="Stoneage Tower"]
+position = Vector2(6, -111)
+texture = ExtResource("10_gf7yk")
+
+[node name="Path2D" type="Path2D" parent="Stoneage Tower/Sprite2D"]
+material = SubResource("CanvasItemMaterial_sd2kn")
+use_parent_material = true
+curve = SubResource("Curve2D_ts367")
+
+[node name="Rope" type="Line2D" parent="Stoneage Tower"]
+visible = false
+z_index = -1
+position = Vector2(6, -111)
+points = PackedVector2Array(3, 84, 3, -34, 44, 79, 80, 80)
+width = 3.0
+texture = ExtResource("10_gf7yk")
+texture_mode = 1
+
 [node name="ControlRoom" parent="." instance=ExtResource("7_vbjw0")]
+z_index = 5
 
 [editable path="ControlRoom"]

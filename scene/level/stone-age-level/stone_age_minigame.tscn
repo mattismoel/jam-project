@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bg3k3jej6jlfx"]
+[gd_scene load_steps=16 format=3 uid="uid://bg3k3jej6jlfx"]
 
+[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_minigame.gd" id="1_8382s"]
 [ext_resource type="Script" path="res://scene/level/stone-age-level/mammoth.gd" id="1_fffu5"]
-[ext_resource type="Script" path="res://script/minigame.gd" id="1_r32ph"]
 [ext_resource type="Texture2D" uid="uid://djbuftp8w7et8" path="res://scene/level/stone-age-level/asset/mammoth_animation.png" id="2_icvlg"]
 [ext_resource type="PackedScene" uid="uid://bo7lw7vj7tcr2" path="res://scene/level/stone-age-level/minigame/slingshot.tscn" id="3_jfecu"]
-[ext_resource type="Texture2D" uid="uid://b04n2rtms87qd" path="res://scene/level/stone-age-level/asset/projectile.png" id="4_yfbl7"]
+[ext_resource type="PackedScene" uid="uid://c01v1gk8f6iya" path="res://scene/level/stone-age-level/minigame/projectile.tscn" id="5_dqgkg"]
 [ext_resource type="Texture2D" uid="uid://b61p6kbyd4iub" path="res://scene/level/stone-age-level/asset/minigame_background.png" id="6_uh0mi"]
-[ext_resource type="Script" path="res://scene/level/stone-age-level/projectile.gd" id="6_vvxqi"]
+[ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="7_gscy0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsd8m"]
 atlas = ExtResource("2_icvlg")
@@ -41,37 +41,102 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.11
+"speed": 5.0
 }]
 
-[node name="StoneageMinigame" type="Node2D"]
-script = ExtResource("1_r32ph")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6uwkn"]
+radius = 23.0
+height = 56.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_l06c3"]
+font_size = 14
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_isyt6"]
+font_size = 14
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StoneageMinigame" type="Node2D" node_paths=PackedStringArray("projectile", "mammoth", "animation_of_mammoth")]
+script = ExtResource("1_8382s")
+duration_secs = 15.0
+projectile = NodePath("Sling shot/Projectile")
+mammoth = NodePath("Mammoth")
+animation_of_mammoth = NodePath("Mammoth/AnimatedSprite2D")
 
 [node name="Mammoth" type="Node2D" parent="."]
 z_index = 3
-position = Vector2(154, 114)
+position = Vector2(154, 115)
 script = ExtResource("1_fffu5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mammoth"]
 position = Vector2(9, -52)
 sprite_frames = SubResource("SpriteFrames_bb5h0")
 autoplay = "default"
-frame_progress = 0.749488
+frame_progress = 0.480325
+
+[node name="Head" type="Area2D" parent="Mammoth"]
+
+[node name="Target" type="CollisionShape2D" parent="Mammoth/Head"]
+position = Vector2(11, -80)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_6uwkn")
 
 [node name="Sling shot" parent="." node_paths=PackedStringArray("_projectile") instance=ExtResource("3_jfecu")]
 z_index = 3
-position = Vector2(170, 158)
+position = Vector2(166, 158)
 movable_radius = 60.0
 _projectile = NodePath("Projectile")
 
-[node name="Projectile" type="Sprite2D" parent="Sling shot"]
-z_index = 4
-texture = ExtResource("4_yfbl7")
-script = ExtResource("6_vvxqi")
+[node name="Projectile" parent="Sling shot" instance=ExtResource("5_dqgkg")]
+velocity_multiplier = 13
 
 [node name="TextureRect" type="TextureRect" parent="."]
-z_index = 2
-offset_top = -1.0
 offset_right = 320.0
-offset_bottom = 239.0
+offset_bottom = 240.0
 texture = ExtResource("6_uh0mi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("7_gscy0")
+
+[node name="CountdownLabel" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 248.0
+offset_top = 4.0
+offset_right = 317.0
+offset_bottom = 20.0
+text = "00:00"
+label_settings = SubResource("LabelSettings_l06c3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForceLabel" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 66.0
+offset_bottom = 22.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "0 hits"
+label_settings = SubResource("LabelSettings_isyt6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownTimer" type="Timer" parent="CanvasLayer"]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+autostart = true
