@@ -11,7 +11,12 @@ extends Node2D
 
 
 func _ready() -> void:
-  _console.lever_pulled.connect(_load_blueprint)
+  _console.lever_pulled.connect(_on_lever_pull)
+
+
+func _on_lever_pull() -> void:
+  _load_blueprint()
+  pass
 
 
 func _load_blueprint() -> void:
