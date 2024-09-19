@@ -74,5 +74,3 @@ func _begin_tower_ride(resulting_force: float) -> void:
   tower_began.emit()
   _tower.begin_ride(resulting_force)
   _tower.finished.connect(_on_tower_ride_finished)
-
-

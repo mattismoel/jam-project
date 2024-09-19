@@ -1,11 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq0dfva11ynl5"]
+[gd_scene load_steps=6 format=3 uid="uid://dq0dfva11ynl5"]
 
 [ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_gondola.gd" id="1_0ufrr"]
 [ext_resource type="Texture2D" uid="uid://bi42n4wwrj7ws" path="res://scene/level/stone-age-level/asset/gondola.png" id="2_08131"]
+[ext_resource type="Script" path="res://addons/machinery/state_machine.gd" id="3_12ilb"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/up.gd" id="4_dvbva"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/idle.gd" id="5_ujm5h"]
 
-[node name="Stone age Gondola" type="Node2D"]
+[node name="Stone age Gondola" type="Node2D" node_paths=PackedStringArray("_hoist_state_machine", "_idle_state", "_up_state")]
 script = ExtResource("1_0ufrr")
+_hoist_state_machine = NodePath("StateMachine")
+_idle_state = NodePath("StateMachine/Idle")
+_up_state = NodePath("StateMachine/Up")
 max_seats = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_08131")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_12ilb")
+initial_state = NodePath("Idle")
+debug_change_state = true
+
+[node name="Up" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_gondola")]
+script = ExtResource("4_dvbva")
+_gondola = NodePath("../..")
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource("5_ujm5h")

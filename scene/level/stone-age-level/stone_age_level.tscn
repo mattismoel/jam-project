@@ -31,11 +31,14 @@ tower = NodePath("../Stoneage Tower")
 
 [node name="Stoneage Tower" parent="." instance=ExtResource("3_d8m5n")]
 z_index = 2
-position = Vector2(162, 199)
+position = Vector2(171, 193)
 passenger_mass = 100.0
 tower_stat = SubResource("Resource_ae11u")
 
 [node name="ControlRoom" parent="." instance=ExtResource("7_vbjw0")]
-z_index = 5
+z_index = 10
+
+[node name="RoomBG" parent="ControlRoom" index="0"]
+visible = false
 
 [editable path="ControlRoom"]
