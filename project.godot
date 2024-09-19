@@ -14,6 +14,10 @@ config/name="Jam Project"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LevelManager="*res://scene/level_manager.tscn"
+
 [display]
 
 window/size/viewport_width=320
@@ -22,6 +26,10 @@ window/size/window_width_override=960
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/machinery/plugin.cfg")
 
 [gui]
 

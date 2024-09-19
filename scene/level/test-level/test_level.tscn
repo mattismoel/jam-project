@@ -10,11 +10,10 @@
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_console")]
 script = ExtResource("1_yhrht")
-title = "Test Level"
 _blueprint_scene = ExtResource("2_306l3")
 _minigame_scene = ExtResource("3_3x0y1")
 _tower = NodePath("TestTower")
-_console = NodePath("ControlRoom/Console")
+_console = NodePath("UI/ControlRoom/Console")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(0, -72)
@@ -28,7 +27,12 @@ tower = NodePath("../TestTower")
 [node name="TestTower" parent="." instance=ExtResource("1_f7t71")]
 position = Vector2(228, 156)
 
-[node name="ControlRoom" parent="." instance=ExtResource("5_ii70k")]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[editable path="ControlRoom"]
-[editable path="ControlRoom/Console"]
+[node name="ControlRoom" parent="UI" instance=ExtResource("5_ii70k")]
+
+[node name="RoomBG" parent="UI/ControlRoom" index="0"]
+visible = false
+
+[editable path="UI/ControlRoom"]
+[editable path="UI/ControlRoom/Console"]

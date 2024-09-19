@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://8dkdk70bm38i"]
+
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish.gd" id="1_rtuta"]
+[ext_resource type="Texture2D" uid="uid://dqqrahoffh38" path="res://scene/level/oil-rig/asset/fish/gray-fish.png" id="2_wkxhe"]
+[ext_resource type="Script" path="res://script/move_component.gd" id="3_e2vaq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gkuxv"]
+radius = 4.0
+height = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjiwh"]
+atlas = ExtResource("2_wkxhe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa86d"]
+atlas = ExtResource("2_wkxhe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqgkc"]
+atlas = ExtResource("2_wkxhe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8vi3"]
+atlas = ExtResource("2_wkxhe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hw6f0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjiwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa86d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqgkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8vi3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fish" type="Area2D" node_paths=PackedStringArray("move_component", "_raycast")]
+script = ExtResource("1_rtuta")
+move_component = NodePath("MoveComponent")
+_raycast = NodePath("RayCast2D")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1.2, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gkuxv")
+
+[node name="FishSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_hw6f0")
+autoplay = "default"
+frame_progress = 0.274106
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(16, 0)
+
+[node name="MoveComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("3_e2vaq")
+actor = NodePath("..")

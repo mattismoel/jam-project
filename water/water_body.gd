@@ -123,7 +123,6 @@ func _global_pos_x_to_idx(pos_x: float) -> int:
   if idx == _resolution:
     return idx - 1
 
-  print(idx)
   return idx
 
 

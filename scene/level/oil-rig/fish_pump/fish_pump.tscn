@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://dws6q4wcm8i0w"]
+
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish_pump/fish_pump.gd" id="1_u5fsa"]
+[ext_resource type="PackedScene" uid="uid://cvujptp313j0g" path="res://scene/rope/rope.tscn" id="2_bf4on"]
+[ext_resource type="Texture2D" uid="uid://nwl6dcy1ruwd" path="res://scene/level/oil-rig/asset/suction_pipe.png" id="3_6vy0s"]
+[ext_resource type="Script" path="res://addons/machinery/state_machine.gd" id="4_31bfh"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish_pump/states/move.gd" id="5_1ysxt"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish_pump/states/idle.gd" id="6_v7jks"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish_pump/states/suck.gd" id="7_g4rmu"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish_pump/states/no_suck.gd" id="8_ygc2w"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish_pump/states/locked.gd" id="9_w2qwc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_afwwd"]
+radius = 19.0263
+
+[node name="FishPump" type="Node2D" node_paths=PackedStringArray("_rope", "_suction_area", "_movement_state_machine", "_suction_state_machine", "_move_state", "_suck_state")]
+script = ExtResource("1_u5fsa")
+_rope = NodePath("Rope")
+_suction_area = NodePath("PipeEnd/SuctionArea")
+_movement_state_machine = NodePath("MovementStateMachine")
+_suction_state_machine = NodePath("SuctionStateMachine")
+_move_state = NodePath("MovementStateMachine/Move")
+_suck_state = NodePath("SuctionStateMachine/NoSuck")
+
+[node name="Rope" parent="." instance=ExtResource("2_bf4on")]
+texture_repeat = 2
+width = 15.0
+texture = ExtResource("3_6vy0s")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+_constrain = 3.0
+
+[node name="PipeEnd" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="SuctionArea" type="Area2D" parent="PipeEnd"]
+unique_name_in_owner = true
+
+[node name="SuctionCollision" type="CollisionPolygon2D" parent="PipeEnd/SuctionArea"]
+unique_name_in_owner = true
+polygon = PackedVector2Array(169, -60, 169, 60, 0, 5, 0, -5)
+
+[node name="EndArea" type="Area2D" parent="PipeEnd"]
+unique_name_in_owner = true
+position = Vector2(-20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeEnd/EndArea"]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_afwwd")
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_31bfh")
+initial_state = NodePath("Idle")
+debug_change_state = true
+
+[node name="Move" type="Node2D" parent="MovementStateMachine" node_paths=PackedStringArray("_rope", "_pipe_end")]
+script = ExtResource("5_1ysxt")
+_rope = NodePath("../../Rope")
+_pipe_end = NodePath("../../PipeEnd")
+
+[node name="Idle" type="Node2D" parent="MovementStateMachine" node_paths=PackedStringArray("_move_state")]
+script = ExtResource("6_v7jks")
+_move_state = NodePath("../Move")
+
+[node name="SuctionStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_31bfh")
+initial_state = NodePath("Locked")
+debug_change_state = true
+
+[node name="Suck" type="Node2D" parent="SuctionStateMachine" node_paths=PackedStringArray("_fish_pump", "_end_area", "_no_suck_state")]
+script = ExtResource("7_g4rmu")
+_fish_pump = NodePath("../..")
+_end_area = NodePath("../../PipeEnd/EndArea")
+_no_suck_state = NodePath("../NoSuck")
+
+[node name="NoSuck" type="Node2D" parent="SuctionStateMachine" node_paths=PackedStringArray("_suck_state")]
+script = ExtResource("8_ygc2w")
+_suck_state = NodePath("../Suck")
+debug_enter = null
+debug_process = null
+debug_physics_process = null
+debug_input = null
+debug_exit = null
+
+[node name="Locked" type="Node2D" parent="SuctionStateMachine"]
+script = ExtResource("9_w2qwc")
