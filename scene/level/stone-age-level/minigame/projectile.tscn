@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c01v1gk8f6iya"]
+
+[ext_resource type="Texture2D" uid="uid://b04n2rtms87qd" path="res://scene/level/stone-age-level/asset/projectile.png" id="1_fogae"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/minigame/projectile.gd" id="2_dk72c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5png"]
+radius = 7.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("collision_area")]
+script = ExtResource("2_dk72c")
+velocity_multiplier = 15
+collision_area = NodePath("Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4
+texture = ExtResource("1_fogae")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_r5png")

@@ -1,26 +1,81 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyquehg06r5tj"]
+[gd_scene load_steps=14 format=3 uid="uid://dyquehg06r5tj"]
 
-[ext_resource type="Script" path="res://script/tower.gd" id="1_v70ab"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_tower.gd" id="1_rwioe"]
 [ext_resource type="Script" path="res://script/tower_stat.gd" id="2_4jhrw"]
 [ext_resource type="Texture2D" uid="uid://d3ex38083x8ex" path="res://scene/level/stone-age-level/asset/stone_age_tower.png" id="3_arcc1"]
 [ext_resource type="PackedScene" uid="uid://dq0dfva11ynl5" path="res://scene/level/stone-age-level/stone_age_gondola.tscn" id="4_1s7vp"]
-[ext_resource type="Script" path="res://scene/gondola/stone_age_gondola.gd" id="5_57sqc"]
+[ext_resource type="Texture2D" uid="uid://2vyb72stcgkv" path="res://scene/level/stone-age-level/asset/trolley.png" id="4_6yf02"]
+[ext_resource type="Texture2D" uid="uid://bpkwcsleyktcm" path="res://scene/level/stone-age-level/asset/side_view_mammoth-Sheet.png" id="6_cdvey"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_gondola.gd" id="6_e2dy4"]
 
-[sub_resource type="Resource" id="Resource_ogpqg"]
+[sub_resource type="Resource" id="Resource_ufrxb"]
 script = ExtResource("2_4jhrw")
 height = 100
 desired_height = 100
 
-[node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("gondola")]
-script = ExtResource("1_v70ab")
-tower_stat = SubResource("Resource_ogpqg")
-gondola = NodePath("Stone age Gondola")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfvur"]
+atlas = ExtResource("6_cdvey")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hutdg"]
+atlas = ExtResource("6_cdvey")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s54gi"]
+atlas = ExtResource("6_cdvey")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y785"]
+atlas = ExtResource("6_cdvey")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lph6l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfvur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hutdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s54gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8y785")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("mammoth", "rope", "gondola")]
+script = ExtResource("1_rwioe")
+mammoth = NodePath("Mammoth")
+rope = NodePath("Rope")
+tower_stat = SubResource("Resource_ufrxb")
+gondola = NodePath("Gondola")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -88)
 texture = ExtResource("3_arcc1")
 
-[node name="Stone age Gondola" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("4_1s7vp")]
-position = Vector2(12, -36)
-script = ExtResource("5_57sqc")
-tower = NodePath("..")
+[node name="Trolley" type="Sprite2D" parent="."]
+position = Vector2(50, -19)
+texture = ExtResource("4_6yf02")
+
+[node name="Gondola" parent="." instance=ExtResource("4_1s7vp")]
+position = Vector2(10, -37)
+script = ExtResource("6_e2dy4")
+gravity = 0.0
+
+[node name="Rope" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(3, -124)
+points = PackedVector2Array(7, 71, 7, -21, 47, 104, 80, 90)
+width = 2.0
+default_color = Color(0.454902, 0.247059, 0.223529, 1)
+
+[node name="Mammoth" type="AnimatedSprite2D" parent="."]
+position = Vector2(105, -17)
+sprite_frames = SubResource("SpriteFrames_lph6l")
