@@ -44,10 +44,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Fish" type="Area2D" node_paths=PackedStringArray("move_component", "_raycast")]
+[node name="Fish" type="Area2D" node_paths=PackedStringArray("move_component")]
 script = ExtResource("1_rtuta")
 move_component = NodePath("MoveComponent")
-_raycast = NodePath("")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(1.2, 0.5)

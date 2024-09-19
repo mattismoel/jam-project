@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://h4d3fuao8tjs"]
+[gd_scene load_steps=14 format=3 uid="uid://h4d3fuao8tjs"]
 
 [ext_resource type="PackedScene" uid="uid://ody26jyu8ijn" path="res://scene/level/oil-rig/oil_rig_tower.tscn" id="1_kgynb"]
 [ext_resource type="Script" path="res://scene/level/oil-rig/oil_rig_level.gd" id="1_mnn4l"]
 [ext_resource type="Texture2D" uid="uid://h4ng4ewm1dew" path="res://scene/level/oil-rig/asset/oil_rig.png" id="2_nn0et"]
+[ext_resource type="Texture2D" uid="uid://co06h5wxstxyn" path="res://scene/level/oil-rig/asset/background.png" id="3_it7by"]
 [ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="3_r5pke"]
 [ext_resource type="PackedScene" uid="uid://dd2ewt7x3a12v" path="res://water/water_body.tscn" id="5_c1pe6"]
 [ext_resource type="Script" path="res://scene/level/oil-rig/oil_rig_minigame.gd" id="6_gxpuv"]
@@ -11,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dws6q4wcm8i0w" path="res://scene/level/oil-rig/fish_pump/fish_pump.tscn" id="7_q536g"]
 [ext_resource type="PackedScene" uid="uid://cldjxry6ysopy" path="res://scene/minigame/minigame_ui.tscn" id="9_3efgv"]
 
-[sub_resource type="Curve2D" id="Curve2D_osfrj"]
+[sub_resource type="Curve2D" id="Curve2D_cfq6n"]
 _data = {
 "points": PackedVector2Array(5, 0, -5, 0, 0, 0, -5, 0, 5, 0, 12.8, 0, -5, 0, 5, 0, 25.6, 0, -5, 0, 5, 0, 38.4, 0, -5, 0, 5, 0, 51.2, 0, -5, 0, 5, 0, 64, 0, -5, 0, 5, 0, 76.8, 0, -5, 0, 5, 0, 89.6, 0, -5, 0, 5, 0, 102.4, 0, -5, 0, 5, 0, 115.2, 0, -5, 0, 5, 0, 128, 0, -5, 0, 5, 0, 140.8, 0, -5, 0, 5, 0, 153.6, 0, -5, 0, 5, 0, 166.4, 0, -5, 0, 5, 0, 179.2, 0, -5, 0, 5, 0, 192, 0, -5, 0, 5, 0, 204.8, 0, -5, 0, 5, 0, 217.6, 0, -5, 0, 5, 0, 230.4, 0, -5, 0, 5, 0, 243.2, 0, -5, 0, 5, 0, 256, 0, -5, 0, 5, 0, 268.8, 0, -5, 0, 5, 0, 281.6, 0, -5, 0, 5, 0, 294.4, 0, 5, 0, -5, 0, 307.2, 0, 5, 0, -5, 0, 320, 0)
 }
@@ -34,10 +35,26 @@ _console = NodePath("UI/ControlRoom/Console")
 
 [node name="Environment" type="Node2D" parent="."]
 
+[node name="Sprite2D" type="Sprite2D" parent="Environment"]
+texture = ExtResource("3_it7by")
+centered = false
+
 [node name="Rig" type="Sprite2D" parent="Environment"]
 position = Vector2(76, 92)
 texture = ExtResource("2_nn0et")
 centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Environment"]
+custom_minimum_size = Vector2(320, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 240.0
+offset_right = 320.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.168627, 0.266667, 1)
 
 [node name="WaterBody" parent="Environment" instance=ExtResource("5_c1pe6")]
 position = Vector2(0, 209)
@@ -54,7 +71,7 @@ _mouse_motion = true
 polygon = PackedVector2Array(0, 0, 2.65, 0, 5.23438, 0, 7.9875, 0, 12.8, 0, 16.2062, 0, 19.2, 0, 22.1938, 0, 25.6, 0, 29.0062, 0, 32, 0, 34.9938, 0, 38.4, 0, 41.8063, 0, 44.8, 0, 47.7938, 0, 51.2, 0, 54.6063, 0, 57.6, 0, 60.5938, 0, 64, 0, 67.4062, 0, 70.4, 0, 73.3938, 0, 76.8, 0, 80.2063, 0, 83.2, 0, 86.1937, 0, 89.6, 0, 93.0062, 0, 96, 0, 98.9938, 0, 102.4, 0, 105.806, 0, 108.8, 0, 111.794, 0, 115.2, 0, 118.606, 0, 121.6, 0, 124.594, 0, 128, 0, 131.406, 0, 134.4, 0, 137.394, 0, 140.8, 0, 144.206, 0, 147.2, 0, 150.194, 0, 153.6, 0, 157.006, 0, 160, 0, 162.994, 0, 166.4, 0, 169.806, 0, 172.8, 0, 175.794, 0, 179.2, 0, 182.606, 0, 185.6, 0, 188.594, 0, 192, 0, 195.406, 0, 198.4, 0, 201.394, 0, 204.8, 0, 208.206, 0, 211.2, 0, 214.194, 0, 217.6, 0, 221.006, 0, 224, 0, 226.994, 0, 230.4, 0, 233.806, 0, 236.8, 0, 239.794, 0, 243.2, 0, 246.606, 0, 249.6, 0, 252.594, 0, 256, 0, 259.406, 0, 262.4, 0, 265.394, 0, 268.8, 0, 272.206, 0, 275.2, 0, 278.194, 0, 281.6, 0, 285.006, 0, 288, 0, 290.994, 0, 294.4, 0, 299.212, 0, 301.966, 0, 304.55, 0, 307.2, 0, 307.794, 0, 310.371, 0, 313.6, 0, 316.829, 0, 319.406, 0, 320, 0, 320, 400, 0, 400)
 
 [node name="WaterBorder" parent="Environment/WaterBody" index="1"]
-curve = SubResource("Curve2D_osfrj")
+curve = SubResource("Curve2D_cfq6n")
 spline_length = 5.0
 width = 0.5
 color = Color(4.52429e-06, 0.539532, 0.745505, 1)
