@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="2_lxr2i"]
 [ext_resource type="PackedScene" uid="uid://dyquehg06r5tj" path="res://scene/level/stone-age-level/stone_age_tower.tscn" id="3_d8m5n"]
 [ext_resource type="PackedScene" uid="uid://bga4am3fmln5e" path="res://scene/tutorial-blueprint/tutorial.tscn" id="3_vgd1y"]
-[ext_resource type="PackedScene" uid="uid://bg3k3jej6jlfx" path="res://scene/level/stone-age-level/stone_age_minigame.tscn" id="4_l611u"]
+[ext_resource type="PackedScene" uid="uid://bg3k3jej6jlfx" path="res://scene/level/stone-age-level/minigame/stone_age_minigame.tscn" id="4_l611u"]
 [ext_resource type="PackedScene" uid="uid://b4gvapy7q4vb" path="res://scene/control-room/control_room.tscn" id="7_vbjw0"]
 
 [sub_resource type="Resource" id="Resource_ae11u"]
 script = ExtResource("2_al3v5")
-height = 170
+height = 140
 desired_height = 140
 
 [node name="StoneageLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_console")]
@@ -35,6 +35,7 @@ tower = NodePath("../Stoneage Tower")
 [node name="Stoneage Tower" parent="." instance=ExtResource("3_d8m5n")]
 z_index = 2
 position = Vector2(162, 199)
+passenger_mass = 100.0
 tower_stat = SubResource("Resource_ae11u")
 
 [node name="ControlRoom" parent="." instance=ExtResource("7_vbjw0")]
