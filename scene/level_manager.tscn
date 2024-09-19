@@ -1,0 +1,26 @@
+[gd_scene load_steps=9 format=3 uid="uid://nnfwyo7seaee"]
+
+[ext_resource type="Script" path="res://script/level_manager.gd" id="1_ctx24"]
+[ext_resource type="Script" path="res://script/level_manager_entry.gd" id="2_tl2c7"]
+[ext_resource type="PackedScene" uid="uid://h4d3fuao8tjs" path="res://scene/level/oil-rig/oil_rig_level.tscn" id="3_m410y"]
+[ext_resource type="PackedScene" uid="uid://5o1j2pyr513q" path="res://scene/level/test-level/test_level.tscn" id="3_vwwnw"]
+[ext_resource type="PackedScene" uid="uid://d0d6r4ok253ej" path="res://scene/level/stone-age-level/stone_age_level.tscn" id="4_rs08x"]
+
+[sub_resource type="Resource" id="Resource_0lwy0"]
+script = ExtResource("2_tl2c7")
+title = "Test Facility"
+level_scene = ExtResource("3_vwwnw")
+
+[sub_resource type="Resource" id="Resource_d31kb"]
+script = ExtResource("2_tl2c7")
+title = "Stone Hedge"
+level_scene = ExtResource("4_rs08x")
+
+[sub_resource type="Resource" id="Resource_86ded"]
+script = ExtResource("2_tl2c7")
+title = "Leakage Facility"
+level_scene = ExtResource("3_m410y")
+
+[node name="LevelManager" type="Node"]
+script = ExtResource("1_ctx24")
+_levels = Array[ExtResource("2_tl2c7")]([SubResource("Resource_0lwy0"), SubResource("Resource_d31kb"), SubResource("Resource_86ded")])

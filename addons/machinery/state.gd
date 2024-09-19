@@ -1,10 +1,10 @@
 @tool
 class_name State
-extends Node
+extends Node2D
 
 ## Signal sent when wishing to exit this state and change to other state by
 ## reference.
-signal change_state(from: State, to: State)
+signal change_state(to: State)
 
 ## Signal sent when wishing to exit this state and change to other state
 ## by state name.

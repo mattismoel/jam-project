@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://8i6k4bg2tibp" path="res://scene/control-room/console.tscn" id="2_e4mx1"]
 
 [node name="ControlRoom" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="RoomBG" type="TextureRect" parent="."]
 layout_mode = 0

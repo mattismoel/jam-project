@@ -23,10 +23,10 @@ func _ready() -> void:
   _initialise_positions()
 
   if _pin_start && _pin_start_pos:
-    set_start(_pin_start_pos.position)
+    set_start(_pin_start_pos.global_position)
 
   if _pin_end && _pin_end_pos:
-    set_start(_pin_start_pos.position)
+    set_start(_pin_start_pos.global_position)
 
 
 
@@ -47,12 +47,12 @@ func _resize_arrays() -> void:
 
 func _initialise_positions() -> void:
   for i in range(_point_count):
-    var pos :=  position + Vector2.RIGHT * (_constrain * i)
+    var pos :=  global_position + Vector2.RIGHT * (_constrain * i)
     _positions[i] = pos
     _prev_positions[i] = pos
 
 
-  position = Vector2.ZERO
+  global_position = Vector2.ZERO
 
 
 func set_start(pos: Vector2) -> void:
@@ -105,3 +105,11 @@ func _update_constrain() -> void:
       else:
         _positions[i] -= v * (pct / 2.0)
         _positions[i + 1] += v * (pct / 2.0)
+
+
+func start_pos() -> Vector2:
+  return _positions[0]
+
+
+func end_pos() -> Vector2:
+  return _positions[_point_count - 1]

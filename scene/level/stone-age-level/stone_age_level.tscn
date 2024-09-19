@@ -25,8 +25,7 @@ script = ExtResource("1_lria8")
 script = ExtResource("2_74tog")
 tower = NodePath("../Stoneage Tower")
 
-[node name="Stoneage Tower" parent="." node_paths=PackedStringArray("minigame") instance=ExtResource("3_d8m5n")]
+[node name="Stoneage Tower" parent="." instance=ExtResource("3_d8m5n")]
 position = Vector2(93, 213)
 script = ExtResource("4_714jk")
 tower_stat = SubResource("Resource_ae11u")
-minigame = NodePath("../Minigame")
