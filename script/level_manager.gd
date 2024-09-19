@@ -26,7 +26,7 @@ var _curr_level_idx: int = _first_level_idx_overwrite if _first_level_idx_overwr
 
 
 func _ready() -> void:
-  if !_auto_load_first_level:
+  if Engine.is_editor_hint() || !_auto_load_first_level:
     return
 
   _change_level(_curr_level_idx)
