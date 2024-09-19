@@ -14,6 +14,9 @@ signal finished(height: float)
 var force: float
 
 func _ready() -> void:
+  if Engine.is_editor_hint():
+    return
+
   tower_stat.changed.connect(queue_redraw)
   gondola.finished.connect(_on_gondola_ride_finished)
 

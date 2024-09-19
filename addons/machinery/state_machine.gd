@@ -18,6 +18,9 @@ var _current_state: State = null
 
 
 func _ready() -> void:
+  if Engine.is_editor_hint():
+    return
+
   if initial_state == null:
     push_error("Initial state on StateMachine '%s' is null! Returning early..." % name)
 

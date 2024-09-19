@@ -5,6 +5,9 @@ extends Tower
 
 
 func _ready() -> void:
+  if Engine.is_editor_hint():
+    return
+
   gondola.begin_ride(1000)
   pass
 
