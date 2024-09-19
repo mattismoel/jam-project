@@ -1,26 +1,22 @@
 extends Gondola
 
-var _acceleration: float = 0
-var _speed: float = 0
+@export var _start_height: float = 12
 
+@export var _hoist_state_machine: StateMachine
+@export var _idle_state: State
+@export var _up_state: State
 
-func _physics_process(delta: float) -> void:
-    if _acceleration != 0:
-        _speed+=_acceleration*delta
-        var delta_pos=_speed*delta
+var acceleration: float = 0
 
-        position+=delta_pos*Vector2.UP
-        reached_height+=delta_pos
+func _ready() -> void:
+    position.y-=_start_height
 
-        if reached_height>tower.tower_stat.height:
-            _on_ride_finish()
+func begin_ride(mammoth_acceleration: float) -> void:
+    acceleration = mammoth_acceleration
+    _hoist_state_machine.change_state(_up_state)
 
-
-func begin_ride(acceleration: float) -> void:
-    _acceleration = acceleration
-    print("Gondola going up with acceleration %f" % _acceleration)
-
-func _on_ride_finish() -> void:
-    _acceleration = 0
-    _speed = 0
-    super()
+func end_ride(wait: float) -> void:
+    _hoist_state_machine.change_state(_idle_state)
+    
+    await get_tree().create_timer(wait).timeout
+    finished.emit(reached_height, seats_occupied)

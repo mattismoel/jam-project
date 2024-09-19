@@ -1,43 +1,29 @@
 extends Tower
 
 @export var passenger_mass: float = 50
+@export var wait_after_finished: float = 3
 
 @export_category("References")
-@export var mammoth: AnimatedSprite2D
+@export var mammoth: Node2D
 @export var rope: Line2D
-
-var gondola_acceleration: float = 0
-var gondola_speed: float = 0
 
 func _ready() -> void:
     super()
     gondola.occupy_seats(2)
+    gondola.top_reached.connect(_on_top_reached)
 
 func calculate_popularity_score(passenger_count: int, height: float) -> float:
     return height / tower_stat.desired_height
 
 func begin_ride(_force: float) -> void:
     var gondola_mass = gondola.seats_occupied * passenger_mass
-    gondola_acceleration = _force/gondola_mass
-    print("Ride begun with gondola_acceleration %f" % gondola_acceleration)
+    var gondola_acceleration = _force/gondola_mass
     
     gondola.begin_ride(gondola_acceleration)
-    mammoth.play()
-    
+    mammoth.begin_pull(gondola_acceleration)
+
     began_ride.emit()
-
-func _physics_process(delta: float) -> void:
-    gondola_speed+=gondola_acceleration*delta
     
-    mammoth.position.x+=gondola_speed*delta
-    mammoth.speed_scale+=gondola_speed/10e6
-    
-func _process(delta: float) -> void:
-    var correction = Vector2(-3, 108) #rope.position-rope.get_point_position(0)
-    rope.set_point_position(0, correction+gondola.position)
-    rope.set_point_position(3, Vector2(mammoth.position.x, rope.get_point_position(3).y))
-
-func _on_gondola_ride_finished(height: float, seats_occupied: int) -> void:
-    super(height, seats_occupied)
-    gondola_acceleration = 0
-    gondola_speed = 0
+func _on_top_reached() -> void:
+    mammoth.stop_pull()
+    gondola.end_ride(wait_after_finished)
