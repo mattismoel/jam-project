@@ -4,6 +4,8 @@ extends Node
 signal changed_level(idx: int)
 signal last_level_completed
 
+var _curr_level: Node
+
 
 ## The levels of this LevelMangager instance.
 @export var _levels: Array[LevelEntry] = []
@@ -64,7 +66,17 @@ func curr_level() -> LevelEntry:
 
 func _change_level(idx: int) -> void:
   _curr_level_idx = idx
-  get_tree().change_scene_to_packed.call_deferred(_levels[idx].level_scene)
+  var level := _levels[idx].level_scene.instantiate()
+
+  get_tree().root.add_child.call_deferred(level)
+
+  if _curr_level:
+    _curr_level.queue_free()
+
+  _curr_level = level
+
+
+  # get_tree().change_scene_to_packed.call_deferred(_levels[idx].level_scene)
   changed_level.emit(_curr_level_idx)
   pass
 

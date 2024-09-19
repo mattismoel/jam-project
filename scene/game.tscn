@@ -11,7 +11,9 @@ _pause_menu = NodePath("PauseMenu")
 _settings = NodePath("SettingsMenu")
 
 [node name="PauseMenu" parent="." instance=ExtResource("1_txply")]
+layer = 10
 visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_q50i6")]
+layer = 10
 visible = false
