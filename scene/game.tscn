@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://kq7cjm6bju1d"]
+[gd_scene load_steps=4 format=3 uid="uid://kq7cjm6bju1d"]
 
-[node name="Game" type="Node2D"]
+[ext_resource type="Script" path="res://scene/game.gd" id="1_kqyiu"]
+[ext_resource type="PackedScene" uid="uid://c0tovex827w18" path="res://scene/ui/pause_menu.tscn" id="1_txply"]
+[ext_resource type="PackedScene" uid="uid://y4sbdxsbeco5" path="res://scene/ui/settings_menu.tscn" id="3_q50i6"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_pause_menu", "_settings")]
+process_mode = 3
+script = ExtResource("1_kqyiu")
+_pause_menu = NodePath("PauseMenu")
+_settings = NodePath("SettingsMenu")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_txply")]
+visible = false
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_q50i6")]
+visible = false
