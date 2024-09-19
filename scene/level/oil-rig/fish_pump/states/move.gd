@@ -16,5 +16,4 @@ func process(delta: float) -> void:
 
   var dir = _rope.start_pos().direction_to(_rope.end_pos())
   _pipe_end.rotation = dir.angle()
-
   pass

@@ -47,7 +47,7 @@ animations = [{
 [node name="Fish" type="Area2D" node_paths=PackedStringArray("move_component", "_raycast")]
 script = ExtResource("1_rtuta")
 move_component = NodePath("MoveComponent")
-_raycast = NodePath("RayCast2D")
+_raycast = NodePath("")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(1.2, 0.5)
@@ -61,9 +61,6 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hw6f0")
 autoplay = "default"
 frame_progress = 0.274106
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(16, 0)
 
 [node name="MoveComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("3_e2vaq")
