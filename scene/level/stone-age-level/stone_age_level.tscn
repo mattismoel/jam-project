@@ -33,6 +33,7 @@ tower = NodePath("../Stoneage Tower")
 z_index = 2
 position = Vector2(171, 193)
 passenger_mass = 100.0
+wait_after_finished = 0.5
 tower_stat = SubResource("Resource_ae11u")
 
 [node name="ControlRoom" parent="." instance=ExtResource("7_vbjw0")]
