@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dq0dfva11ynl5"]
 
-[ext_resource type="Script" path="res://script/gondola.gd" id="1_gyw8e"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_gondola.gd" id="1_0ufrr"]
 [ext_resource type="Texture2D" uid="uid://bi42n4wwrj7ws" path="res://scene/level/stone-age-level/asset/gondola.png" id="2_08131"]
 
 [node name="Stone age Gondola" type="Node2D"]
-script = ExtResource("1_gyw8e")
+script = ExtResource("1_0ufrr")
+max_seats = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_08131")

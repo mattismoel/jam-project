@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dyquehg06r5tj"]
+[gd_scene load_steps=13 format=3 uid="uid://dyquehg06r5tj"]
 
 [ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_tower.gd" id="1_rwioe"]
 [ext_resource type="Script" path="res://script/tower_stat.gd" id="2_4jhrw"]
@@ -6,12 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dq0dfva11ynl5" path="res://scene/level/stone-age-level/stone_age_gondola.tscn" id="4_1s7vp"]
 [ext_resource type="Texture2D" uid="uid://2vyb72stcgkv" path="res://scene/level/stone-age-level/asset/trolley.png" id="4_6yf02"]
 [ext_resource type="Texture2D" uid="uid://bpkwcsleyktcm" path="res://scene/level/stone-age-level/asset/side_view_mammoth-Sheet.png" id="6_cdvey"]
-[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_gondola.gd" id="6_e2dy4"]
 
 [sub_resource type="Resource" id="Resource_ufrxb"]
 script = ExtResource("2_4jhrw")
-height = 100
-desired_height = 100
+height = 50
+desired_height = 10
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfvur"]
 atlas = ExtResource("6_cdvey")
@@ -64,10 +63,10 @@ texture = ExtResource("3_arcc1")
 position = Vector2(50, -19)
 texture = ExtResource("4_6yf02")
 
-[node name="Gondola" parent="." instance=ExtResource("4_1s7vp")]
+[node name="Gondola" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("4_1s7vp")]
 position = Vector2(10, -37)
-script = ExtResource("6_e2dy4")
-gravity = 0.0
+max_seats = 1
+tower = NodePath("..")
 
 [node name="Rope" type="Line2D" parent="."]
 z_index = -1

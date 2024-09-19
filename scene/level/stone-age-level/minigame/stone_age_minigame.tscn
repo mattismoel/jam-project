@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bg3k3jej6jlfx"]
 
-[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_minigame.gd" id="1_8382s"]
-[ext_resource type="Script" path="res://scene/level/stone-age-level/mammoth.gd" id="1_fffu5"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/minigame/stone_age_minigame.gd" id="1_8382s"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/minigame/mammoth.gd" id="1_fffu5"]
 [ext_resource type="Texture2D" uid="uid://djbuftp8w7et8" path="res://scene/level/stone-age-level/asset/mammoth_animation.png" id="2_icvlg"]
 [ext_resource type="PackedScene" uid="uid://bo7lw7vj7tcr2" path="res://scene/level/stone-age-level/minigame/slingshot.tscn" id="3_jfecu"]
 [ext_resource type="PackedScene" uid="uid://c01v1gk8f6iya" path="res://scene/level/stone-age-level/minigame/projectile.tscn" id="5_dqgkg"]
@@ -61,7 +61,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="StoneageMinigame" type="Node2D" node_paths=PackedStringArray("projectile", "mammoth", "animation_of_mammoth")]
 z_index = 5
 script = ExtResource("1_8382s")
-duration_secs = 15.0
+force_per_hit = 500.0
 projectile = NodePath("Sling shot/Projectile")
 mammoth = NodePath("Mammoth")
 animation_of_mammoth = NodePath("Mammoth/AnimatedSprite2D")
