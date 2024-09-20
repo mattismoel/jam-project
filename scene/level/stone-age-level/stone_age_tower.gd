@@ -12,11 +12,6 @@ func _ready() -> void:
 
   gondola.occupy_seats(2)
 
-
-func calculate_popularity_score(passenger_count: int, height: float) -> float:
-    return height / tower_stat.desired_height
-
-
 func begin_ride(_force: float) -> void:
     var gondola_mass = gondola.seats_occupied * _passenger_mass
     var gondola_acceleration = _force/gondola_mass
