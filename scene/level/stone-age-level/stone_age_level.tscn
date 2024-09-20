@@ -1,25 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0d6r4ok253ej"]
+[gd_scene load_steps=9 format=3 uid="uid://d0d6r4ok253ej"]
 
 [ext_resource type="Texture2D" uid="uid://bjydeelcjm5ek" path="res://scene/level/stone-age-level/asset/background.png" id="1_201v5"]
 [ext_resource type="Script" path="res://scene/level/level.gd" id="1_g1t6x"]
 [ext_resource type="Script" path="res://script/score_manager.gd" id="2_74tog"]
 [ext_resource type="Script" path="res://script/tower_stat.gd" id="2_al3v5"]
 [ext_resource type="PackedScene" uid="uid://dyquehg06r5tj" path="res://scene/level/stone-age-level/stone_age_tower.tscn" id="3_d8m5n"]
-[ext_resource type="PackedScene" uid="uid://bga4am3fmln5e" path="res://scene/tutorial-blueprint/tutorial.tscn" id="3_vgd1y"]
 [ext_resource type="PackedScene" uid="uid://bg3k3jej6jlfx" path="res://scene/level/stone-age-level/minigame/stone_age_minigame.tscn" id="4_l611u"]
-[ext_resource type="PackedScene" uid="uid://b4gvapy7q4vb" path="res://scene/control-room/control_room.tscn" id="7_vbjw0"]
+[ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="8_xk83c"]
 
 [sub_resource type="Resource" id="Resource_ae11u"]
 script = ExtResource("2_al3v5")
 height = 140
 desired_height = 140
 
-[node name="StoneageLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_console")]
+[node name="StoneageLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
 script = ExtResource("1_g1t6x")
-_blueprint_scene = ExtResource("3_vgd1y")
 _minigame_scene = ExtResource("4_l611u")
 _tower = NodePath("Stoneage Tower")
-_console = NodePath("ControlRoom/Console")
+_blueprint = NodePath("TestTutorial")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_201v5")
@@ -36,10 +34,5 @@ passenger_mass = 100.0
 wait_after_finished = 0.5
 tower_stat = SubResource("Resource_ae11u")
 
-[node name="ControlRoom" parent="." instance=ExtResource("7_vbjw0")]
-z_index = 10
-
-[node name="RoomBG" parent="ControlRoom" index="0"]
+[node name="TestTutorial" parent="." instance=ExtResource("8_xk83c")]
 visible = false
-
-[editable path="ControlRoom"]

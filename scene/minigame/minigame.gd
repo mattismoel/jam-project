@@ -1,7 +1,6 @@
 class_name Minigame
 extends Node
 
-signal force_changed(force: float)
 signal finished(force: float)
 signal started
 
@@ -14,7 +13,7 @@ signal started
 var force_buildup: float = 0.0:
   set(_v):
     force_buildup = _v
-    force_changed.emit(force_buildup)
+    SignalBus.force_changed.emit(force_buildup)
 
 
 func _ready() -> void:
@@ -27,12 +26,11 @@ func _ready() -> void:
     start()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
   _minigame_ui.set_time_left(_game_timer.time_left)
 
 
 func start() -> void:
-  print("start_minigame")
   _game_timer.start()
   started.emit()
 

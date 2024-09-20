@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5o1j2pyr513q"]
+[gd_scene load_steps=7 format=3 uid="uid://5o1j2pyr513q"]
 
 [ext_resource type="PackedScene" uid="uid://do0fo4pradjea" path="res://scene/level/test-level/test_tower.tscn" id="1_f7t71"]
 [ext_resource type="Texture2D" uid="uid://cg2ualoxer1lb" path="res://scene/level/test-level/asset/background.png" id="1_k0tjo"]
@@ -6,14 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="2_306l3"]
 [ext_resource type="PackedScene" uid="uid://dhfup8p5rsx5h" path="res://scene/level/test-level/test_minigame.tscn" id="3_3x0y1"]
 [ext_resource type="Script" path="res://script/score_manager.gd" id="3_6lw1i"]
-[ext_resource type="PackedScene" uid="uid://b4gvapy7q4vb" path="res://scene/control-room/control_room.tscn" id="5_ii70k"]
 
-[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_console")]
+[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
 script = ExtResource("1_yhrht")
-_blueprint_scene = ExtResource("2_306l3")
 _minigame_scene = ExtResource("3_3x0y1")
 _tower = NodePath("TestTower")
-_console = NodePath("UI/ControlRoom/Console")
+_blueprint = NodePath("TestTutorial")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(0, -72)
@@ -27,12 +25,5 @@ tower = NodePath("../TestTower")
 [node name="TestTower" parent="." instance=ExtResource("1_f7t71")]
 position = Vector2(228, 156)
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="ControlRoom" parent="UI" instance=ExtResource("5_ii70k")]
-
-[node name="RoomBG" parent="UI/ControlRoom" index="0"]
+[node name="TestTutorial" parent="." instance=ExtResource("2_306l3")]
 visible = false
-
-[editable path="UI/ControlRoom"]
-[editable path="UI/ControlRoom/Console"]

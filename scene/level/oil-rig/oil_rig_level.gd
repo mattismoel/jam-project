@@ -37,8 +37,9 @@ func _move_to_initial_pos() -> void:
 
 
 ## Handles logic for when the 'continue' button is pressed within a blueprint.
-func _on_blueprint_continue(blueprint: TutorialBlueprint) -> void:
-  blueprint.queue_free()
+func _on_blueprint_continue() -> void:
+  _blueprint.hide()
+  blueprint_continued.emit()
 
   _minigame.start()
   _fish_pump.allow_suction()

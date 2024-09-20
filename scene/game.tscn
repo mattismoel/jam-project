@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://kq7cjm6bju1d"]
+[gd_scene load_steps=5 format=3 uid="uid://kq7cjm6bju1d"]
 
 [ext_resource type="Script" path="res://scene/game.gd" id="1_kqyiu"]
 [ext_resource type="PackedScene" uid="uid://c0tovex827w18" path="res://scene/ui/pause_menu.tscn" id="1_txply"]
 [ext_resource type="PackedScene" uid="uid://y4sbdxsbeco5" path="res://scene/ui/settings_menu.tscn" id="3_q50i6"]
+[ext_resource type="PackedScene" uid="uid://b4gvapy7q4vb" path="res://scene/control-room/control_room.tscn" id="4_4mtdt"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_pause_menu", "_settings")]
 process_mode = 3
@@ -17,3 +18,12 @@ visible = false
 [node name="SettingsMenu" parent="." instance=ExtResource("3_q50i6")]
 layer = 10
 visible = false
+
+[node name="ControlRoom" type="CanvasLayer" parent="."]
+
+[node name="ControlRoom" parent="ControlRoom" instance=ExtResource("4_4mtdt")]
+
+[node name="RoomBG" parent="ControlRoom/ControlRoom" index="0"]
+visible = false
+
+[editable path="ControlRoom/ControlRoom"]
