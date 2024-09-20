@@ -3,21 +3,24 @@ extends Node2D
 
 signal level_entered
 signal blueprint_continued
-signal blueprint_entered
 signal minigame_started
 signal minigame_ended
 signal tower_began
 signal tower_ended
 
-@export var _blueprint_scene: PackedScene
+# @export var _blueprint_scene: PackedScene
 @export var _minigame_scene: PackedScene
 @export var _tower: Tower
-@export var _console: Console
+
+@export var _blueprint: TutorialBlueprint
 
 
 func _ready() -> void:
-  _console.lever_pulled.connect(_on_lever_pull)
+  SignalBus.lever_pulled.connect(_on_lever_pull)
   level_entered.emit()
+
+  _blueprint.continue_pressed.connect(_on_blueprint_continue)
+
 
 
 func _on_lever_pull() -> void:
@@ -25,29 +28,21 @@ func _on_lever_pull() -> void:
   pass
 
 
+
 func _load_blueprint() -> void:
-  var blueprint: TutorialBlueprint = _blueprint_scene.instantiate()
-  add_child(blueprint)
-
-  var level: LevelEntry = LevelManager.curr_level()
-
-  blueprint.set_blueprint_data(level.title, LevelManager.current_level_count())
-
-  blueprint_entered.emit()
-  blueprint.continue_pressed.connect(_on_blueprint_continue.bind(blueprint))
+  _blueprint.show()
 
 
 ## Handles logic for when the 'continue' button is pressed within a blueprint.
-func _on_blueprint_continue(blueprint: TutorialBlueprint) -> void:
+func _on_blueprint_continue() -> void:
   # Remove the completed blueprint node from the scene tree, as it is no
   # loger needed..
-  blueprint.queue_free()
+  _blueprint.hide()
   blueprint_continued.emit()
 
   # Create minigame instance, and add it to the scene tree.
   var minigame: Minigame = _minigame_scene.instantiate()
   add_child(minigame)
-  _console.minigame = minigame
 
   minigame_started.emit()
 

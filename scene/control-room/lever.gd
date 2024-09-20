@@ -38,6 +38,13 @@ func set_step(idx: int) -> void:
   _can_release_lever = false
 
 
+## Resets the lever to its zero position.
+func reset() -> void:
+  set_step(0)
+  _handle.value = 0.0
+  _can_release_lever = true
+
+
 ## Sets the frame of the lever to a given index.
 ##
 ## The index should be the same as the levers current step.
@@ -53,3 +60,6 @@ func _on_pull(value: float) -> void:
 func _release_lever() -> void:
   release.emit()
   _can_release_lever = false
+
+
+

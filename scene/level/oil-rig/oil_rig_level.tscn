@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://h4d3fuao8tjs"]
+[gd_scene load_steps=14 format=3 uid="uid://h4d3fuao8tjs"]
 
 [ext_resource type="PackedScene" uid="uid://ody26jyu8ijn" path="res://scene/level/oil-rig/oil_rig_tower.tscn" id="1_kgynb"]
 [ext_resource type="Script" path="res://scene/level/oil-rig/oil_rig_level.gd" id="1_mnn4l"]
@@ -7,13 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="3_r5pke"]
 [ext_resource type="PackedScene" uid="uid://dd2ewt7x3a12v" path="res://water/water_body.tscn" id="5_c1pe6"]
 [ext_resource type="Script" path="res://scene/level/oil-rig/oil_rig_minigame.gd" id="6_gxpuv"]
-[ext_resource type="PackedScene" uid="uid://b4gvapy7q4vb" path="res://scene/control-room/control_room.tscn" id="6_t52om"]
 [ext_resource type="PackedScene" uid="uid://cqwrpphawu7gb" path="res://scene/level/oil-rig/fish_area.tscn" id="7_3oafx"]
 [ext_resource type="Texture2D" uid="uid://cmwygm6csw2n" path="res://scene/level/oil-rig/asset/coral_reef.png" id="7_b27en"]
 [ext_resource type="PackedScene" uid="uid://dws6q4wcm8i0w" path="res://scene/level/oil-rig/fish_pump/fish_pump.tscn" id="7_q536g"]
 [ext_resource type="PackedScene" uid="uid://cldjxry6ysopy" path="res://scene/minigame/minigame_ui.tscn" id="9_3efgv"]
 
-[sub_resource type="Curve2D" id="Curve2D_72xet"]
+[sub_resource type="Curve2D" id="Curve2D_gpk0w"]
 _data = {
 "points": PackedVector2Array(5, 0, -5, 0, 0, 0, -5, 0, 5, 0, 12.8, 0, -5, 0, 5, 0, 25.6, 0, -5, 0, 5, 0, 38.4, 0, -5, 0, 5, 0, 51.2, 0, -5, 0, 5, 0, 64, 0, -5, 0, 5, 0, 76.8, 0, -5, 0, 5, 0, 89.6, 0, -5, 0, 5, 0, 102.4, 0, -5, 0, 5, 0, 115.2, 0, -5, 0, 5, 0, 128, 0, -5, 0, 5, 0, 140.8, 0, -5, 0, 5, 0, 153.6, 0, -5, 0, 5, 0, 166.4, 0, -5, 0, 5, 0, 179.2, 0, -5, 0, 5, 0, 192, 0, -5, 0, 5, 0, 204.8, 0, -5, 0, 5, 0, 217.6, 0, -5, 0, 5, 0, 230.4, 0, -5, 0, 5, 0, 243.2, 0, -5, 0, 5, 0, 256, 0, -5, 0, 5, 0, 268.8, 0, -5, 0, 5, 0, 281.6, 0, -5, 0, 5, 0, 294.4, 0, 5, 0, -5, 0, 307.2, 0, 5, 0, -5, 0, 320, 0)
 }
@@ -22,15 +21,14 @@ point_count = 26
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_047tw"]
 size = Vector2(320, 130)
 
-[node name="OilRigLevel" type="Node2D" node_paths=PackedStringArray("_fish_pump", "_camera", "_fish_area", "_minigame", "_tower", "_console")]
+[node name="OilRigLevel" type="Node2D" node_paths=PackedStringArray("_fish_pump", "_camera", "_fish_area", "_minigame", "_tower", "_blueprint")]
 script = ExtResource("1_mnn4l")
 _fish_pump = NodePath("Minigame/FishPump")
 _camera = NodePath("Camera2D")
 _fish_area = NodePath("Minigame/FishArea")
 _minigame = NodePath("Minigame")
-_blueprint_scene = ExtResource("3_r5pke")
 _tower = NodePath("Environment/OilRigTower")
-_console = NodePath("UI/ControlRoom/Console")
+_blueprint = NodePath("TestTutorial")
 
 [node name="Management" type="Node2D" parent="."]
 
@@ -76,7 +74,7 @@ _mouse_motion = true
 polygon = PackedVector2Array(0, 0, 2.65, 0, 5.23438, 0, 7.9875, 0, 12.8, 0, 16.2062, 0, 19.2, 0, 22.1938, 0, 25.6, 0, 29.0062, 0, 32, 0, 34.9938, 0, 38.4, 0, 41.8063, 0, 44.8, 0, 47.7938, 0, 51.2, 0, 54.6063, 0, 57.6, 0, 60.5938, 0, 64, 0, 67.4062, 0, 70.4, 0, 73.3938, 0, 76.8, 0, 80.2063, 0, 83.2, 0, 86.1937, 0, 89.6, 0, 93.0062, 0, 96, 0, 98.9938, 0, 102.4, 0, 105.806, 0, 108.8, 0, 111.794, 0, 115.2, 0, 118.606, 0, 121.6, 0, 124.594, 0, 128, 0, 131.406, 0, 134.4, 0, 137.394, 0, 140.8, 0, 144.206, 0, 147.2, 0, 150.194, 0, 153.6, 0, 157.006, 0, 160, 0, 162.994, 0, 166.4, 0, 169.806, 0, 172.8, 0, 175.794, 0, 179.2, 0, 182.606, 0, 185.6, 0, 188.594, 0, 192, 0, 195.406, 0, 198.4, 0, 201.394, 0, 204.8, 0, 208.206, 0, 211.2, 0, 214.194, 0, 217.6, 0, 221.006, 0, 224, 0, 226.994, 0, 230.4, 0, 233.806, 0, 236.8, 0, 239.794, 0, 243.2, 0, 246.606, 0, 249.6, 0, 252.594, 0, 256, 0, 259.406, 0, 262.4, 0, 265.394, 0, 268.8, 0, 272.206, 0, 275.2, 0, 278.194, 0, 281.6, 0, 285.006, 0, 288, 0, 290.994, 0, 294.4, 0, 299.212, 0, 301.966, 0, 304.55, 0, 307.2, 0, 307.794, 0, 310.371, 0, 313.6, 0, 316.829, 0, 319.406, 0, 320, 0, 320, 400, 0, 400)
 
 [node name="WaterBorder" parent="Environment/WaterBody" index="1"]
-curve = SubResource("Curve2D_72xet")
+curve = SubResource("Curve2D_gpk0w")
 spline_length = 5.0
 width = 0.5
 color = Color(4.52429e-06, 0.539532, 0.745505, 1)
@@ -112,15 +110,7 @@ position = Vector2(5, 0)
 
 [node name="MinigameUI" parent="Minigame" instance=ExtResource("9_3efgv")]
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="ControlRoom" parent="UI" instance=ExtResource("6_t52om")]
-
-[node name="RoomBG" parent="UI/ControlRoom" index="0"]
+[node name="TestTutorial" parent="." instance=ExtResource("3_r5pke")]
 visible = false
 
-[node name="Console" parent="UI/ControlRoom" index="1" node_paths=PackedStringArray("minigame")]
-minigame = NodePath("../../../Minigame")
-
 [editable path="Environment/WaterBody"]
-[editable path="UI/ControlRoom"]
