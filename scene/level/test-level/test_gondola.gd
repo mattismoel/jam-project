@@ -13,7 +13,7 @@ func begin_ride(force: float) -> void:
   var start_pos := position
   var tween := create_tween()
 
-  reached_height = tower.tower_stat.desired_height + randf_range(-10, 10)
+  reached_height = tower.tower_stat.desired_height - randf_range(0, 50)
 
   tween.tween_property(self, "position:y", -reached_height, max_height_duration)
   tween.tween_property(self, "position:y", start_pos.y, max_height_duration)

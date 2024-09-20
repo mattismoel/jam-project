@@ -7,7 +7,7 @@ signal finished(height: float)
 
 
 @export var tower_stat: TowerStat
-@export var minimum_score: float = 20
+@export var minimum_score: float = 0.2
 
 @export_category("References")
 @export var gondola: Gondola
@@ -29,7 +29,8 @@ func _draw() -> void:
 
 func calculate_popularity_score(passenger_count: int, height: float) -> float:
   var factor = pow(1.0/minimum_score, 1.0/tower_stat.desired_height)
-  print(height)
+  print("Height: %f. Desired: %f" % [height, tower_stat.desired_height])
+  print("Factor: %f" %factor)
   var score = minimum_score*pow(factor, height)
   print("Score calculated: %f" % score)
   return score
