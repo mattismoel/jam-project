@@ -54,12 +54,13 @@ script = ExtResource("1_bc8od")
 projectile = NodePath("Sling shot/Projectile")
 mammoth = NodePath("Mammoth")
 animation_of_mammoth = NodePath("Mammoth/AnimatedSprite2D")
+_duration = 15.0
 _game_timer = NodePath("CountdownTimer")
 _minigame_ui = NodePath("MinigameUI")
 
 [node name="Mammoth" type="Node2D" parent="."]
 z_index = 3
-position = Vector2(154, 115)
+position = Vector2(150, 117)
 script = ExtResource("1_fffu5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mammoth"]
