@@ -5,8 +5,12 @@ extends Tower
 @export_category("References")
 
 func _ready() -> void:
-    super()
-    gondola.occupy_seats(2)
+  super()
+
+  if Engine.is_editor_hint():
+      return
+
+  gondola.occupy_seats(2)
 
 
 func calculate_popularity_score(passenger_count: int, height: float) -> float:
