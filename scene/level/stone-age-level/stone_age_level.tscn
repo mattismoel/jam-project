@@ -1,18 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0d6r4ok253ej"]
+[gd_scene load_steps=7 format=3 uid="uid://d0d6r4ok253ej"]
 
 [ext_resource type="Texture2D" uid="uid://bjydeelcjm5ek" path="res://scene/level/stone-age-level/asset/background.png" id="1_201v5"]
 [ext_resource type="Script" path="res://scene/level/level.gd" id="1_g1t6x"]
 [ext_resource type="Script" path="res://script/score_manager.gd" id="2_74tog"]
-[ext_resource type="Script" path="res://script/tower_stat.gd" id="2_al3v5"]
-[ext_resource type="PackedScene" uid="uid://c45o430um53hh" path="res://scene/level/stone-age-level/blueprint/stone_age_tutorial.tscn" id="2_bkjbs"]
 [ext_resource type="PackedScene" uid="uid://dyquehg06r5tj" path="res://scene/level/stone-age-level/stone_age_tower.tscn" id="3_d8m5n"]
 [ext_resource type="PackedScene" uid="uid://bg3k3jej6jlfx" path="res://scene/level/stone-age-level/minigame/stone_age_minigame.tscn" id="4_l611u"]
 [ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="8_xk83c"]
-
-[sub_resource type="Resource" id="Resource_ae11u"]
-script = ExtResource("2_al3v5")
-height = 140
-desired_height = 140
 
 [node name="StoneageLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
 script = ExtResource("1_g1t6x")
@@ -31,9 +24,6 @@ tower = NodePath("../Stoneage Tower")
 [node name="Stoneage Tower" parent="." instance=ExtResource("3_d8m5n")]
 z_index = 2
 position = Vector2(171, 193)
-passenger_mass = 100.0
-wait_after_finished = 0.5
-tower_stat = SubResource("Resource_ae11u")
 
 [node name="TestTutorial" parent="." instance=ExtResource("8_xk83c")]
 visible = false

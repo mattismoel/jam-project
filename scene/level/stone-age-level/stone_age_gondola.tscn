@@ -1,29 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://dq0dfva11ynl5"]
+[gd_scene load_steps=7 format=3 uid="uid://dq0dfva11ynl5"]
 
-[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_gondola.gd" id="1_0ufrr"]
+[ext_resource type="Script" path="res://script/gondola.gd" id="1_yggpk"]
 [ext_resource type="Texture2D" uid="uid://bi42n4wwrj7ws" path="res://scene/level/stone-age-level/asset/gondola.png" id="2_08131"]
 [ext_resource type="Script" path="res://addons/machinery/state_machine.gd" id="3_12ilb"]
-[ext_resource type="Script" path="res://scene/level/stone-age-level/states/up.gd" id="4_dvbva"]
-[ext_resource type="Script" path="res://scene/level/stone-age-level/states/idle.gd" id="5_ujm5h"]
+[ext_resource type="Script" path="res://script/move_component.gd" id="3_tp282"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/gondola_up.gd" id="4_dvbva"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/gondola_idle.gd" id="6_0137a"]
 
-[node name="Stone age Gondola" type="Node2D" node_paths=PackedStringArray("_hoist_state_machine", "_idle_state", "_up_state")]
-script = ExtResource("1_0ufrr")
-_hoist_state_machine = NodePath("StateMachine")
-_idle_state = NodePath("StateMachine/Idle")
-_up_state = NodePath("StateMachine/Up")
-max_seats = 2
+[node name="StoneAgeGondola" type="Node2D"]
+script = ExtResource("1_yggpk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_08131")
+offset = Vector2(0, -6)
+
+[node name="MoveComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("3_tp282")
+actor = NodePath("..")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_12ilb")
 initial_state = NodePath("Idle")
 debug_change_state = true
 
-[node name="Up" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_gondola")]
+[node name="Up" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_move_component", "_idle_state", "_gondola")]
 script = ExtResource("4_dvbva")
+_move_component = NodePath("../../MoveComponent")
+_idle_state = NodePath("../Idle")
 _gondola = NodePath("../..")
 
-[node name="Idle" type="Node2D" parent="StateMachine"]
-script = ExtResource("5_ujm5h")
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_up_state", "_move_component")]
+script = ExtResource("6_0137a")
+_up_state = NodePath("../Up")
+_move_component = NodePath("../../MoveComponent")
+
+[node name="End" type="Marker2D" parent="."]
+position = Vector2(0, -22)

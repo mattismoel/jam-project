@@ -1,9 +1,12 @@
 extends Line2D
 
-@export var _gondola: Gondola
+const GONDOLA_KNOT_IDX: int = 0
+const MAMMOTH_KNOT_IDX: int = 3
+
+@export var _gondola_end: Node2D
 @export var _mammoth: Node2D
 
 func _process(delta: float) -> void:
-    var correction = Vector2(-3, 108) #rope.position-rope.get_point_position(0)
-    set_point_position(0, correction+_gondola.position)
-    set_point_position(3, Vector2(_mammoth.position.x, get_point_position(3).y))
+      set_point_position(GONDOLA_KNOT_IDX, _gondola_end.global_position - global_position)
+      set_point_position(MAMMOTH_KNOT_IDX, Vector2(_mammoth.position.x, get_point_position(MAMMOTH_KNOT_IDX).y))
+      pass

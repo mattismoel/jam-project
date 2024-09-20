@@ -2,7 +2,7 @@
 class_name Tower
 extends Node2D
 
-signal began_ride
+signal began_ride(with_force: float)
 signal finished(height: float)
 
 
@@ -31,9 +31,9 @@ func calculate_popularity_score(passenger_count: int, height: float) -> float:
 
 
 func begin_ride(_force: float) -> void:
-  force = _force
-  gondola.begin_ride(_force)
-  began_ride.emit()
+  self.force = force
+  gondola.begin_ride(force)
+  began_ride.emit(force)
   pass
 
 

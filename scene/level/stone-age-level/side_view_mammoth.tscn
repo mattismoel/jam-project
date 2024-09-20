@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://bd434nwbl4wiw"]
 
-[ext_resource type="Script" path="res://scene/level/stone-age-level/side_view_mammoth.gd" id="1_esxhf"]
 [ext_resource type="Texture2D" uid="uid://bpkwcsleyktcm" path="res://scene/level/stone-age-level/asset/side_view_mammoth-Sheet.png" id="2_4qmeh"]
 [ext_resource type="Script" path="res://addons/machinery/state_machine.gd" id="3_cpgx0"]
-[ext_resource type="Script" path="res://scene/level/stone-age-level/states/walk.gd" id="4_ry4d1"]
-[ext_resource type="Script" path="res://scene/level/stone-age-level/states/idle.gd" id="5_34ghd"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/mammoth_walk.gd" id="4_ry4d1"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/mammoth_idle.gd" id="5_34ghd"]
+[ext_resource type="Script" path="res://script/move_component.gd" id="5_b0ce1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k30ba"]
 atlas = ExtResource("2_4qmeh")
@@ -42,12 +42,7 @@ animations = [{
 "speed": 11.0
 }]
 
-[node name="Mammoth" type="Node2D" node_paths=PackedStringArray("_mammoth_state_machine", "_idle_state", "_walk_state", "_animation")]
-script = ExtResource("1_esxhf")
-_mammoth_state_machine = NodePath("StateMachine")
-_idle_state = NodePath("StateMachine/Idle")
-_walk_state = NodePath("StateMachine/Walk")
-_animation = NodePath("Animation")
+[node name="Mammoth" type="Node2D"]
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p0tkt")
@@ -56,10 +51,18 @@ sprite_frames = SubResource("SpriteFrames_p0tkt")
 script = ExtResource("3_cpgx0")
 initial_state = NodePath("Idle")
 
-[node name="Walk" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_mammoth", "_animation")]
+[node name="Walk" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_idle_state", "_move_component", "_animation")]
 script = ExtResource("4_ry4d1")
-_mammoth = NodePath("../..")
+_idle_state = NodePath("../Idle")
+_move_component = NodePath("../../MoveComponent")
 _animation = NodePath("../../Animation")
 
-[node name="Idle" type="Node2D" parent="StateMachine"]
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_walk_state", "_animation", "_move_component")]
 script = ExtResource("5_34ghd")
+_walk_state = NodePath("../Walk")
+_animation = NodePath("../../Animation")
+_move_component = NodePath("../../MoveComponent")
+
+[node name="MoveComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_b0ce1")
+actor = NodePath("..")

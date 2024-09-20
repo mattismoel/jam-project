@@ -24,4 +24,3 @@ level_scene = ExtResource("3_m410y")
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_ctx24")
 _levels = Array[ExtResource("2_tl2c7")]([SubResource("Resource_0lwy0"), SubResource("Resource_d31kb"), SubResource("Resource_86ded")])
-_first_level_idx_overwrite = 1

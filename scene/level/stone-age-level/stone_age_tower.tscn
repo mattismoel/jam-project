@@ -10,13 +10,11 @@
 
 [sub_resource type="Resource" id="Resource_ufrxb"]
 script = ExtResource("2_4jhrw")
-height = 50
-desired_height = 10
+height = 140
+desired_height = 115
 
-[node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("mammoth", "rope", "gondola")]
+[node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("gondola")]
 script = ExtResource("1_rwioe")
-mammoth = NodePath("Mammoth")
-rope = NodePath("Rope")
 tower_stat = SubResource("Resource_ufrxb")
 gondola = NodePath("Gondola")
 
@@ -29,19 +27,32 @@ position = Vector2(50, -19)
 texture = ExtResource("4_6yf02")
 
 [node name="Gondola" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("4_1s7vp")]
-position = Vector2(10, -12)
-max_seats = 1
+position = Vector2(10, -3)
 tower = NodePath("..")
 
-[node name="Rope" type="Line2D" parent="." node_paths=PackedStringArray("_gondola", "_mammoth")]
+[node name="Up" parent="Gondola/StateMachine" index="0" node_paths=PackedStringArray("_tower")]
+_tower = NodePath("../../..")
+
+[node name="Idle" parent="Gondola/StateMachine" index="1" node_paths=PackedStringArray("_tower")]
+_tower = NodePath("../../..")
+
+[node name="Rope" type="Line2D" parent="." node_paths=PackedStringArray("_gondola_end", "_mammoth")]
 z_index = -1
-position = Vector2(3, -124)
-points = PackedVector2Array(7, 103, 7, -21, 47, 104, 74, 102)
+points = PackedVector2Array(10, -25, 10, -146, 50, -20, 97, -24)
 width = 2.0
 default_color = Color(0.454902, 0.247059, 0.223529, 1)
 script = ExtResource("6_1dbjs")
-_gondola = NodePath("../Gondola")
+_gondola_end = NodePath("../Gondola/End")
 _mammoth = NodePath("../Mammoth")
 
 [node name="Mammoth" parent="." instance=ExtResource("6_v256q")]
 position = Vector2(99, -5)
+
+[node name="Walk" parent="Mammoth/StateMachine" index="0" node_paths=PackedStringArray("_gondola")]
+_gondola = NodePath("../../../Gondola")
+
+[node name="Idle" parent="Mammoth/StateMachine" index="1" node_paths=PackedStringArray("_tower")]
+_tower = NodePath("../../..")
+
+[editable path="Gondola"]
+[editable path="Mammoth"]

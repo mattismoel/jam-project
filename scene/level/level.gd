@@ -11,6 +11,7 @@ signal tower_ended
 # @export var _blueprint_scene: PackedScene
 @export var _minigame_scene: PackedScene
 @export var _tower: Tower
+@export var _next_level_wait_duration: float = 3.0
 
 @export var _blueprint: TutorialBlueprint
 
@@ -59,8 +60,8 @@ func _on_minigame_finished(resulting_force: float, minigame: Minigame) -> void:
 
 
 func _on_tower_ride_finished(popularity_score: float) -> void:
-  print("ayo")
   tower_ended.emit()
+  await get_tree().create_timer(_next_level_wait_duration).timeout
   LevelManager.next_level()
   pass
 
