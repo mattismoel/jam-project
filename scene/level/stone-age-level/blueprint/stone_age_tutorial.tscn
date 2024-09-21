@@ -5,7 +5,7 @@
 
 [node name="TutorialBlueprint" instance=ExtResource("1_dh7h3")]
 
-[node name="Overlay" type="TextureRect" parent="Control" index="3"]
+[node name="Overlay" type="TextureRect" parent="Control" index="1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
