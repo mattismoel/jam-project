@@ -20,19 +20,15 @@ var _curr_level: Node
     _first_level_idx_overwrite = _v
 
 
-## Whether or not the first level should be loaded automatically.
-@export var _auto_load_first_level: bool = true
-
 
 ## The current level index.
 @onready var _curr_level_idx: int = _first_level_idx_overwrite if _first_level_idx_overwrite >= 0 else 0
 
 
 func _ready() -> void:
-  if Engine.is_editor_hint() || !_auto_load_first_level:
+  if Engine.is_editor_hint():
     return
 
-  print("curr level idx: ", _curr_level_idx)
   _change_level(_curr_level_idx)
   pass
 

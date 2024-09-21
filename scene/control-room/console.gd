@@ -25,7 +25,6 @@ func _on_force_changed(force: float) -> void:
 
 
 func _on_level_changed(_level_idx: int) -> void:
-  print("change_level")
   _force_label.text = _format_force_text(0.0)
 
   var total_level_count: int = LevelManager.level_count()
