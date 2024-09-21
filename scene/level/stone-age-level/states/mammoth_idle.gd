@@ -16,7 +16,6 @@ func enter() -> void:
 
 
 func _on_tower_began_ride(force: float) -> void:
-  print("tower began from idle")
   _walk_state.acceleration_x = force
   change_state.emit(_walk_state)
 

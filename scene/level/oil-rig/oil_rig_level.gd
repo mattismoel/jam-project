@@ -22,7 +22,7 @@ func _on_lever_pull() -> void:
 
 func _move_camera_to_depth() -> void:
   var tween := create_tween()
-  tween.tween_property(_camera, "global_position:y",  _fish_area.global_position.y, 10.0)
+  tween.tween_property(_camera, "global_position:y",  _fish_area.global_position.y, 7.0)
   _fish_pump.allow_movement()
 
   await tween.finished

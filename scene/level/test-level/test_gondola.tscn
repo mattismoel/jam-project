@@ -3,10 +3,16 @@
 [ext_resource type="Script" path="res://scene/level/test-level/test_gondola.gd" id="1_reu4w"]
 [ext_resource type="Texture2D" uid="uid://cq4x4416ve46q" path="res://scene/level/test-level/asset/gondola.png" id="2_76f34"]
 
-[node name="TestGondola" type="Node2D"]
+[node name="TestGondola" type="Node2D" node_paths=PackedStringArray("_top", "_bottom")]
 script = ExtResource("1_reu4w")
-max_height_duration = null
-max_seats = null
+_top = NodePath("Top")
+_bottom = NodePath("Bottom")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_76f34")
+
+[node name="Top" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="Bottom" type="Marker2D" parent="."]
+position = Vector2(0, 8)

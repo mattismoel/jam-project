@@ -59,14 +59,14 @@ func _on_minigame_finished(resulting_force: float, minigame: Minigame) -> void:
   pass
 
 
+func _begin_tower_ride(resulting_force: float) -> void:
+  tower_began.emit()
+  _tower.begin_ride(resulting_force)
+  _tower.finished.connect(_on_tower_ride_finished)
+
+
 func _on_tower_ride_finished(popularity_score: float) -> void:
   tower_ended.emit()
   await get_tree().create_timer(_next_level_wait_duration).timeout
   LevelManager.next_level()
   pass
-
-
-func _begin_tower_ride(resulting_force: float) -> void:
-  tower_began.emit()
-  _tower.begin_ride(resulting_force)
-  _tower.finished.connect(_on_tower_ride_finished)
