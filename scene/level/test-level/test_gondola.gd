@@ -11,7 +11,10 @@ func _begin_ride(with_force: float) -> void:
   var start_pos := position
   var tween := create_tween()
 
-  tween.tween_property(self, "position:y", -tower.height + randf_range(-10, 10), max_height_duration)
+  var calculated_target = _tower.height*with_force/_tower.target_force
+  #tower.height + randf_range(-50, 0)
+  tween.tween_property(self, "position:y", -calculated_target, max_height_duration)
   tween.tween_property(self, "position:y", start_pos.y, max_height_duration)
+  reached_height = calculated_target
 
   tween.tween_callback(_on_ride_finish)

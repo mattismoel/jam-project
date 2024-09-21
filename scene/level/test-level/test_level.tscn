@@ -25,5 +25,11 @@ tower = NodePath("../TestTower")
 [node name="TestTower" parent="." instance=ExtResource("1_f7t71")]
 position = Vector2(228, 156)
 
+[node name="PopularityMeter" parent="TestTower" index="2"]
+_bottom_pos = null
+_line_length = null
+
 [node name="TestTutorial" parent="." instance=ExtResource("2_306l3")]
 visible = false
+
+[editable path="TestTower"]
