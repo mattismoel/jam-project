@@ -71,15 +71,17 @@ func _change_level(idx: int) -> void:
   get_tree().root.add_child.call_deferred(_presentation)
   await _presentation.fade_in()
 
+  if _curr_level:
+    _curr_level.queue_free()
+
   var level := _levels[idx].level_scene.instantiate()
   get_tree().root.add_child.call_deferred(level)
 
   await get_tree().create_timer(_level_presentation_duration).timeout
+
+
   await _presentation.fade_out()
   _presentation.queue_free()
-
-  if _curr_level:
-    _curr_level.queue_free()
 
   _curr_level = level
 
