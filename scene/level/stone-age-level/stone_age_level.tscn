@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://script/score_manager.gd" id="2_74tog"]
 [ext_resource type="PackedScene" uid="uid://dyquehg06r5tj" path="res://scene/level/stone-age-level/stone_age_tower.tscn" id="3_d8m5n"]
 [ext_resource type="PackedScene" uid="uid://bg3k3jej6jlfx" path="res://scene/level/stone-age-level/minigame/stone_age_minigame.tscn" id="4_l611u"]
-[ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="8_xk83c"]
+[ext_resource type="PackedScene" uid="uid://c45o430um53hh" path="res://scene/level/stone-age-level/blueprint/stone_age_tutorial.tscn" id="6_suopn"]
 
 [node name="StoneageLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
 script = ExtResource("1_g1t6x")
 _minigame_scene = ExtResource("4_l611u")
 _tower = NodePath("Stoneage Tower")
-_blueprint = NodePath("TestTutorial")
+_blueprint = NodePath("TutorialBlueprint")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_201v5")
@@ -25,5 +25,5 @@ tower = NodePath("../Stoneage Tower")
 z_index = 2
 position = Vector2(171, 193)
 
-[node name="TestTutorial" parent="." instance=ExtResource("8_xk83c")]
+[node name="TutorialBlueprint" parent="." instance=ExtResource("6_suopn")]
 visible = false
