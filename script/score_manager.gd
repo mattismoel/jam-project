@@ -3,7 +3,6 @@ extends Node
 
 signal score_added(score: float)
 
-
 @export var attempt_count: int = 3
 @export var tower: Tower
 

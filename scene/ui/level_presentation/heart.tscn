@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2jd1wt48myid"]
+
+[ext_resource type="Texture2D" uid="uid://de1hjgdf2q8h0" path="res://asset/ui-spritesheet.png" id="1_nanir"]
+[ext_resource type="Script" path="res://scene/ui/level_presentation/heart.gd" id="2_ptkob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgeh2"]
+atlas = ExtResource("1_nanir")
+region = Rect2(80, 32, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfuop"]
+atlas = ExtResource("1_nanir")
+region = Rect2(96, 32, 7, 6)
+
+[sub_resource type="Animation" id="Animation_iq0io"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0i326"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f6bk7"]
+_data = {
+"RESET": SubResource("Animation_iq0io"),
+"blink": SubResource("Animation_0i326")
+}
+
+[node name="Heart" type="TextureRect" node_paths=PackedStringArray("_animation_player")]
+texture = SubResource("AtlasTexture_cgeh2")
+stretch_mode = 2
+script = ExtResource("2_ptkob")
+_depleted_texture = SubResource("AtlasTexture_tfuop")
+_filled_texture = SubResource("AtlasTexture_cgeh2")
+_animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f6bk7")
+}

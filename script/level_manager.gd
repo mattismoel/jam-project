@@ -9,7 +9,6 @@ var _curr_level: Node
 
 ## The levels of this LevelMangager instance.
 @export var _levels: Array[LevelEntry] = []
-
 ## Optional. The index of the first level. If set to a zero or positive integer
 ## value, the LevelManager starts at this index, else, it starts at the
 ## first level of the 'levels' array (idx = 0).
@@ -20,6 +19,8 @@ var _curr_level: Node
     _first_level_idx_overwrite = _v
 
 
+@export var _level_presentation_duration: float = 1.0
+@export var _presentation_scene: PackedScene
 
 ## The current level index.
 @onready var _curr_level_idx: int = _first_level_idx_overwrite if _first_level_idx_overwrite >= 0 else 0
@@ -64,9 +65,18 @@ func curr_level() -> LevelEntry:
 
 func _change_level(idx: int) -> void:
   _curr_level_idx = idx
-  var level := _levels[idx].level_scene.instantiate()
 
+  var _presentation: LevelPresentation = _presentation_scene.instantiate()
+
+  get_tree().root.add_child.call_deferred(_presentation)
+  await _presentation.fade_in()
+
+  var level := _levels[idx].level_scene.instantiate()
   get_tree().root.add_child.call_deferred(level)
+
+  await get_tree().create_timer(_level_presentation_duration).timeout
+  await _presentation.fade_out()
+  _presentation.queue_free()
 
   if _curr_level:
     _curr_level.queue_free()
