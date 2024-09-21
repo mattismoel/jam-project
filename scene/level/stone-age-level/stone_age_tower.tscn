@@ -11,6 +11,7 @@
 [node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("gondola")]
 script = ExtResource("1_rwioe")
 minimum_score = 100.0
+height = 140
 gondola = NodePath("Gondola")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
