@@ -5,6 +5,7 @@ extends Node2D
 signal began_ride(with_force: float)
 signal finished(height: float)
 
+@export var minimum_score: float = 0.2
 @export_range(0.0, 1000) var height: int = 100:
   set(_v):
     height = _v
@@ -31,17 +32,17 @@ func _draw() -> void:
   pass
 
 
-func calculate_popularity_score(passenger_count: int, height: float) -> float:
-  var factor = pow(1.0/minimum_score, 1.0/tower_stat.desired_height)
-  print("Height: %f. Desired: %f" % [height, tower_stat.desired_height])
+func calculate_popularity_score(reached_height: float) -> float:
+  var factor = pow(1.0/minimum_score, 1.0/height)
+  print("Height: %f. Desired: %f" % [reached_height, height])
   print("Factor: %f" %factor)
-  var score = minimum_score*pow(factor, height)
+  var score = minimum_score*pow(factor, reached_height)
   print("Score calculated: %f" % score)
   return score
   
 
-func _on_gondola_ride_finished(height: float) -> void:
-  var popularity_score := calculate_popularity_score(height)
+func _on_gondola_ride_finished(reached_height: float) -> void:
+  var popularity_score := calculate_popularity_score(reached_height)
   finished.emit(popularity_score)
 
 func _draw_height_markers() -> void:
