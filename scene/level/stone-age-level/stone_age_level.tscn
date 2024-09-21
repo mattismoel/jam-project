@@ -24,6 +24,8 @@ tower = NodePath("../Stoneage Tower")
 [node name="Stoneage Tower" parent="." instance=ExtResource("3_d8m5n")]
 z_index = 2
 position = Vector2(171, 193)
+minimum_score = 100.0
+height = 100
 
 [node name="TutorialBlueprint" parent="." instance=ExtResource("6_suopn")]
 visible = false
