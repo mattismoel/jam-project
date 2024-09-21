@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyquehg06r5tj"]
+[gd_scene load_steps=8 format=3 uid="uid://dyquehg06r5tj"]
 
 [ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_tower.gd" id="1_rwioe"]
 [ext_resource type="Texture2D" uid="uid://d3ex38083x8ex" path="res://scene/level/stone-age-level/asset/stone_age_tower.png" id="3_arcc1"]
@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://2vyb72stcgkv" path="res://scene/level/stone-age-level/asset/trolley.png" id="4_6yf02"]
 [ext_resource type="Script" path="res://scene/level/stone-age-level/rope.gd" id="6_1dbjs"]
 [ext_resource type="PackedScene" uid="uid://bd434nwbl4wiw" path="res://scene/level/stone-age-level/side_view_mammoth.tscn" id="6_v256q"]
+[ext_resource type="Script" path="res://script/popularity_meter.gd" id="7_lio6j"]
 
 [node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("gondola")]
 script = ExtResource("1_rwioe")
 minimum_score = 100.0
-height = 140
 gondola = NodePath("Gondola")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
@@ -49,6 +49,11 @@ _gondola = NodePath("../../../Gondola")
 
 [node name="Idle" parent="Mammoth/StateMachine" index="1" node_paths=PackedStringArray("_tower")]
 _tower = NodePath("../../..")
+
+[node name="PopularityMeter" type="Node2D" parent="." node_paths=PackedStringArray("_tower")]
+script = ExtResource("7_lio6j")
+_tower = NodePath("..")
+_line_offset = Vector2i(-20, 0)
 
 [editable path="Gondola"]
 [editable path="Mammoth"]
