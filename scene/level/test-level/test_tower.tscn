@@ -8,7 +8,6 @@
 [node name="TestTower" type="Node2D" node_paths=PackedStringArray("gondola")]
 script = ExtResource("1_d8fcw")
 target_force = 30000.0
-height = 140
 gondola = NodePath("TestGondola")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]

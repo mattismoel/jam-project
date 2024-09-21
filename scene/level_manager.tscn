@@ -18,7 +18,7 @@ script = ExtResource("2_tl2c7")
 title = "Stone Hedge"
 level_scene = ExtResource("4_rs08x")
 description = "\"Ugah. Tower high. Tower good.\" 
-- Stone Age man"
+- Some Stone Age Man"
 
 [sub_resource type="Resource" id="Resource_86ded"]
 script = ExtResource("2_tl2c7")
@@ -28,7 +28,7 @@ description = "Description"
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_ctx24")
+_bypass = false
 _levels = Array[ExtResource("2_tl2c7")]([SubResource("Resource_0lwy0"), SubResource("Resource_d31kb"), SubResource("Resource_86ded")])
-_first_level_idx_overwrite = 1
-_level_presentation_duration = 2.0
+_level_presentation_duration = 3.0
 _presentation_scene = ExtResource("6_ruc11")

@@ -55,7 +55,6 @@ force_per_hit = 200.0
 projectile = NodePath("Sling shot/Projectile")
 mammoth = NodePath("Mammoth")
 animation_of_mammoth = NodePath("Mammoth/AnimatedSprite2D")
-_duration = 2.0
 _game_timer = NodePath("CountdownTimer")
 _minigame_ui = NodePath("MinigameUI")
 

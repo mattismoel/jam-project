@@ -5,8 +5,9 @@ signal out_of_lives
 signal lives_changed
 
 @export var max_life_count: int = 3
+@export var _game_over_screen_scene: PackedScene
 
-var current_lives: int = max_life_count - 1
+var current_lives: int = max_life_count
 
 
 ## Deplenishes the current live count by one.
@@ -33,15 +34,27 @@ func add_lives(count: int) -> void:
   pass
 
 
+## Returnes whether or not the game is game over (i.e. all lives are depleted).
+func is_game_over() -> bool:
+  return current_lives <= 0
+
+
 func _modify_lives_by(x: int) -> void:
   current_lives += x
   current_lives = clampi(current_lives, 0, max_life_count)
 
   if current_lives <= 0:
-    out_of_lives.emit()
+    _on_out_of_lives()
 
   if current_lives >= max_life_count:
     full_lives.emit()
 
   lives_changed.emit(x)
+  pass
+
+
+func _on_out_of_lives() -> void:
+  out_of_lives.emit()
+  var game_over_screen := _game_over_screen_scene.instantiate()
+  get_tree().root.add_child(game_over_screen)
   pass

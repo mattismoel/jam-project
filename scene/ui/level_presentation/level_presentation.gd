@@ -2,7 +2,7 @@ class_name LevelPresentation
 extends CanvasLayer
 
 @export var _level_title_label: Label
-@export var _description_label: Label
+@export var _description_label: TypedLabel
 @export var _lives_container: HBoxContainer
 @export var _heart_scene: PackedScene
 @export var _animation_player: AnimationPlayer
@@ -25,6 +25,7 @@ func _ready() -> void:
 
   _level_title_label.text = current_level.title
   _description_label.text = current_level.description
+  _description_label.start()
   pass
 
 

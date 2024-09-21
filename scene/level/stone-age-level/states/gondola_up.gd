@@ -25,7 +25,6 @@ func physics_process(_delta: float) -> void:
   if _gondola.global_position.y <= _init_pos.y - _tower.height:
         # _gondola.top_reached.emit()
         _gondola.reached_height = _init_pos.y - _gondola.global_position.y
-        _gondola.finished.emit(_gondola.reached_height)
         change_state.emit(_idle_state)
         _gondola.finished.emit(_gondola.reached_height)
   pass

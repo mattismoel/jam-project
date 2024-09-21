@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6krvnwhxsqrl"]
+[gd_scene load_steps=12 format=3 uid="uid://c6krvnwhxsqrl"]
 
 [ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_4vag1"]
 [ext_resource type="Script" path="res://scene/ui/level_presentation/level_presentation.gd" id="1_31cfw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dpb6eryn4ytwp" path="res://scene/ui/sunrise.png" id="3_k8hx0"]
 [ext_resource type="FontFile" uid="uid://dkrvkpn3q7uff" path="res://asset/font/8-BIT WONDER.TTF" id="5_xg47h"]
 [ext_resource type="FontFile" uid="uid://bijorv0vkhvmm" path="res://asset/font/04B_03__.TTF" id="6_higaj"]
+[ext_resource type="Script" path="res://script/typer.gd" id="7_ycv2w"]
 
 [sub_resource type="Animation" id="Animation_w4q2i"]
 length = 0.001
@@ -115,15 +116,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.505344, 0.505344, 0.505344, 1)
 theme_override_fonts/font = ExtResource("6_higaj")
 theme_override_font_sizes/font_size = 8
-text = "\"Description\""
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
+script = ExtResource("7_ycv2w")
+_rate = 20.0
+_randomness = 0.1
+_auto_start = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

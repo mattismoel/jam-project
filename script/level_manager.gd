@@ -1,10 +1,13 @@
 @tool
 extends Node
 
+
 signal changed_level(idx: int)
 signal last_level_completed
 
 var _curr_level: Node
+
+@export var _bypass: bool = false
 
 
 ## The levels of this LevelMangager instance.
@@ -27,7 +30,7 @@ var _curr_level: Node
 
 
 func _ready() -> void:
-  if Engine.is_editor_hint():
+  if Engine.is_editor_hint() || _bypass:
     return
 
   _change_level(_curr_level_idx)
@@ -89,5 +92,3 @@ func _change_level(idx: int) -> void:
   # get_tree().change_scene_to_packed.call_deferred(_levels[idx].level_scene)
   changed_level.emit(_curr_level_idx)
   pass
-
-

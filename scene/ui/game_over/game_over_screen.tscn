@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://66phajxk2t1f"]
+[gd_scene load_steps=5 format=3 uid="uid://66phajxk2t1f"]
 
 [ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_e4d7i"]
 [ext_resource type="Texture2D" uid="uid://i1n8s3gfcp2o" path="res://scene/ui/game_over/game_over_image.png" id="2_rej3g"]
 [ext_resource type="FontFile" uid="uid://c8mr05dy0sgta" path="res://asset/font/GothicPixels.ttf" id="3_na4t8"]
+[ext_resource type="Script" path="res://script/typer.gd" id="4_spody"]
 
 [node name="GameOverScreen" type="CanvasLayer"]
 
@@ -46,6 +47,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.124571, 0.0864943, 1)
 theme_override_fonts/font = ExtResource("3_na4t8")
 theme_override_font_sizes/font_size = 16
-text = "Game Over"
+text = "Game Over."
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_spody")
