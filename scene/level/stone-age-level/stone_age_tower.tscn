@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyquehg06r5tj"]
+[gd_scene load_steps=10 format=3 uid="uid://dyquehg06r5tj"]
 
 [ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_tower.gd" id="1_rwioe"]
-[ext_resource type="Texture2D" uid="uid://d3ex38083x8ex" path="res://scene/level/stone-age-level/asset/stone_age_tower.png" id="3_arcc1"]
+[ext_resource type="Texture2D" uid="uid://bwr1v2ecnlxvb" path="res://scene/level/stone-age-level/asset/leafs-back.png" id="2_ev52o"]
+[ext_resource type="Texture2D" uid="uid://blrm03ogx76ek" path="res://scene/level/stone-age-level/asset/trunk.png" id="3_p7gle"]
 [ext_resource type="PackedScene" uid="uid://dq0dfva11ynl5" path="res://scene/level/stone-age-level/stone_age_gondola.tscn" id="4_1s7vp"]
 [ext_resource type="Texture2D" uid="uid://2vyb72stcgkv" path="res://scene/level/stone-age-level/asset/trolley.png" id="4_6yf02"]
+[ext_resource type="Texture2D" uid="uid://e6y24k4fuw4t" path="res://scene/level/stone-age-level/asset/leafs-front.png" id="4_ukmpa"]
 [ext_resource type="Script" path="res://scene/level/stone-age-level/rope.gd" id="6_1dbjs"]
 [ext_resource type="PackedScene" uid="uid://bd434nwbl4wiw" path="res://scene/level/stone-age-level/side_view_mammoth.tscn" id="6_v256q"]
 [ext_resource type="Script" path="res://script/popularity_meter.gd" id="7_lio6j"]
@@ -12,12 +14,22 @@
 script = ExtResource("1_rwioe")
 minimum_score = 100.0
 height = 140
-bottom_pos_y = null
 gondola = NodePath("Gondola")
 
-[node name="TowerSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -88)
-texture = ExtResource("3_arcc1")
+[node name="Tree" type="Node2D" parent="."]
+
+[node name="LeafsBack" type="Sprite2D" parent="Tree"]
+position = Vector2(0, -134)
+texture = ExtResource("2_ev52o")
+
+[node name="TrunkSprite" type="Sprite2D" parent="Tree"]
+position = Vector2(4, -84)
+texture = ExtResource("3_p7gle")
+
+[node name="LeafsFront" type="Sprite2D" parent="Tree"]
+z_index = 1
+position = Vector2(0, -129)
+texture = ExtResource("4_ukmpa")
 
 [node name="Trolley" type="Sprite2D" parent="."]
 position = Vector2(50, -19)
@@ -35,7 +47,6 @@ _tower = NodePath("../../..")
 _tower = NodePath("../../..")
 
 [node name="Rope" type="Line2D" parent="." node_paths=PackedStringArray("_gondola_end", "_mammoth")]
-z_index = -1
 points = PackedVector2Array(10, -25, 10, -146, 50, -20, 97, -24)
 width = 2.0
 default_color = Color(0.454902, 0.247059, 0.223529, 1)
