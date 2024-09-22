@@ -99,13 +99,15 @@ layout_mode = 2
 theme_override_constants/separation = 7
 alignment = 1
 
-[node name="LivesContainer" type="HBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="TextureRect" type="TextureRect" parent="Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture = ExtResource("3_k8hx0")
 stretch_mode = 3
+
+[node name="LivesContainer" type="HBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
 
 [node name="TitleLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -115,8 +117,12 @@ text = "Level Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Spacer" type="Control" parent="Control/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
 [node name="DescriptionLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.505344, 0.505344, 0.505344, 1)
 theme_override_fonts/font = ExtResource("6_higaj")

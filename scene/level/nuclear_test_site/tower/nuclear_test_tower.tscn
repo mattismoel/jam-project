@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnqgqlmw6lg1w"]
+
+[ext_resource type="Script" path="res://scene/level/nuclear_test_site/tower/nuclear_test_tower.gd" id="1_uguy6"]
+[ext_resource type="Texture2D" uid="uid://dvrd21dor8a7w" path="res://scene/level/nuclear_test_site/warhead-spritesheet.png" id="1_yl70h"]
+[ext_resource type="Texture2D" uid="uid://dwmqhm4aoocj3" path="res://scene/level/nuclear_test_site/tower_spritesheet.png" id="2_kxqy8"]
+[ext_resource type="Script" path="res://addons/machinery/state_machine.gd" id="3_dyuv4"]
+[ext_resource type="Script" path="res://scene/level/nuclear_test_site/tower/states/idle.gd" id="5_2hh5h"]
+[ext_resource type="Script" path="res://scene/level/nuclear_test_site/tower/states/drop.gd" id="6_uu6mc"]
+
+[node name="NuclearTestTower" type="Node2D"]
+position = Vector2(160, 120)
+script = ExtResource("1_uguy6")
+
+[node name="Warhead" type="Sprite2D" parent="."]
+position = Vector2(-3, -40)
+texture = ExtResource("1_yl70h")
+centered = false
+offset = Vector2(0, -11)
+hframes = 3
+
+[node name="TowerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_kxqy8")
+offset = Vector2(0, -32)
+hframes = 3
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_dyuv4")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_drop_state")]
+script = ExtResource("5_2hh5h")
+_drop_state = NodePath("../Drop")
+
+[node name="Drop" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_warhead", "_drop_pos", "_tower")]
+script = ExtResource("6_uu6mc")
+_warhead = NodePath("../../Warhead")
+_drop_pos = NodePath("../../DropPos")
+_tower = NodePath("../..")
+
+[node name="DropPos" type="Marker2D" parent="."]
