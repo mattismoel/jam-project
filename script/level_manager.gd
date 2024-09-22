@@ -32,9 +32,11 @@ var _curr_level: Node
 func _ready() -> void:
   if Engine.is_editor_hint() || _bypass:
     return
-
-  _change_level(_curr_level_idx)
   pass
+
+
+func begin() -> void:
+  _change_level(_curr_level_idx)
 
 
 ## Proceeds to the next level.
