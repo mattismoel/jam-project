@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://e6y24k4fuw4t" path="res://scene/level/stone-age-level/asset/leafs-front.png" id="4_ukmpa"]
 [ext_resource type="Script" path="res://scene/level/stone-age-level/rope.gd" id="6_1dbjs"]
 [ext_resource type="PackedScene" uid="uid://bd434nwbl4wiw" path="res://scene/level/stone-age-level/side_view_mammoth.tscn" id="6_v256q"]
-[ext_resource type="Script" path="res://script/popularity_meter.gd" id="7_lio6j"]
+[ext_resource type="PackedScene" uid="uid://b2duwx03qp5dj" path="res://scene/popularity_meter/popularity_meter.tscn" id="7_scvpl"]
 
 [node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("gondola")]
 script = ExtResource("1_rwioe")
-minimum_score = 100.0
+minimum_score = 0.5
 height = 140
 gondola = NodePath("Gondola")
 
@@ -63,11 +63,8 @@ _gondola = NodePath("../../../Gondola")
 [node name="Idle" parent="Mammoth/StateMachine" index="1" node_paths=PackedStringArray("_tower")]
 _tower = NodePath("../../..")
 
-[node name="PopularityMeter" type="Node2D" parent="." node_paths=PackedStringArray("_tower")]
-script = ExtResource("7_lio6j")
+[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower") instance=ExtResource("7_scvpl")]
 _tower = NodePath("..")
-_line_offset = Vector2i(-20, 0)
-_skull_offset = null
 
 [editable path="Gondola"]
 [editable path="Mammoth"]
