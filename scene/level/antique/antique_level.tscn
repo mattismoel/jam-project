@@ -17,8 +17,9 @@ position = Vector2(160, 120)
 texture = ExtResource("3_2c5le")
 
 [node name="Tower" parent="." instance=ExtResource("3_5ex2w")]
-position = Vector2(194, 130)
+position = Vector2(209, 195)
 target_force = 10000.0
+height = 125
 
 [node name="TutorialBlueprint" parent="." instance=ExtResource("4_wiwrv")]
 visible = false
