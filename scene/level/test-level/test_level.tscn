@@ -19,9 +19,8 @@ position = Vector2(0, -30)
 texture = ExtResource("3_3r3jh")
 centered = false
 
-[node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("tower")]
+[node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("3_6lw1i")
-tower = NodePath("../TestTower")
 
 [node name="TestTower" parent="." instance=ExtResource("1_f7t71")]
 position = Vector2(228, 200)

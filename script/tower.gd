@@ -50,8 +50,9 @@ func calculate_height_with_specific_popularity_score(score: float):
 
 
 func _on_gondola_ride_finished(reached_height: float) -> void:
-  print("finish")
   var popularity_score := calculate_popularity_score(reached_height)
+
+  ScoreManager.add_popularity_score(popularity_score)
 
   if popularity_score < minimum_score:
     LifeManager.take_life()

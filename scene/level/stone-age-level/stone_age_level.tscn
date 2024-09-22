@@ -17,9 +17,8 @@ _blueprint = NodePath("TutorialBlueprint")
 texture = ExtResource("1_201v5")
 centered = false
 
-[node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("tower")]
+[node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("2_74tog")
-tower = NodePath("../Stoneage Tower")
 
 [node name="Stoneage Tower" parent="." instance=ExtResource("3_d8m5n")]
 z_index = 2

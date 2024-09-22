@@ -1,24 +1,15 @@
-class_name ScoreManager
 extends Node
 
 signal score_added(score: float)
+signal calculated_final_score(final_score: float)
 
-@export var attempt_count: int = 3
-@export var tower: Tower
-
-var _scores: Array[float] = []:
-  set(_s):
-    if len(_s) >= attempt_count:
-      _s.pop_front()
-
+var _scores: Array[float] = []
 
 func _ready() -> void:
-  tower.finished.connect(_on_ride_finished)
+  LifeManager.out_of_lives.connect(_on_life_manager_out_of_lives)
 
-
-func _on_ride_finished(popularity_score: float) -> void:
-  _scores.append(popularity_score)
-  pass
+func add_popularity_score(score: float) -> void:
+  _scores.append(score)
 
 
 func average_score() -> float:
@@ -32,3 +23,9 @@ func average_score() -> float:
 func _add_popularity_score(_score: float) -> void:
   _scores.append(_score)
   score_added.emit(_score)
+
+
+func _on_life_manager_out_of_lives() -> void:
+  var final_score := average_score()
+  calculated_final_score.emit(final_score)
+  pass

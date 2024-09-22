@@ -1,6 +1,8 @@
 class_name TypedLabel
 extends Label
 
+signal finished
+
 @export var _rate: float = 2.0
 @export var _randomness: float = 0.0
 @export var _auto_start: bool = true
@@ -19,6 +21,8 @@ func start() -> void:
   text = ""
   for letter in init_text:
     await _type_letter(letter)
+
+  finished.emit()
 
 
 func _type_letter(letter: String) -> void:

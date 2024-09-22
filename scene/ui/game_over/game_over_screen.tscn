@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://66phajxk2t1f"]
+[gd_scene load_steps=6 format=3 uid="uid://66phajxk2t1f"]
 
 [ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_e4d7i"]
+[ext_resource type="Script" path="res://scene/ui/game_over/game_over_screen.gd" id="1_qjmvr"]
 [ext_resource type="Texture2D" uid="uid://i1n8s3gfcp2o" path="res://scene/ui/game_over/game_over_image.png" id="2_rej3g"]
 [ext_resource type="FontFile" uid="uid://c8mr05dy0sgta" path="res://asset/font/GothicPixels.ttf" id="3_na4t8"]
 [ext_resource type="Script" path="res://script/typer.gd" id="4_spody"]
 
-[node name="GameOverScreen" type="CanvasLayer"]
+[node name="GameOverScreen" type="CanvasLayer" node_paths=PackedStringArray("_game_over_label", "_score_label")]
+script = ExtResource("1_qjmvr")
+_game_over_label = NodePath("Control/CenterContainer/VBoxContainer/GameOverLabel")
+_score_label = NodePath("Control/CenterContainer/VBoxContainer/ScoreLabel")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -51,3 +55,10 @@ text = "Game Over."
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_spody")
+
+[node name="ScoreLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+script = ExtResource("4_spody")
+_rate = 20.0
+_auto_start = false

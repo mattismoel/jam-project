@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 LevelManager="*res://scene/level_manager.tscn"
 SignalBus="*res://script/signal_bus.tscn"
 LifeManager="*res://scene/life_manager/life_manager.tscn"
+ScoreManager="*res://script/score_manager.gd"
 
 [display]
 
