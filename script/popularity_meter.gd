@@ -51,9 +51,9 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
     _initial_position = Vector2i(_tower.global_position - _tower.position) + _line_offset - Vector2i(0,_tower.bottom_pos_y)
+    draw_height_meter()
     draw_skull()
     draw_score_markers()
-    _update_height_meter()
 
 
 func draw_score_markers() -> void:
@@ -92,20 +92,19 @@ func draw_skull() -> void:
     draw_line(
       start_pos,
       end_pos,
-      # Vector2(_initial_position)+Vector2(_line_length/2.0,0)+Vector2.UP/2.0, Vector2(_initial_position - Vector2i(0, height))+Vector2(_line_length/2.0,0)+Vector2.UP/2.0,
-    Color.RED,_line_length)
+      Color.RED,_line_length)
 
     _skull.position = skull_pos + _skull_offset
 
 
-func _update_height_meter() -> void:
+func draw_height_meter() -> void:
   var start_pos: Vector2 = \
     global_position\
     + Vector2(_line_offset)\
     + Vector2.UP\
     * _tower.bottom_pos_y
 
-  var end_pos: Vector2 = start_pos + Vector2.UP * _gondola.global_position.y
+  var end_pos: Vector2 = Vector2(start_pos.x, _gondola.global_position.y)
 
   var offset := Vector2.RIGHT * _line_length / 2.0
 

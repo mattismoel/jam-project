@@ -64,8 +64,9 @@ _gondola = NodePath("../../../Gondola")
 [node name="Idle" parent="Mammoth/StateMachine" index="1" node_paths=PackedStringArray("_tower")]
 _tower = NodePath("../../..")
 
-[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower") instance=ExtResource("7_scvpl")]
+[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower", "_gondola") instance=ExtResource("7_scvpl")]
 _tower = NodePath("..")
+_gondola = NodePath("../Gondola")
 _line_length = 6
 
 [editable path="Gondola"]
