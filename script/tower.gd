@@ -7,7 +7,15 @@ signal height_changed
 
 @export var minimum_score: float = 0.2
 @export var target_force: float = 1000
-@export_range(0.0, 1000) var height: int = 100
+@export_range(0.0, 1000) var height: int = 100:
+    set(_v):
+        height = _v
+        height_changed.emit()
+
+@export var bottom_pos_y: int = 0:
+    set(_v):
+        bottom_pos_y = _v
+        height_changed.emit()
 
 @export_category("References")
 @export var gondola: Gondola

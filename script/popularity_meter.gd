@@ -3,17 +3,13 @@ class_name PopularityMeter
 extends Node2D
 
 @export var _tower: Tower
-@export var _bottom_pos: Vector2:
-    set(_v):
-        _bottom_pos = _v
-        queue_redraw()
 
 @export var _line_color: Color = Color.WHITE:
     set(_v):
         _line_color = _v
         queue_redraw()
 
-@export var _line_offset: Vector2i:
+@export var _line_offset: Vector2i = Vector2i(0,0):
     set(_v):
         _line_offset = _v
         queue_redraw()
@@ -36,7 +32,7 @@ func _draw() -> void:
     draw_score_markers()
     
 func draw_score_markers() -> void:
-    var initial_pos = Vector2i(_tower.global_position - _tower.position + _bottom_pos) + _line_offset
+    var initial_pos = Vector2i(_tower.global_position - _tower.position) + _line_offset - Vector2i(0,_tower.bottom_pos_y)
     var pixel_alignment_offset = Vector2.ONE/2
     
     for n in _marker_count+1:

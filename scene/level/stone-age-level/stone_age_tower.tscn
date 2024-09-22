@@ -12,6 +12,7 @@
 script = ExtResource("1_rwioe")
 minimum_score = 100.0
 height = 140
+bottom_pos_y = null
 gondola = NodePath("Gondola")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
