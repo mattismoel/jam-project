@@ -1,0 +1,115 @@
+[gd_scene load_steps=17 format=3 uid="uid://cjmcvcxvbcy4v"]
+
+[ext_resource type="Script" path="res://scene/level/antique/antique_minigame.gd" id="1_64iqb"]
+[ext_resource type="PackedScene" uid="uid://cldjxry6ysopy" path="res://scene/minigame/minigame_ui.tscn" id="2_fupoq"]
+[ext_resource type="Texture2D" uid="uid://cfncs0u82u1r" path="res://scene/level/antique/assets/minigame_bg.png" id="2_uu533"]
+[ext_resource type="Texture2D" uid="uid://ddc35uwosgexy" path="res://scene/level/antique/assets/sisyphus_man/animated_man-Sheet.png" id="3_x3cvf"]
+[ext_resource type="Texture2D" uid="uid://bjcsttriocfgy" path="res://scene/level/antique/assets/boulder/sisyphus_stone.png" id="4_7umfc"]
+[ext_resource type="Texture2D" uid="uid://4egcsafw1eu1" path="res://scene/level/antique/assets/boulder/sisyphus_stone_shadow.png" id="5_obiqa"]
+[ext_resource type="Texture2D" uid="uid://dd0gyho8d6sce" path="res://scene/level/antique/assets/mountain.png" id="6_d78rv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2luro"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64381"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fata"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ybor"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehtpn"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdbod"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alvqa"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bpdg"]
+atlas = ExtResource("3_x3cvf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wyx75"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2luro")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_64381")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4fata")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5ybor")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ehtpn")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hdbod")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_alvqa")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_8bpdg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AntiqueMinigame" type="Node2D" node_paths=PackedStringArray("sisyphus_animation", "boulder", "_game_timer", "_minigame_ui")]
+z_index = 6
+script = ExtResource("1_64iqb")
+force_per_scroll = 80
+sisyphus_animation = NodePath("Sisyphus/AnimatedSprite2D")
+boulder = NodePath("Sisyphus/Boulder/BoulderSprite")
+_duration = 5.0
+_game_timer = NodePath("Timer")
+_minigame_ui = NodePath("MinigameUI")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("2_uu533")
+
+[node name="MinigameUI" parent="." instance=ExtResource("2_fupoq")]
+
+[node name="Sisyphus" type="Node2D" parent="."]
+position = Vector2(184, 136)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sisyphus"]
+position = Vector2(-1, -2)
+sprite_frames = SubResource("SpriteFrames_wyx75")
+frame = 7
+frame_progress = 1.0
+
+[node name="Boulder" type="Node2D" parent="Sisyphus"]
+position = Vector2(21, -20)
+
+[node name="BoulderSprite" type="Sprite2D" parent="Sisyphus/Boulder"]
+texture = ExtResource("4_7umfc")
+
+[node name="Shadow" type="Sprite2D" parent="Sisyphus/Boulder"]
+position = Vector2(1, 1)
+texture = ExtResource("5_obiqa")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("6_d78rv")

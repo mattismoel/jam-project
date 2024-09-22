@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nnfwyo7seaee"]
+[gd_scene load_steps=14 format=3 uid="uid://nnfwyo7seaee"]
 
 [ext_resource type="Script" path="res://script/level_manager.gd" id="1_ctx24"]
 [ext_resource type="Script" path="res://script/level_manager_entry.gd" id="2_tl2c7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5o1j2pyr513q" path="res://scene/level/test-level/test_level.tscn" id="3_vwwnw"]
 [ext_resource type="PackedScene" uid="uid://d0d6r4ok253ej" path="res://scene/level/stone-age-level/stone_age_level.tscn" id="4_rs08x"]
 [ext_resource type="PackedScene" uid="uid://cvih52njwg0sd" path="res://scene/level/nuclear_test_site/nuclear_test_site.tscn" id="6_4ylsq"]
+[ext_resource type="PackedScene" uid="uid://co0xv0peassad" path="res://scene/level/antique/antique_level.tscn" id="6_f7nyi"]
 [ext_resource type="PackedScene" uid="uid://c6krvnwhxsqrl" path="res://scene/ui/level_presentation/level_presentation.tscn" id="6_ruc11"]
 
 [sub_resource type="Resource" id="Resource_0lwy0"]
@@ -26,6 +27,13 @@ script = ExtResource("2_tl2c7")
 title = "Leakage Facility"
 level_scene = ExtResource("3_m410y")
 description = "Description"
+
+[sub_resource type="Resource" id="Resource_k5c7p"]
+script = ExtResource("2_tl2c7")
+title = "Greek Experiments"
+level_scene = ExtResource("6_f7nyi")
+description = "\"They see me rollin\"
+- Sisyphus"
 
 [sub_resource type="Resource" id="Resource_4bsvk"]
 script = ExtResource("2_tl2c7")

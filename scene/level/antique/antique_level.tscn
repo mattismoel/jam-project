@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://co0xv0peassad"]
+
+[ext_resource type="Script" path="res://scene/level/level.gd" id="1_k2bt4"]
+[ext_resource type="PackedScene" uid="uid://cjmcvcxvbcy4v" path="res://scene/level/antique/antique_minigame.tscn" id="2_cm78j"]
+[ext_resource type="Texture2D" uid="uid://385lad1t6e3i" path="res://scene/level/antique/assets/background.png" id="3_2c5le"]
+[ext_resource type="PackedScene" uid="uid://b48vk628dmyxg" path="res://scene/level/antique/antique_tower.tscn" id="3_5ex2w"]
+[ext_resource type="PackedScene" uid="uid://bga4am3fmln5e" path="res://scene/tutorial-blueprint/tutorial.tscn" id="4_wiwrv"]
+
+[node name="AntiqueLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
+script = ExtResource("1_k2bt4")
+_minigame_scene = ExtResource("2_cm78j")
+_tower = NodePath("Tower")
+_blueprint = NodePath("TutorialBlueprint")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("3_2c5le")
+
+[node name="Tower" parent="." instance=ExtResource("3_5ex2w")]
+position = Vector2(209, 195)
+target_force = 10000.0
+height = 125
+
+[node name="TutorialBlueprint" parent="." instance=ExtResource("4_wiwrv")]
+visible = false
