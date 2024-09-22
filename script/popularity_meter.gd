@@ -52,7 +52,7 @@ func draw_score_markers() -> void:
         var end_draw_pos = start_draw_pos + Vector2(_line_length,0)
         draw_line(Vector2(start_draw_pos)-Vector2(0,1),Vector2(end_draw_pos)-Vector2(0,1),_line_color,1)
         
-    draw_line(Vector2(_initial_position)+Vector2.LEFT/2.0, Vector2(_initial_position - Vector2i(0, _tower.calculate_height_with_specific_popularity_score(1)+1)), _line_color,1)
+    draw_line(Vector2(_initial_position)+Vector2.LEFT/2.0, Vector2(_initial_position - Vector2i(0, _tower.calculate_height_with_specific_popularity_score(1)+1))+Vector2.LEFT/2.0, _line_color,1)
 
 func draw_skull() -> void:
     var height = _tower.calculate_height_with_specific_popularity_score(_tower.minimum_score)
