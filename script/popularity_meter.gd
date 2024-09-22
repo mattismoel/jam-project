@@ -2,6 +2,10 @@
 class_name PopularityMeter
 extends Node2D
 
+const SKULL_OFFSET: int = 18
+const SCREEN_MARGIN: int = 32
+const HEIGHT_METER_WIDTH: int = 2
+
 @export var _tower: Tower
 @export var _skull: Sprite2D
 @export var _gondola: Gondola
@@ -12,22 +16,9 @@ extends Node2D
         _line_color = _v
         queue_redraw()
 
-
-@export var _line_offset: Vector2i = Vector2i(0,0):
+@export var _meter_width: int = 5:
     set(_v):
-        _line_offset = _v
-        queue_redraw()
-
-
-@export var _skull_offset: Vector2i = Vector2i(0,0):
-    set(_v):
-        _skull_offset = _v
-        queue_redraw()
-
-
-@export var _line_length: int = 5:
-    set(_v):
-        _line_length = _v
+        _meter_width = _v
         queue_redraw()
 
 
@@ -36,13 +27,19 @@ extends Node2D
         _marker_count = _v
         queue_redraw()
 
-
-var _initial_position: Vector2i
-
+@onready var _screen_size := Vector2(
+  ProjectSettings.get_setting("display/window/size/viewport_width"),
+  ProjectSettings.get_setting("display/window/size/viewport_height")
+)
 
 func _ready() -> void:
     _tower.height_changed.connect(queue_redraw)
     queue_redraw()
+
+@onready var _draw_pos_bottom: Vector2 = Vector2(
+    _screen_size.x - SCREEN_MARGIN,
+    _tower.global_position.y - _tower.bottom_pos_y,
+) - global_position
 
 
 func _process(delta: float) -> void:
@@ -50,7 +47,6 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-    _initial_position = Vector2i(_tower.global_position - _tower.position) + _line_offset - Vector2i(0,_tower.bottom_pos_y)
     draw_height_meter()
     draw_skull()
     draw_score_markers()
@@ -62,54 +58,57 @@ func draw_score_markers() -> void:
     for n in _marker_count+1:
         var score = float(n)/_marker_count
         var height = _tower.calculate_height_with_specific_popularity_score(score)
+        var offset = Vector2.UP * 0.5
 
-        var start_draw_pos = Vector2(_initial_position) + Vector2.DOWN/2.0 - Vector2(0,height)
-        var end_draw_pos = start_draw_pos + Vector2(_line_length,0)
-        draw_line(Vector2(start_draw_pos)-Vector2(0,1),Vector2(end_draw_pos)-Vector2(0,1),_line_color,1)
+        var start_pos: Vector2 = _draw_pos_bottom + Vector2.UP * height
 
-    var offset = Vector2.RIGHT * 0.5
+        var end_pos := start_pos + Vector2.LEFT * _meter_width
 
-    draw_line(
-    Vector2(_initial_position) + offset,
-    Vector2(_initial_position - Vector2i(0, _tower.calculate_height_with_specific_popularity_score(1)+1))
-    + offset, _line_color,1)
+        start_pos += offset
+        end_pos += offset
+
+        draw_line(start_pos, end_pos, _line_color, 1)
+
+
+    var start_pos := _draw_pos_bottom
+    var end_pos := start_pos + Vector2.UP * (_tower.height + 1)
+
+    var offset := Vector2.RIGHT * 0.5
+
+    start_pos += offset
+    end_pos += offset
+
+    draw_line(start_pos, end_pos, _line_color, 1)
 
 
 func draw_skull() -> void:
     var height = _tower.calculate_height_with_specific_popularity_score(_tower.minimum_score)
 
-    var skull_pos = _initial_position - Vector2i(3,height)
-    var end_draw_pos = skull_pos + Vector2i(_line_length+3,0)
+    var pos: Vector2 = _draw_pos_bottom + Vector2.UP * height
 
-    var start_pos := _tower.global_position - Vector2.LEFT * _line_offset.x + Vector2.UP * _tower.bottom_pos_y
-    var end_pos: Vector2 = start_pos + Vector2.UP * height
+    draw_death_line(height)
 
-    var offset := Vector2.RIGHT * _line_length / 2.0
+    _skull.position = pos + Vector2.LEFT * SKULL_OFFSET
+    pass
 
-    start_pos += offset
-    end_pos += offset
 
-    draw_line(
-      start_pos,
-      end_pos,
-      Color.RED,_line_length)
-
-    _skull.position = skull_pos + _skull_offset
+func draw_death_line(height: float) -> void:
+  var start_pos := _draw_pos_bottom
+  start_pos += Vector2.LEFT * _meter_width / 2.0
+  var end_pos := start_pos + Vector2.UP * height
+  draw_line(start_pos, end_pos, Color.RED, _meter_width)
 
 
 func draw_height_meter() -> void:
-  var start_pos: Vector2 = \
-    global_position\
-    + Vector2(_line_offset)\
-    + Vector2.UP\
-    * _tower.bottom_pos_y
+  var start_pos: Vector2 = _draw_pos_bottom
 
-  var end_pos: Vector2 = Vector2(start_pos.x, _gondola.global_position.y)
+  var end_pos: Vector2 = Vector2(start_pos.x, _gondola.global_position.y - global_position.y)
 
-  var offset := Vector2.RIGHT * _line_length / 2.0
+  var offset := Vector2.RIGHT * HEIGHT_METER_WIDTH
 
   start_pos += offset
   end_pos += offset
 
-  draw_line(start_pos, end_pos, Color.GREEN, _line_length)
+
+  draw_line(start_pos, end_pos, Color.GREEN, HEIGHT_METER_WIDTH)
   pass

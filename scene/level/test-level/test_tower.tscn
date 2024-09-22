@@ -20,10 +20,11 @@ position = Vector2(0, -26)
 _tower = NodePath("..")
 tower = NodePath("..")
 
-[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower") instance=ExtResource("4_ldlwm")]
+[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower", "_gondola") instance=ExtResource("4_ldlwm")]
 _tower = NodePath("..")
+_gondola = NodePath("../TestGondola")
 
 [node name="Skull" parent="PopularityMeter" index="0"]
-position = Vector2(-33, -62)
+position = Vector2(270, -62.6099)
 
 [editable path="PopularityMeter"]

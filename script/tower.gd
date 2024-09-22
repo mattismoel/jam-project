@@ -1,3 +1,4 @@
+@tool
 class_name Tower
 extends Node2D
 
@@ -10,7 +11,7 @@ signal height_changed
     set(_v):
         minimum_score = _v
         height_changed.emit()
-        
+
 @export_range(0.0, 1000) var height: int = 100:
     set(_v):
         height = _v

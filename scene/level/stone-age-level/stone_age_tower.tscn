@@ -67,7 +67,6 @@ _tower = NodePath("../../..")
 [node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower", "_gondola") instance=ExtResource("7_scvpl")]
 _tower = NodePath("..")
 _gondola = NodePath("../Gondola")
-_line_length = 6
 
 [editable path="Gondola"]
 [editable path="Mammoth"]
