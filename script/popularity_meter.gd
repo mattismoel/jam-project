@@ -55,7 +55,6 @@ func draw_score_markers() -> void:
     draw_line(Vector2(_initial_position), Vector2(_initial_position - Vector2i(0, _tower.calculate_height_with_specific_popularity_score(1)+1)), _line_color,1)
 
 func draw_skull() -> void:
-    var _pixel_alignment_offset = Vector2.ONE/2
     var height = _tower.calculate_height_with_specific_popularity_score(_tower.minimum_score)
     
     var skull_pos = _initial_position - Vector2i(3,height)
