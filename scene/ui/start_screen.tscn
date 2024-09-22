@@ -38,6 +38,7 @@ theme = ExtResource("1_0qk5j")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color(0.641934, 0.641934, 0.641934, 1)
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 240.0
 texture = ExtResource("2_p0yer")

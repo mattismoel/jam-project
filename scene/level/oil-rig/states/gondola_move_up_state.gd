@@ -19,6 +19,6 @@ func enter() -> void:
 
   await move_tween.finished
 
-  _gondola.finished.emit()
+  _gondola.finished.emit(_gondola.reached_height)
   change_state.emit(_hang_state)
   pass
