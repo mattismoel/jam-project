@@ -1,0 +1,116 @@
+[gd_scene load_steps=17 format=3 uid="uid://3w0fqu46yixl"]
+
+[ext_resource type="Script" path="res://script/gondola.gd" id="1_lrdke"]
+[ext_resource type="Texture2D" uid="uid://uh58cclc1xlu" path="res://scene/level/oil-rig/asset/rubber_spritesheet.png" id="2_ljpk2"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/rubber.gd" id="3_hcca7"]
+[ext_resource type="Texture2D" uid="uid://cjvmllekrnbnd" path="res://scene/level/oil-rig/asset/gondola.png" id="4_pfj0j"]
+[ext_resource type="Script" path="res://script/move_component.gd" id="5_0e5us"]
+[ext_resource type="Script" path="res://addons/machinery/state_machine.gd" id="6_pwns2"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/states/gondola_idle_state.gd" id="7_16vtc"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/states/gondola_move_up_state.gd" id="8_50i84"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/states/gondola_move_down_state.gd" id="9_c3l0n"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/states/gondola_hang_state.gd" id="10_b2stg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3jac"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(0, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl132"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(32, 0, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_da4rl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3jac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl132")
+}],
+"loop": false,
+"name": &"squish",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxj7c"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(0, 24, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_incg3"]
+atlas = ExtResource("2_ljpk2")
+region = Rect2(32, 24, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k7uhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxj7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_incg3")
+}],
+"loop": false,
+"name": &"squish",
+"speed": 30.0
+}]
+
+[node name="OilRigGondola" type="Node2D" node_paths=PackedStringArray("_top", "_bottom")]
+script = ExtResource("1_lrdke")
+_top = NodePath("Top")
+_bottom = NodePath("Bottom")
+
+[node name="RubberTop" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_da4rl")
+animation = &"squish"
+script = ExtResource("3_hcca7")
+unsquished_height = 13
+squished_height = 7
+
+[node name="RubberBottom" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 13)
+sprite_frames = SubResource("SpriteFrames_k7uhs")
+animation = &"squish"
+script = ExtResource("3_hcca7")
+
+[node name="GondolaSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
+texture = ExtResource("4_pfj0j")
+
+[node name="MoveComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_0e5us")
+actor = NodePath("..")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_pwns2")
+initial_state = NodePath("Idle")
+debug_change_state = true
+
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_move_up_state", "_move_component")]
+script = ExtResource("7_16vtc")
+_move_up_state = NodePath("../MoveUp")
+_move_component = NodePath("../../MoveComponent")
+
+[node name="MoveUp" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_gondola", "_hang_state")]
+script = ExtResource("8_50i84")
+_gondola = NodePath("../..")
+_hang_state = NodePath("../Hang")
+
+[node name="Fall" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_gondola", "_idle_state")]
+script = ExtResource("9_c3l0n")
+_gondola = NodePath("../..")
+_idle_state = NodePath("../Idle")
+
+[node name="Hang" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_gondola", "_fall_state")]
+script = ExtResource("10_b2stg")
+_gondola = NodePath("../..")
+_fall_state = NodePath("../Fall")
+
+[node name="Top" type="Marker2D" parent="."]
+position = Vector2(0, -13)
+
+[node name="Bottom" type="Marker2D" parent="."]
+position = Vector2(0, 21)

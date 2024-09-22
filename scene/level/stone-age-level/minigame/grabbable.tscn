@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3kueegoo0swu"]
+
+[ext_resource type="Script" path="res://scene/level/stone-age-level/minigame/grabbable.gd" id="1_d0q5g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_02iup"]
+radius = 4.32432
+height = 11.6667
+
+[node name="Grabbable" type="Area2D"]
+scale = Vector2(2.4, 1.85)
+script = ExtResource("1_d0q5g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1.25, 1.22857)
+shape = SubResource("CapsuleShape2D_02iup")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c45o430um53hh"]
+
+[ext_resource type="PackedScene" uid="uid://bga4am3fmln5e" path="res://scene/tutorial-blueprint/tutorial.tscn" id="1_dh7h3"]
+[ext_resource type="Texture2D" uid="uid://dq2a4t5w7xx5h" path="res://scene/level/stone-age-level/asset/blueprint.png" id="2_3wrfh"]
+
+[node name="TutorialBlueprint" instance=ExtResource("1_dh7h3")]
+
+[node name="Overlay" type="TextureRect" parent="Control" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3wrfh")

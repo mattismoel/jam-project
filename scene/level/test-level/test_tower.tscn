@@ -1,26 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://do0fo4pradjea"]
+[gd_scene load_steps=5 format=3 uid="uid://do0fo4pradjea"]
 
 [ext_resource type="Script" path="res://scene/level/test-level/test_tower.gd" id="1_d8fcw"]
-[ext_resource type="Script" path="res://script/tower_stat.gd" id="2_siwoy"]
 [ext_resource type="PackedScene" uid="uid://bx66pk1a3t3bo" path="res://scene/level/test-level/test_gondola.tscn" id="3_6frv3"]
 [ext_resource type="Texture2D" uid="uid://becxrpbkitoq0" path="res://scene/level/test-level/asset/test_tower.png" id="4_71aad"]
-
-[sub_resource type="Resource" id="Resource_wflm7"]
-script = ExtResource("2_siwoy")
-height = 163
-desired_height = 156
+[ext_resource type="PackedScene" uid="uid://b2duwx03qp5dj" path="res://scene/popularity_meter/popularity_meter.tscn" id="4_ldlwm"]
 
 [node name="TestTower" type="Node2D" node_paths=PackedStringArray("gondola")]
 script = ExtResource("1_d8fcw")
-tower_stat = SubResource("Resource_wflm7")
+target_force = 30000.0
+height = 140
 gondola = NodePath("TestGondola")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -88)
 texture = ExtResource("4_71aad")
 
-[node name="TestGondola" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("3_6frv3")]
-position = Vector2(0, -15)
-max_height_duration = 0.8
-max_seats = 100
+[node name="TestGondola" parent="." node_paths=PackedStringArray("_tower", "tower") instance=ExtResource("3_6frv3")]
+position = Vector2(0, -26)
+_tower = NodePath("..")
 tower = NodePath("..")
+
+[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower", "_gondola") instance=ExtResource("4_ldlwm")]
+_tower = NodePath("..")
+_gondola = NodePath("../TestGondola")
+
+[node name="Skull" parent="PopularityMeter" index="0"]
+position = Vector2(270, -62.6099)
+
+[editable path="PopularityMeter"]

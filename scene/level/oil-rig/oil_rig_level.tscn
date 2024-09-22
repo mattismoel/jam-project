@@ -1,0 +1,142 @@
+[gd_scene load_steps=22 format=3 uid="uid://h4d3fuao8tjs"]
+
+[ext_resource type="PackedScene" uid="uid://ody26jyu8ijn" path="res://scene/level/oil-rig/oil_rig_tower.tscn" id="1_kgynb"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/oil_rig_level.gd" id="1_mnn4l"]
+[ext_resource type="Texture2D" uid="uid://h4ng4ewm1dew" path="res://scene/level/oil-rig/asset/oil_rig.png" id="2_nn0et"]
+[ext_resource type="Texture2D" uid="uid://co06h5wxstxyn" path="res://scene/level/oil-rig/asset/background.png" id="3_it7by"]
+[ext_resource type="PackedScene" uid="uid://dd2ewt7x3a12v" path="res://water/water_body.tscn" id="5_c1pe6"]
+[ext_resource type="Script" path="res://scene/level/oil-rig/oil_rig_minigame.gd" id="6_gxpuv"]
+[ext_resource type="PackedScene" uid="uid://cqwrpphawu7gb" path="res://scene/level/oil-rig/fish_area.tscn" id="7_3oafx"]
+[ext_resource type="Texture2D" uid="uid://cmwygm6csw2n" path="res://scene/level/oil-rig/asset/coral_reef.png" id="7_b27en"]
+[ext_resource type="PackedScene" uid="uid://dws6q4wcm8i0w" path="res://scene/level/oil-rig/fish_pump/fish_pump.tscn" id="7_q536g"]
+[ext_resource type="PackedScene" uid="uid://cldjxry6ysopy" path="res://scene/minigame/minigame_ui.tscn" id="9_3efgv"]
+[ext_resource type="Script" path="res://scene/background_audio_player.gd" id="12_44axh"]
+[ext_resource type="Script" path="res://scene/background_audio.gd" id="13_tkurp"]
+[ext_resource type="AudioStream" uid="uid://bmiw510kq3b2k" path="res://asset/audio/windy_ocean.wav" id="14_wqjxj"]
+[ext_resource type="AudioStream" uid="uid://dwwuwp18lif8k" path="res://asset/audio/seagulls.mp3" id="15_xwtx4"]
+[ext_resource type="PackedScene" uid="uid://dfkvp7rgw7mnp" path="res://scene/level/oil-rig/oil_rig_blueprint.tscn" id="16_ck8rg"]
+[ext_resource type="AudioStream" uid="uid://dc88qlj3thl77" path="res://asset/audio/motor_rumble.wav" id="16_e666c"]
+
+[sub_resource type="Curve2D" id="Curve2D_vqvlf"]
+_data = {
+"points": PackedVector2Array(5, 0, -5, 0, 0, 0, -5, 0, 5, 0, 12.8, 0, -5, 0, 5, 0, 25.6, 0, -5, 0, 5, 0, 38.4, 0, -5, 0, 5, 0, 51.2, 0, -5, 0, 5, 0, 64, 0, -5, 0, 5, 0, 76.8, 0, -5, 0, 5, 0, 89.6, 0, -5, 0, 5, 0, 102.4, 0, -5, 0, 5, 0, 115.2, 0, -5, 0, 5, 0, 128, 0, -5, 0, 5, 0, 140.8, 0, -5, 0, 5, 0, 153.6, 0, -5, 0, 5, 0, 166.4, 0, -5, 0, 5, 0, 179.2, 0, -5, 0, 5, 0, 192, 0, -5, 0, 5, 0, 204.8, 0, -5, 0, 5, 0, 217.6, 0, -5, 0, 5, 0, 230.4, 0, -5, 0, 5, 0, 243.2, 0, -5, 0, 5, 0, 256, 0, -5, 0, 5, 0, 268.8, 0, -5, 0, 5, 0, 281.6, 0, -5, 0, 5, 0, 294.4, 0, 5, 0, -5, 0, 307.2, 0, 5, 0, -5, 0, 320, 0)
+}
+point_count = 26
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_047tw"]
+size = Vector2(320, 130)
+
+[sub_resource type="Resource" id="Resource_1oeib"]
+script = ExtResource("13_tkurp")
+stream = ExtResource("14_wqjxj")
+volume = 0.2739
+
+[sub_resource type="Resource" id="Resource_2ncj0"]
+script = ExtResource("13_tkurp")
+stream = ExtResource("15_xwtx4")
+volume = 0.3217
+
+[sub_resource type="Resource" id="Resource_oet71"]
+script = ExtResource("13_tkurp")
+stream = ExtResource("16_e666c")
+volume = 0.7738
+
+[node name="OilRigLevel" type="Node2D" node_paths=PackedStringArray("_fish_pump", "_camera", "_fish_area", "_minigame", "_tower", "_blueprint")]
+script = ExtResource("1_mnn4l")
+_fish_pump = NodePath("Minigame/FishPump")
+_camera = NodePath("Camera2D")
+_fish_area = NodePath("Minigame/FishArea")
+_minigame = NodePath("Minigame")
+_tower = NodePath("Environment/OilRigTower")
+_blueprint = NodePath("TutorialBlueprint")
+
+[node name="Management" type="Node2D" parent="."]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Sky" type="Sprite2D" parent="Environment"]
+texture = ExtResource("3_it7by")
+centered = false
+
+[node name="Rig" type="Sprite2D" parent="Environment"]
+position = Vector2(76, 92)
+texture = ExtResource("2_nn0et")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Environment"]
+custom_minimum_size = Vector2(320, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 240.0
+offset_right = 320.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.168627, 0.266667, 1)
+
+[node name="CoralReef" type="Sprite2D" parent="Environment"]
+position = Vector2(160, 537)
+texture = ExtResource("7_b27en")
+
+[node name="WaterBody" parent="Environment" instance=ExtResource("5_c1pe6")]
+position = Vector2(0, 209)
+_dimensions = Vector2(320, 400)
+_resolution = 25
+_spring_constant = 0.01
+_dampening = 0.04
+_spread = 0.0006
+_pass_count = 10
+_border_thickness = 0.5
+_mouse_motion = true
+
+[node name="BodyPolygon" parent="Environment/WaterBody" index="0"]
+polygon = PackedVector2Array(0, 0, 2.65, 0, 5.23438, 0, 7.9875, 0, 12.8, 0, 16.2062, 0, 19.2, 0, 22.1938, 0, 25.6, 0, 29.0062, 0, 32, 0, 34.9938, 0, 38.4, 0, 41.8063, 0, 44.8, 0, 47.7938, 0, 51.2, 0, 54.6063, 0, 57.6, 0, 60.5938, 0, 64, 0, 67.4062, 0, 70.4, 0, 73.3938, 0, 76.8, 0, 80.2063, 0, 83.2, 0, 86.1937, 0, 89.6, 0, 93.0062, 0, 96, 0, 98.9938, 0, 102.4, 0, 105.806, 0, 108.8, 0, 111.794, 0, 115.2, 0, 118.606, 0, 121.6, 0, 124.594, 0, 128, 0, 131.406, 0, 134.4, 0, 137.394, 0, 140.8, 0, 144.206, 0, 147.2, 0, 150.194, 0, 153.6, 0, 157.006, 0, 160, 0, 162.994, 0, 166.4, 0, 169.806, 0, 172.8, 0, 175.794, 0, 179.2, 0, 182.606, 0, 185.6, 0, 188.594, 0, 192, 0, 195.406, 0, 198.4, 0, 201.394, 0, 204.8, 0, 208.206, 0, 211.2, 0, 214.194, 0, 217.6, 0, 221.006, 0, 224, 0, 226.994, 0, 230.4, 0, 233.806, 0, 236.8, 0, 239.794, 0, 243.2, 0, 246.606, 0, 249.6, 0, 252.594, 0, 256, 0, 259.406, 0, 262.4, 0, 265.394, 0, 268.8, 0, 272.206, 0, 275.2, 0, 278.194, 0, 281.6, 0, 285.006, 0, 288, 0, 290.994, 0, 294.4, 0, 299.212, 0, 301.966, 0, 304.55, 0, 307.2, 0, 307.794, 0, 310.371, 0, 313.6, 0, 316.829, 0, 319.406, 0, 320, 0, 320, 400, 0, 400)
+
+[node name="WaterBorder" parent="Environment/WaterBody" index="1"]
+curve = SubResource("Curve2D_vqvlf")
+spline_length = 5.0
+width = 0.5
+color = Color(4.52429e-06, 0.539532, 0.745505, 1)
+
+[node name="OilRigTower" parent="Environment" instance=ExtResource("1_kgynb")]
+position = Vector2(214, 170)
+target_force = 2000.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 120)
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="Minigame" type="Node" parent="." node_paths=PackedStringArray("_fish_pump", "_game_timer", "_minigame_ui")]
+script = ExtResource("6_gxpuv")
+_fish_pump = NodePath("FishPump")
+_duration = 5.0
+_game_timer = NodePath("Timer")
+_auto_start = false
+_minigame_ui = NodePath("MinigameUI")
+
+[node name="FishArea" parent="Minigame" instance=ExtResource("7_3oafx")]
+position = Vector2(160, 465)
+_shape = SubResource("RectangleShape2D_047tw")
+
+[node name="FishPump" parent="Minigame" node_paths=PackedStringArray("_pin") instance=ExtResource("7_q536g")]
+position = Vector2(93, 141)
+_pin = NodePath("Pin")
+
+[node name="Pin" type="Marker2D" parent="Minigame/FishPump"]
+position = Vector2(5, 0)
+
+[node name="Timer" type="Timer" parent="Minigame"]
+
+[node name="MinigameUI" parent="Minigame" instance=ExtResource("9_3efgv")]
+
+[node name="BackgroundAudioPlayer" type="Node" parent="."]
+script = ExtResource("12_44axh")
+_sounds = Array[ExtResource("13_tkurp")]([SubResource("Resource_1oeib"), SubResource("Resource_2ncj0"), SubResource("Resource_oet71")])
+_fade_in_duration = 4.0
+
+[node name="TutorialBlueprint" parent="." instance=ExtResource("16_ck8rg")]
+visible = false
+
+[editable path="Environment/WaterBody"]

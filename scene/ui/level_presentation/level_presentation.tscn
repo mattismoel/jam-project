@@ -1,0 +1,237 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6krvnwhxsqrl"]
+
+[ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_4vag1"]
+[ext_resource type="Script" path="res://scene/ui/level_presentation/level_presentation.gd" id="1_31cfw"]
+[ext_resource type="PackedScene" uid="uid://b2jd1wt48myid" path="res://scene/ui/level_presentation/heart.tscn" id="2_814ia"]
+[ext_resource type="Texture2D" uid="uid://dpb6eryn4ytwp" path="res://scene/ui/sunrise.png" id="3_k8hx0"]
+[ext_resource type="FontFile" uid="uid://dkrvkpn3q7uff" path="res://asset/font/8-BIT WONDER.TTF" id="5_xg47h"]
+[ext_resource type="FontFile" uid="uid://bijorv0vkhvmm" path="res://asset/font/04B_03__.TTF" id="6_higaj"]
+[ext_resource type="Script" path="res://script/typer.gd" id="7_ycv2w"]
+[ext_resource type="AudioStream" uid="uid://c73pkf862mfih" path="res://asset/audio/calm-ocean.wav" id="8_5bmd2"]
+[ext_resource type="AudioStream" uid="uid://3gkb5ji4uas3" path="res://asset/audio/gong.wav" id="9_y8tel"]
+
+[sub_resource type="Animation" id="Animation_w4q2i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OceanSound:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gong:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3osfg"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OceanSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gong")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OceanSound:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-64.2754, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4cn57"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OceanSound:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gong:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -21.7241]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ev5ch"]
+_data = {
+"RESET": SubResource("Animation_w4q2i"),
+"fade_in": SubResource("Animation_3osfg"),
+"fade_out": SubResource("Animation_4cn57")
+}
+
+[node name="LevelPresentation" type="CanvasLayer" node_paths=PackedStringArray("_level_title_label", "_description_label", "_lives_container", "_animation_player")]
+script = ExtResource("1_31cfw")
+_level_title_label = NodePath("Control/CenterContainer/VBoxContainer/TitleLabel")
+_description_label = NodePath("Control/CenterContainer/VBoxContainer/DescriptionLabel")
+_lives_container = NodePath("Control/CenterContainer/VBoxContainer/LivesContainer")
+_heart_scene = ExtResource("2_814ia")
+_animation_player = NodePath("AnimationPlayer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4vag1")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.0784314, 0.145098, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_k8hx0")
+stretch_mode = 3
+
+[node name="LivesContainer" type="HBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_xg47h")
+theme_override_font_sizes/font_size = 12
+text = "Level Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Control/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.505344, 0.505344, 0.505344, 1)
+theme_override_fonts/font = ExtResource("6_higaj")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("7_ycv2w")
+_rate = 20.0
+_randomness = 0.1
+_auto_start = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ev5ch")
+}
+
+[node name="OceanSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5bmd2")
+
+[node name="Gong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_y8tel")

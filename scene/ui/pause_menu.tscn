@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0tovex827w18"]
+
+[ext_resource type="Script" path="res://scene/ui/pause_menu.gd" id="1_05q1h"]
+[ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_42aad"]
+[ext_resource type="PackedScene" uid="uid://y4sbdxsbeco5" path="res://scene/ui/settings_menu.tscn" id="2_okkrt"]
+[ext_resource type="PackedScene" uid="uid://dvfc751w8kd2c" path="res://scene/ui/button.tscn" id="4_cxn4d"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_05q1h")
+_settings_scene = ExtResource("2_okkrt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_42aad")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.356863)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" parent="Control/CenterContainer/VBoxContainer" instance=ExtResource("4_cxn4d")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="QuitButton" parent="Control/CenterContainer/VBoxContainer" instance=ExtResource("4_cxn4d")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"

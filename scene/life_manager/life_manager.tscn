@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgvnjfoxpfjpt"]
+
+[ext_resource type="Script" path="res://scene/life_manager/life_manager.gd" id="1_5v1d4"]
+[ext_resource type="PackedScene" uid="uid://66phajxk2t1f" path="res://scene/ui/game_over/game_over_screen.tscn" id="2_328ax"]
+
+[node name="LifeManager" type="Node"]
+script = ExtResource("1_5v1d4")
+_game_over_screen_scene = ExtResource("2_328ax")

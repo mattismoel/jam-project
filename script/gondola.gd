@@ -1,34 +1,33 @@
 class_name Gondola
 extends Node2D
 
-signal fully_occupied
-signal seats_changed(occupied: int)
-signal finished(reached_height: float, seats_occupied: int)
+signal top_reached
+signal finished(reached_height: float)
 
-
-@export var max_seats: int = 100
+@export var mass_kg: float = 100.0
+@export var _top: Marker2D
+@export var _bottom: Marker2D
 
 @export_category("References")
 @export var tower: Tower
 
-var seats_occupied: int = 0
 var reached_height: float
 
-func occupy_seats(count: int) -> void:
-  seats_occupied += count
-
-  seats_occupied = min(seats_occupied, max_seats)
-
-  if seats_occupied >= max_seats:
-    fully_occupied.emit()
-
-  seats_changed.emit(seats_occupied)
-
-
-func begin_ride(force: float) -> void:
-  pass
-
-
 func _on_ride_finish() -> void:
-  finished.emit(reached_height, seats_occupied)
+  finished.emit(reached_height)
   pass
+
+
+## Returns the top global position of the gondola.
+func top_global_pos() -> Vector2:
+  return _top.global_position
+
+
+## Returns the bottom global position of the gondola.
+func bottom_pos() -> Vector2:
+  return _bottom.global_position
+
+
+## Returns the height of the gondola.
+func height() -> float:
+  return _bottom.position.y - _top.position.y

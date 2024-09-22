@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://y4sbdxsbeco5"]
+
+[ext_resource type="Script" path="res://scene/ui/settings_menu.gd" id="1_3s6cs"]
+[ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_tcult"]
+[ext_resource type="PackedScene" uid="uid://dvfc751w8kd2c" path="res://scene/ui/button.tscn" id="3_vhy5i"]
+
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_3s6cs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tcult")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="BackButton" parent="Control/MarginContainer" instance=ExtResource("3_vhy5i")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MusicVolume" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MusicVolumeHeaderLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/MusicVolume"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="MusicVolumeLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MusicVolume"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SFXVolume" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SFXVolumeHeaderLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/SFXVolume"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 1
+
+[node name="SFXVolumeLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/SFXVolume"]
+unique_name_in_owner = true
+layout_mode = 2

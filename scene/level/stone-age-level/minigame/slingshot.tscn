@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo7lw7vj7tcr2"]
+
+[ext_resource type="Script" path="res://scene/level/stone-age-level/minigame/slingshot.gd" id="1_4yqt8"]
+[ext_resource type="Texture2D" uid="uid://cbkhaxl45l8h" path="res://scene/level/stone-age-level/asset/slingshot.png" id="1_244xu"]
+[ext_resource type="PackedScene" uid="uid://d3kueegoo0swu" path="res://scene/level/stone-age-level/minigame/grabbable.tscn" id="2_vvvju"]
+
+[node name="Sling shot" type="Node2D" node_paths=PackedStringArray("_grabbable_area", "_string")]
+position = Vector2(156, 132)
+script = ExtResource("1_4yqt8")
+_grabbable_area = NodePath("Grabbable")
+_string = NodePath("Line2D")
+
+[node name="Grabbable" parent="." instance=ExtResource("2_vvvju")]
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 1
+scale = Vector2(2.4, 1.85)
+points = PackedVector2Array(-15, 0, 0, 0, 15, 0)
+width = 3.2
+default_color = Color(0.454902, 0.247059, 0.223529, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(1.00312, 1)
+texture = ExtResource("1_244xu")

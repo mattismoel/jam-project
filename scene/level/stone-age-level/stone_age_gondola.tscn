@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq0dfva11ynl5"]
+[gd_scene load_steps=4 format=3 uid="uid://dq0dfva11ynl5"]
 
-[ext_resource type="Script" path="res://script/gondola.gd" id="1_gyw8e"]
-[ext_resource type="Texture2D" uid="uid://daa5bch42ldgn" path="res://scene/level/stone-age-level/asset/stone.png" id="2_4tbyc"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/gondola_script.gd" id="1_5ma6n"]
+[ext_resource type="Texture2D" uid="uid://bi42n4wwrj7ws" path="res://scene/level/stone-age-level/asset/gondola.png" id="2_08131"]
+[ext_resource type="Script" path="res://script/move_component.gd" id="3_tp282"]
 
-[node name="Stone age Gondola" type="Node2D"]
-script = ExtResource("1_gyw8e")
+[node name="StoneAgeGondola" type="Node2D"]
+script = ExtResource("1_5ma6n")
+mass_kg = 10000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4tbyc")
+texture = ExtResource("2_08131")
+offset = Vector2(0, -6)
+
+[node name="MoveComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("3_tp282")
+actor = NodePath("..")
+
+[node name="End" type="Marker2D" parent="."]
+position = Vector2(0, -22)

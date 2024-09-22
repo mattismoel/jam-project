@@ -1,0 +1,432 @@
+[gd_scene load_steps=39 format=3 uid="uid://cvih52njwg0sd"]
+
+[ext_resource type="Script" path="res://scene/level/nuclear_test_site/nuclear_test_level.gd" id="1_rmpj6"]
+[ext_resource type="Texture2D" uid="uid://cqtyjgrvk7mps" path="res://scene/level/nuclear_test_site/background.png" id="1_yhb2d"]
+[ext_resource type="PackedScene" uid="uid://cnqgqlmw6lg1w" path="res://scene/level/nuclear_test_site/tower/nuclear_test_tower.tscn" id="3_ebdmu"]
+[ext_resource type="Texture2D" uid="uid://8tl8c0jxdmuw" path="res://scene/level/nuclear_test_site/background_flash.png" id="4_e5rw6"]
+[ext_resource type="Texture2D" uid="uid://2r2pspn0tm4u" path="res://scene/level/nuclear_test_site/explosion-spritesheet.png" id="5_onmv2"]
+[ext_resource type="Texture2D" uid="uid://d0ti8ihirbl6y" path="res://scene/level/nuclear_test_site/earth_explode.png" id="6_gk6uw"]
+[ext_resource type="AudioStream" uid="uid://ckc78b0wy50p1" path="res://asset/audio/boom.wav" id="7_8lwa2"]
+
+[sub_resource type="Animation" id="Animation_wsw0a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Environment:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_yhb2d")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NuclearTestTower/TowerSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NuclearTestTower/Warhead:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.909804, 0.717647, 0.588235, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mvwpw"]
+resource_name = "boom"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Environment:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("4_e5rw6"), ExtResource("1_yhb2d")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NuclearTestTower/TowerSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NuclearTestTower/Warhead:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/ExplosionTopView")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"desert_boom"],
+"method": &"play"
+}, {
+"args": [&"earth_boom"],
+"method": &"play"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/ExplosionTopView")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.933333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.909804, 0.717647, 0.588235, 1), Color(0.0941176, 0.0784314, 0.145098, 1)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(9.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explosion_done"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6cbtt"]
+_data = {
+"RESET": SubResource("Animation_wsw0a"),
+"boom": SubResource("Animation_mvwpw")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mx1b"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap80o"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8mna"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlk6m"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkkew"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppxxb"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ltbr"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq3fm"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_304ks"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op1mr"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj5d2"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahwv7"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6sj7"]
+atlas = ExtResource("5_onmv2")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2tbk"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loyhv"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jcnn"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wln7"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah001"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spjac"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3qm1"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is4ue"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouxok"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txf1k"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ivnf"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgn6m"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m0r6"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg1xj"]
+atlas = ExtResource("6_gk6uw")
+region = Rect2(1664, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpy8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mx1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap80o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8mna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlk6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkkew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppxxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ltbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq3fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_304ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op1mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj5d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahwv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6sj7")
+}],
+"loop": false,
+"name": &"desert_boom",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2tbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loyhv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jcnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wln7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah001")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spjac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3qm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is4ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouxok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txf1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ivnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgn6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m0r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg1xj")
+}],
+"loop": false,
+"name": &"earth_boom",
+"speed": 5.0
+}]
+
+[node name="NuclearTestSite" type="Node2D" node_paths=PackedStringArray("_tower", "_animation_player")]
+script = ExtResource("1_rmpj6")
+_tower = NodePath("NuclearTestTower")
+_animation_player = NodePath("AnimationPlayer")
+
+[node name="Environment" type="Sprite2D" parent="."]
+texture = ExtResource("1_yhb2d")
+centered = false
+
+[node name="NuclearTestTower" parent="." instance=ExtResource("3_ebdmu")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6cbtt")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.909804, 0.717647, 0.588235, 1)
+
+[node name="ExplosionTopView" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(160, 120)
+sprite_frames = SubResource("SpriteFrames_wpy8p")
+animation = &"earth_boom"
+frame = 13
+frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8lwa2")
+
+[editable path="NuclearTestTower"]

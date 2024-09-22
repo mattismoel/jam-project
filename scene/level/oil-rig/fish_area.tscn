@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqwrpphawu7gb"]
+
+[ext_resource type="Script" path="res://scene/level/oil-rig/fish_area.gd" id="1_c37d4"]
+[ext_resource type="PackedScene" uid="uid://8dkdk70bm38i" path="res://scene/level/oil-rig/fish.tscn" id="2_wobx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8yui"]
+size = Vector2(100, 100)
+
+[node name="FishArea" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_c37d4")
+_shape = SubResource("RectangleShape2D_p8yui")
+_fish_scenes = Array[PackedScene]([ExtResource("2_wobx2")])
+_margin = Vector2i(20, 5)

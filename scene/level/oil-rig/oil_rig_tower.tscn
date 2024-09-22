@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ody26jyu8ijn"]
+
+[ext_resource type="Texture2D" uid="uid://8w5dv5ecgpps" path="res://scene/level/oil-rig/asset/tower.png" id="1_0s0ow"]
+[ext_resource type="Script" path="res://script/tower.gd" id="1_u5do0"]
+[ext_resource type="PackedScene" uid="uid://3w0fqu46yixl" path="res://scene/level/oil-rig/oil_rig_gondola.tscn" id="2_j2plc"]
+[ext_resource type="PackedScene" uid="uid://b2duwx03qp5dj" path="res://scene/popularity_meter/popularity_meter.tscn" id="4_otp5g"]
+
+[node name="OilRigTower" type="Node2D" node_paths=PackedStringArray("gondola")]
+script = ExtResource("1_u5do0")
+height = 116
+bottom_pos_y = 12
+gondola = NodePath("OilRigGondola")
+
+[node name="TowerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -72)
+texture = ExtResource("1_0s0ow")
+
+[node name="OilRigGondola" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("2_j2plc")]
+position = Vector2(0, -35)
+tower = NodePath("..")
+
+[node name="Idle" parent="OilRigGondola/StateMachine" index="0" node_paths=PackedStringArray("_tower")]
+_tower = NodePath("../../..")
+
+[node name="MoveUp" parent="OilRigGondola/StateMachine" index="1" node_paths=PackedStringArray("_tower")]
+_tower = NodePath("../../..")
+
+[node name="Fall" parent="OilRigGondola/StateMachine" index="2" node_paths=PackedStringArray("_tower_bottom")]
+_tower_bottom = NodePath("../../../TowerBottom")
+
+[node name="TowerBottom" type="Marker2D" parent="."]
+position = Vector2(0, -14)
+
+[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower", "_gondola") instance=ExtResource("4_otp5g")]
+_tower = NodePath("..")
+_gondola = NodePath("../OilRigGondola")
+
+[editable path="OilRigGondola"]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://bd434nwbl4wiw"]
+
+[ext_resource type="Texture2D" uid="uid://bpkwcsleyktcm" path="res://scene/level/stone-age-level/asset/side_view_mammoth-Sheet.png" id="2_4qmeh"]
+[ext_resource type="Script" path="res://addons/machinery/state_machine.gd" id="3_cpgx0"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/mammoth_walk.gd" id="4_ry4d1"]
+[ext_resource type="Script" path="res://scene/level/stone-age-level/states/mammoth_idle.gd" id="5_34ghd"]
+[ext_resource type="Script" path="res://script/move_component.gd" id="5_b0ce1"]
+[ext_resource type="AudioStream" uid="uid://wv6bua8666s4" path="res://asset/audio/mammoth_stomp.wav" id="6_2qpgk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k30ba"]
+atlas = ExtResource("2_4qmeh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oujna"]
+atlas = ExtResource("2_4qmeh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppsh8"]
+atlas = ExtResource("2_4qmeh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akmo8"]
+atlas = ExtResource("2_4qmeh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p0tkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k30ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oujna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppsh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akmo8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[node name="Mammoth" type="Node2D"]
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p0tkt")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_cpgx0")
+initial_state = NodePath("Idle")
+debug_change_state = true
+
+[node name="Walk" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_idle_state", "_move_component", "_animation", "_audio_player")]
+script = ExtResource("4_ry4d1")
+_idle_state = NodePath("../Idle")
+_move_component = NodePath("../../MoveComponent")
+_animation = NodePath("../../Animation")
+_audio_player = NodePath("../../AudioStreamPlayer2D")
+
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_walk_state", "_animation", "_move_component")]
+script = ExtResource("5_34ghd")
+_walk_state = NodePath("../Walk")
+_animation = NodePath("../../Animation")
+_move_component = NodePath("../../MoveComponent")
+
+[node name="MoveComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_b0ce1")
+actor = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2qpgk")

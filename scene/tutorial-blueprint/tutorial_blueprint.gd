@@ -12,13 +12,19 @@ signal continue_pressed
 
 func _ready() -> void:
   _continue_button.pressed.connect(_on_continue)
+
+  _set_blueprint_data(
+    LevelManager.curr_level().title,
+    LevelManager.current_level_count()
+  )
+
   pass
 
 
 ## TODO: Implement.
-func set_blueprint_data(data: BlueprintData) -> void:
-  _title_label.text = data.title
-  _level_count_label.text = "%d/%d" % [data.level_count, data.total_level_count]
+func _set_blueprint_data(title: String, level_count: int) -> void:
+  _title_label.text = title
+  _level_count_label.text = "%d/%d" % [level_count, LevelManager.level_count()]
 
 
 func _on_continue() -> void:
