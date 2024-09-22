@@ -17,6 +17,7 @@ func _begin_ride(with_force: float) -> void:
   tween.tween_property(self, "position:y", -calculated_target, max_height_duration)
   top_reached.emit()
   reached_height = calculated_target
+  tween.tween_property(self, "position:y", start_pos.y, max_height_duration)
 
   tween.tween_callback(_on_ride_finish)
 
