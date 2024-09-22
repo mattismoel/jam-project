@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cvih52njwg0sd"]
+[gd_scene load_steps=39 format=3 uid="uid://cvih52njwg0sd"]
 
 [ext_resource type="Script" path="res://scene/level/nuclear_test_site/nuclear_test_level.gd" id="1_rmpj6"]
 [ext_resource type="Texture2D" uid="uid://cqtyjgrvk7mps" path="res://scene/level/nuclear_test_site/background.png" id="1_yhb2d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8tl8c0jxdmuw" path="res://scene/level/nuclear_test_site/background_flash.png" id="4_e5rw6"]
 [ext_resource type="Texture2D" uid="uid://2r2pspn0tm4u" path="res://scene/level/nuclear_test_site/explosion-spritesheet.png" id="5_onmv2"]
 [ext_resource type="Texture2D" uid="uid://d0ti8ihirbl6y" path="res://scene/level/nuclear_test_site/earth_explode.png" id="6_gk6uw"]
+[ext_resource type="AudioStream" uid="uid://ckc78b0wy50p1" path="res://asset/audio/boom.wav" id="7_8lwa2"]
 
 [sub_resource type="Animation" id="Animation_wsw0a"]
 length = 0.001
@@ -166,6 +167,20 @@ tracks/7/keys = {
 "values": [{
 "args": [],
 "method": &"explosion_done"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
 }]
 }
 
@@ -410,5 +425,8 @@ sprite_frames = SubResource("SpriteFrames_wpy8p")
 animation = &"earth_boom"
 frame = 13
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8lwa2")
 
 [editable path="NuclearTestTower"]
