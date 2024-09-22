@@ -6,6 +6,8 @@ extends State
 @export var _move_component: MoveComponent
 @export var _animation: AnimatedSprite2D
 @export var _animation_speed_up_rate: float = 10e6
+@export var _audio_player: AudioStreamPlayer2D
+
 
 var acceleration_x: float = 0.0
 var _speed: float = 0.0
@@ -13,6 +15,7 @@ var _speed: float = 0.0
 
 func _ready() -> void:
   _gondola.top_reached.connect(_on_gondola_top_reached)
+  _animation.frame_changed.connect(_audio_player.play)
 
 
 func enter() -> void:

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhfup8p5rsx5h"]
+[gd_scene load_steps=6 format=3 uid="uid://dhfup8p5rsx5h"]
 
 [ext_resource type="Script" path="res://scene/level/test-level/test_minigame.gd" id="1_oa87c"]
 [ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_wlwcg"]
+[ext_resource type="PackedScene" uid="uid://dvfc751w8kd2c" path="res://scene/ui/button.tscn" id="3_03am2"]
 [ext_resource type="PackedScene" uid="uid://cldjxry6ysopy" path="res://scene/minigame/minigame_ui.tscn" id="3_c8lgc"]
+[ext_resource type="Texture2D" uid="uid://krm7ay70mvps" path="res://scene/level/test-level/asset/background-new.png" id="3_hvhut"]
 
 [node name="TestMinigame" type="Node2D" node_paths=PackedStringArray("_game_timer", "_minigame_ui")]
 script = ExtResource("1_oa87c")
@@ -21,14 +23,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_wlwcg")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+modulate = Color(0.454524, 0.454524, 0.454524, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -15.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("3_hvhut")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -45,10 +50,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="Button" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("3_03am2")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Click"
+text = "Click!"
 
 [node name="CountdownTimer" type="Timer" parent="."]
 unique_name_in_owner = true

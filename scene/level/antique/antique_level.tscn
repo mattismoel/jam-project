@@ -1,10 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://co0xv0peassad"]
+[gd_scene load_steps=14 format=3 uid="uid://co0xv0peassad"]
 
 [ext_resource type="Script" path="res://scene/level/level.gd" id="1_k2bt4"]
 [ext_resource type="PackedScene" uid="uid://cjmcvcxvbcy4v" path="res://scene/level/antique/antique_minigame.tscn" id="2_cm78j"]
 [ext_resource type="Texture2D" uid="uid://385lad1t6e3i" path="res://scene/level/antique/assets/background.png" id="3_2c5le"]
 [ext_resource type="PackedScene" uid="uid://b48vk628dmyxg" path="res://scene/level/antique/antique_tower.tscn" id="3_5ex2w"]
 [ext_resource type="PackedScene" uid="uid://bga4am3fmln5e" path="res://scene/tutorial-blueprint/tutorial.tscn" id="4_wiwrv"]
+[ext_resource type="Script" path="res://scene/background_audio_player.gd" id="6_l6fjc"]
+[ext_resource type="Script" path="res://scene/background_audio.gd" id="7_ju3c3"]
+[ext_resource type="AudioStream" uid="uid://cv8oiodnsl1u2" path="res://asset/audio/greek-music.mp3" id="8_fgebu"]
+[ext_resource type="AudioStream" uid="uid://d4eq045ya5tk5" path="res://asset/audio/light-wind.wav" id="9_hg1ny"]
+[ext_resource type="AudioStream" uid="uid://dkprrbdb5hhiu" path="res://asset/audio/birds.wav" id="10_gd0xh"]
+
+[sub_resource type="Resource" id="Resource_eruvn"]
+script = ExtResource("7_ju3c3")
+stream = ExtResource("8_fgebu")
+volume = 0.682
+
+[sub_resource type="Resource" id="Resource_tgmu1"]
+script = ExtResource("7_ju3c3")
+stream = ExtResource("9_hg1ny")
+volume = 1.0
+
+[sub_resource type="Resource" id="Resource_gvi8m"]
+script = ExtResource("7_ju3c3")
+stream = ExtResource("10_gd0xh")
+volume = 0.6565
 
 [node name="AntiqueLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
 script = ExtResource("1_k2bt4")
@@ -23,3 +43,8 @@ height = 125
 
 [node name="TutorialBlueprint" parent="." instance=ExtResource("4_wiwrv")]
 visible = false
+
+[node name="BackgroundAudioPlayer" type="Node" parent="."]
+script = ExtResource("6_l6fjc")
+_sounds = Array[ExtResource("7_ju3c3")]([SubResource("Resource_eruvn"), SubResource("Resource_tgmu1"), SubResource("Resource_gvi8m")])
+_fade_in_duration = 4.0

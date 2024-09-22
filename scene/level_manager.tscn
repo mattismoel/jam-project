@@ -22,18 +22,18 @@ level_scene = ExtResource("4_rs08x")
 description = "\"Ugah. Tower high. Tower good.\" 
 - Some Stone Age Man"
 
+[sub_resource type="Resource" id="Resource_hx8pu"]
+script = ExtResource("2_tl2c7")
+title = "Greek Experiments"
+level_scene = ExtResource("6_f7nyi")
+description = "\"They see me rollin' \"
+- Sisyphus"
+
 [sub_resource type="Resource" id="Resource_86ded"]
 script = ExtResource("2_tl2c7")
 title = "Leakage Facility"
 level_scene = ExtResource("3_m410y")
 description = "Description"
-
-[sub_resource type="Resource" id="Resource_k5c7p"]
-script = ExtResource("2_tl2c7")
-title = "Greek Experiments"
-level_scene = ExtResource("6_f7nyi")
-description = "\"They see me rollin\"
-- Sisyphus"
 
 [sub_resource type="Resource" id="Resource_4bsvk"]
 script = ExtResource("2_tl2c7")
@@ -43,6 +43,7 @@ description = "\"Boom\""
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_ctx24")
-_levels = Array[ExtResource("2_tl2c7")]([SubResource("Resource_0lwy0"), SubResource("Resource_d31kb"), SubResource("Resource_86ded"), SubResource("Resource_4bsvk")])
+_levels = Array[ExtResource("2_tl2c7")]([SubResource("Resource_0lwy0"), SubResource("Resource_d31kb"), SubResource("Resource_hx8pu"), SubResource("Resource_86ded"), SubResource("Resource_4bsvk")])
+_first_level_idx_overwrite = 1
 _level_presentation_duration = 5.0
 _presentation_scene = ExtResource("6_ruc11")
