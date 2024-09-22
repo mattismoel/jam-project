@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dyquehg06r5tj"]
 
-[ext_resource type="Script" path="res://scene/level/stone-age-level/stone_age_tower.gd" id="1_rwioe"]
+[ext_resource type="Script" path="res://script/tower.gd" id="1_43hhv"]
 [ext_resource type="Texture2D" uid="uid://bwr1v2ecnlxvb" path="res://scene/level/stone-age-level/asset/leafs-back.png" id="2_ev52o"]
 [ext_resource type="Texture2D" uid="uid://blrm03ogx76ek" path="res://scene/level/stone-age-level/asset/trunk.png" id="3_p7gle"]
 [ext_resource type="PackedScene" uid="uid://dq0dfva11ynl5" path="res://scene/level/stone-age-level/stone_age_gondola.tscn" id="4_1s7vp"]
@@ -11,10 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b2duwx03qp5dj" path="res://scene/popularity_meter/popularity_meter.tscn" id="7_scvpl"]
 
 [node name="Stoneage Tower" type="Node2D" node_paths=PackedStringArray("gondola")]
-script = ExtResource("1_rwioe")
-minimum_score = 0.5
-height = 140
-bottom_pos_y = 25
+script = ExtResource("1_43hhv")
 gondola = NodePath("Gondola")
 
 [node name="Tree" type="Node2D" parent="."]
@@ -36,16 +33,13 @@ texture = ExtResource("4_ukmpa")
 position = Vector2(50, -19)
 texture = ExtResource("4_6yf02")
 
-[node name="Gondola" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("4_1s7vp")]
+[node name="Gondola" parent="." node_paths=PackedStringArray("_tower", "rope", "tower") instance=ExtResource("4_1s7vp")]
 position = Vector2(10, -3)
-mass_kg = 400.0
+_tower = NodePath("..")
+max_height_duration = 1.0
+rope = NodePath("../Rope")
+mass_kg = 2000.0
 tower = NodePath("..")
-
-[node name="Up" parent="Gondola/StateMachine" index="0" node_paths=PackedStringArray("_tower")]
-_tower = NodePath("../../..")
-
-[node name="Idle" parent="Gondola/StateMachine" index="1" node_paths=PackedStringArray("_tower")]
-_tower = NodePath("../../..")
 
 [node name="Rope" type="Line2D" parent="." node_paths=PackedStringArray("_gondola_end", "_mammoth")]
 points = PackedVector2Array(10, -25, 10, -146, 50, -20, 97, -24)

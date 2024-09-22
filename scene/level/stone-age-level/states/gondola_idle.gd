@@ -14,5 +14,4 @@ func enter() -> void:
 
 func _on_tower_began_ride(with_force: float) -> void:
   _up_state.acceleration_y = with_force
-
   change_state.emit(_up_state)

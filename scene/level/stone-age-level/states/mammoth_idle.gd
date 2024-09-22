@@ -16,6 +16,5 @@ func enter() -> void:
 
 
 func _on_tower_began_ride(force: float) -> void:
-  _walk_state.acceleration_x = force
+  _walk_state.acceleration_x = force/1000
   change_state.emit(_walk_state)
-
