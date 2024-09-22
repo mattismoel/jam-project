@@ -23,6 +23,5 @@ func physics_process(_delta: float) -> void:
     _move_component.velocity.x += acceleration_x
     _animation.speed_scale += _speed / _animation_speed_up_rate
 
-
 func _on_gondola_top_reached() -> void:
   change_state.emit(_idle_state)

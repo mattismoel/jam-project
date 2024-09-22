@@ -50,6 +50,7 @@ sprite_frames = SubResource("SpriteFrames_p0tkt")
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_cpgx0")
 initial_state = NodePath("Idle")
+debug_change_state = true
 
 [node name="Walk" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("_idle_state", "_move_component", "_animation")]
 script = ExtResource("4_ry4d1")
