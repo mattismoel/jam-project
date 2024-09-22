@@ -60,9 +60,6 @@ func draw_skull() -> void:
     
     var skull_pos = _initial_position - Vector2i(3,height)
     var end_draw_pos = skull_pos + Vector2i(_line_length+3,0)
-    draw_line(Vector2(skull_pos)+_pixel_alignment_offset-Vector2(0,1),Vector2(end_draw_pos)+_pixel_alignment_offset-Vector2(0,1),Color.RED,3)
 
-    draw_line(Vector2(_initial_position), Vector2(_initial_position - Vector2i(0, height)), Color.RED,_line_length)
-
-
+    draw_line(Vector2(_initial_position)+Vector2(1+_line_length/2,0), Vector2(_initial_position - Vector2i(0, height))+Vector2(1+_line_length/2,0), Color.RED,_line_length)
     _skull.position = skull_pos + _skull_offset

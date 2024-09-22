@@ -23,9 +23,8 @@ tower = NodePath("..")
 
 [node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower") instance=ExtResource("4_ldlwm")]
 _tower = NodePath("..")
-_skull_offset = Vector2i(-15, 0)
 
 [node name="Skull" parent="PopularityMeter" index="0"]
-position = Vector2(-38, -82)
+position = Vector2(-33, -82)
 
 [editable path="PopularityMeter"]
