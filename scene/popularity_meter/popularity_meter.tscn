@@ -8,7 +8,7 @@ z_index = 3
 script = ExtResource("1_uoldv")
 _skull = NodePath("Skull")
 _line_offset = Vector2i(-20, 0)
-_skull_offset = Vector2i(-10, 0)
+_skull_offset = Vector2i(-13, 0)
 
 [node name="Skull" type="Sprite2D" parent="."]
 z_index = 3
