@@ -28,6 +28,3 @@ func _type_letter(letter: String) -> void:
 
   text += letter
   await get_tree().create_timer(1.0 / _rate + randf_range(-_randomness / 2.0, _randomness / 2.0)).timeout
-
-
-
