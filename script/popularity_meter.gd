@@ -42,17 +42,17 @@ func _draw() -> void:
     draw_score_markers()
     
 func draw_score_markers() -> void:
-    var _pixel_alignment_offset = Vector2.ONE/2
+    var _pixel_alignment_offset = Vector2.ONE/2.0
     
     for n in _marker_count+1:
         var score = float(n)/_marker_count
         var height = _tower.calculate_height_with_specific_popularity_score(score)
         
-        var start_draw_pos = _initial_position - Vector2i(0,height)
-        var end_draw_pos = start_draw_pos + Vector2i(_line_length,0)
-        draw_line(Vector2(start_draw_pos)+_pixel_alignment_offset-Vector2(0,1),Vector2(end_draw_pos)+_pixel_alignment_offset-Vector2(0,1),_line_color,1)
+        var start_draw_pos = Vector2(_initial_position) + Vector2.DOWN/2.0 - Vector2(0,height)
+        var end_draw_pos = start_draw_pos + Vector2(_line_length,0)
+        draw_line(Vector2(start_draw_pos)-Vector2(0,1),Vector2(end_draw_pos)-Vector2(0,1),_line_color,1)
         
-    draw_line(Vector2(_initial_position), Vector2(_initial_position - Vector2i(0, _tower.calculate_height_with_specific_popularity_score(1)+1)), _line_color,1)
+    draw_line(Vector2(_initial_position)+Vector2.LEFT/2.0, Vector2(_initial_position - Vector2i(0, _tower.calculate_height_with_specific_popularity_score(1)+1)), _line_color,1)
 
 func draw_skull() -> void:
     var height = _tower.calculate_height_with_specific_popularity_score(_tower.minimum_score)
@@ -60,5 +60,5 @@ func draw_skull() -> void:
     var skull_pos = _initial_position - Vector2i(3,height)
     var end_draw_pos = skull_pos + Vector2i(_line_length+3,0)
 
-    draw_line(Vector2(_initial_position)+Vector2(1+_line_length/2,0), Vector2(_initial_position - Vector2i(0, height))+Vector2(1+_line_length/2,0), Color.RED,_line_length)
+    draw_line(Vector2(_initial_position)+Vector2(_line_length/2.0,0)+Vector2.UP/2.0, Vector2(_initial_position - Vector2i(0, height))+Vector2(_line_length/2.0,0)+Vector2.UP/2.0, Color.RED,_line_length)
     _skull.position = skull_pos + _skull_offset
