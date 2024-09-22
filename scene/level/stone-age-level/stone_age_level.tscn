@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0d6r4ok253ej"]
+[gd_scene load_steps=11 format=3 uid="uid://d0d6r4ok253ej"]
 
 [ext_resource type="Texture2D" uid="uid://bjydeelcjm5ek" path="res://scene/level/stone-age-level/asset/background.png" id="1_201v5"]
 [ext_resource type="Script" path="res://scene/level/level.gd" id="1_g1t6x"]
@@ -6,6 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://dyquehg06r5tj" path="res://scene/level/stone-age-level/stone_age_tower.tscn" id="3_d8m5n"]
 [ext_resource type="PackedScene" uid="uid://bg3k3jej6jlfx" path="res://scene/level/stone-age-level/minigame/stone_age_minigame.tscn" id="4_l611u"]
 [ext_resource type="PackedScene" uid="uid://c45o430um53hh" path="res://scene/level/stone-age-level/blueprint/stone_age_tutorial.tscn" id="6_suopn"]
+[ext_resource type="Script" path="res://scene/background_audio_player.gd" id="7_gv7ju"]
+[ext_resource type="AudioStream" uid="uid://dovbfjutj3gnc" path="res://asset/audio/forest.wav" id="8_jg4oq"]
+[ext_resource type="Script" path="res://scene/background_audio.gd" id="8_mw7e4"]
+
+[sub_resource type="Resource" id="Resource_h3lgn"]
+script = ExtResource("8_mw7e4")
+stream = ExtResource("8_jg4oq")
+volume = 1.0
 
 [node name="StoneageLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
 script = ExtResource("1_g1t6x")
@@ -27,3 +35,7 @@ bottom_pos_y = 10
 
 [node name="TutorialBlueprint" parent="." instance=ExtResource("6_suopn")]
 visible = false
+
+[node name="BackgroundAudioPlayer" type="Node" parent="."]
+script = ExtResource("7_gv7ju")
+_sounds = Array[ExtResource("8_mw7e4")]([SubResource("Resource_h3lgn")])

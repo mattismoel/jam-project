@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0tovex827w18"]
+[gd_scene load_steps=5 format=3 uid="uid://c0tovex827w18"]
 
 [ext_resource type="Script" path="res://scene/ui/pause_menu.gd" id="1_05q1h"]
 [ext_resource type="Theme" uid="uid://cd478ei76tbcf" path="res://scene/ui/default_theme.tres" id="1_42aad"]
 [ext_resource type="PackedScene" uid="uid://y4sbdxsbeco5" path="res://scene/ui/settings_menu.tscn" id="2_okkrt"]
+[ext_resource type="PackedScene" uid="uid://dvfc751w8kd2c" path="res://scene/ui/button.tscn" id="4_cxn4d"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -38,17 +39,12 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
 layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="ContinueButton" parent="Control/CenterContainer/VBoxContainer" instance=ExtResource("4_cxn4d")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 
-[node name="QuitButton" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="QuitButton" parent="Control/CenterContainer/VBoxContainer" instance=ExtResource("4_cxn4d")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
-
-[node name="SettingsButton" type="Button" parent="Control/CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Settings"

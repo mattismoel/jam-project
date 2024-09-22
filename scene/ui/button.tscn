@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvfc751w8kd2c"]
+
+[ext_resource type="Script" path="res://scene/ui/button.gd" id="1_acn2p"]
+[ext_resource type="AudioStream" uid="uid://bfk2wehkpffet" path="res://asset/audio/506054__mellau__button-click-1.wav" id="1_pjywm"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_acn2p")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_pjywm")

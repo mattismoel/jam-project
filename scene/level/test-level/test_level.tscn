@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://5o1j2pyr513q"]
+[gd_scene load_steps=11 format=3 uid="uid://5o1j2pyr513q"]
 
 [ext_resource type="PackedScene" uid="uid://do0fo4pradjea" path="res://scene/level/test-level/test_tower.tscn" id="1_f7t71"]
 [ext_resource type="Script" path="res://scene/level/level.gd" id="1_yhrht"]
@@ -6,6 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://krm7ay70mvps" path="res://scene/level/test-level/asset/background-new.png" id="3_3r3jh"]
 [ext_resource type="PackedScene" uid="uid://dhfup8p5rsx5h" path="res://scene/level/test-level/test_minigame.tscn" id="3_3x0y1"]
 [ext_resource type="Script" path="res://script/score_manager.gd" id="3_6lw1i"]
+[ext_resource type="Script" path="res://scene/background_audio_player.gd" id="7_7yjrr"]
+[ext_resource type="AudioStream" uid="uid://dtu16cowv41ch" path="res://asset/audio/factory.wav" id="7_rm5fa"]
+[ext_resource type="Script" path="res://scene/background_audio.gd" id="8_ll2xk"]
+
+[sub_resource type="Resource" id="Resource_dbuae"]
+script = ExtResource("8_ll2xk")
+stream = ExtResource("7_rm5fa")
+volume = 1.0
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("_tower", "_blueprint")]
 script = ExtResource("1_yhrht")
@@ -14,7 +22,6 @@ _tower = NodePath("TestTower")
 _blueprint = NodePath("TestTutorial")
 
 [node name="Background" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -30)
 texture = ExtResource("3_3r3jh")
 centered = false
@@ -30,10 +37,14 @@ bottom_pos_y = 20
 position = Vector2(0, -20)
 
 [node name="Skull" parent="TestTower/PopularityMeter" index="0"]
-position = Vector2(-36, -82)
+position = Vector2(42, -82.6099)
 
 [node name="TestTutorial" parent="." instance=ExtResource("2_306l3")]
 visible = false
+
+[node name="BackgroundAudioPlayer" type="Node" parent="."]
+script = ExtResource("7_7yjrr")
+_sounds = Array[ExtResource("8_ll2xk")]([SubResource("Resource_dbuae")])
 
 [editable path="TestTower"]
 [editable path="TestTower/PopularityMeter"]
