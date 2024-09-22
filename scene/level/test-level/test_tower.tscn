@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/level/test-level/test_tower.gd" id="1_d8fcw"]
 [ext_resource type="PackedScene" uid="uid://bx66pk1a3t3bo" path="res://scene/level/test-level/test_gondola.tscn" id="3_6frv3"]
 [ext_resource type="Texture2D" uid="uid://becxrpbkitoq0" path="res://scene/level/test-level/asset/test_tower.png" id="4_71aad"]
-[ext_resource type="Script" path="res://script/popularity_meter.gd" id="4_ehyrx"]
+[ext_resource type="PackedScene" uid="uid://b2duwx03qp5dj" path="res://scene/popularity_meter/popularity_meter.tscn" id="4_ldlwm"]
 
 [node name="TestTower" type="Node2D" node_paths=PackedStringArray("gondola")]
 script = ExtResource("1_d8fcw")
@@ -21,8 +21,11 @@ position = Vector2(0, -26)
 _tower = NodePath("..")
 tower = NodePath("..")
 
-[node name="PopularityMeter" type="Node2D" parent="." node_paths=PackedStringArray("_tower")]
-z_index = 3
-script = ExtResource("4_ehyrx")
+[node name="PopularityMeter" parent="." node_paths=PackedStringArray("_tower") instance=ExtResource("4_ldlwm")]
 _tower = NodePath("..")
-_line_offset = Vector2i(-20, 0)
+_skull_offset = Vector2i(-15, 0)
+
+[node name="Skull" parent="PopularityMeter" index="0"]
+position = Vector2(-38, -82)
+
+[editable path="PopularityMeter"]

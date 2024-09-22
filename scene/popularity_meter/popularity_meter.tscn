@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2duwx03qp5dj"]
+
+[ext_resource type="Script" path="res://script/popularity_meter.gd" id="1_uoldv"]
+[ext_resource type="Texture2D" uid="uid://de1hjgdf2q8h0" path="res://asset/ui-spritesheet.png" id="2_esv8q"]
+
+[node name="PopularityMeter" type="Node2D" node_paths=PackedStringArray("_skull")]
+z_index = 3
+script = ExtResource("1_uoldv")
+_skull = NodePath("Skull")
+_line_offset = Vector2i(-20, 0)
+_skull_offset = Vector2i(-13, 0)
+
+[node name="Skull" type="Sprite2D" parent="."]
+z_index = 3
+texture = ExtResource("2_esv8q")
+centered = false
+offset = Vector2(0.5, -5)
+region_enabled = true
+region_rect = Rect2(112, 32, 9, 11)
