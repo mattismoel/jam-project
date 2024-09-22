@@ -44,6 +44,7 @@ func _modify_lives_by(x: int) -> void:
   current_lives = clampi(current_lives, 0, max_life_count)
 
   if current_lives <= 0:
+    print("out of lives")
     _on_out_of_lives()
 
   if current_lives >= max_life_count:
@@ -51,6 +52,12 @@ func _modify_lives_by(x: int) -> void:
 
   lives_changed.emit(x)
   pass
+
+
+func game_over() -> void:
+  print("igame over")
+  take_lives(3)
+
 
 
 func _on_out_of_lives() -> void:
