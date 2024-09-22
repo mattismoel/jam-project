@@ -75,7 +75,7 @@ animations = [{
 [node name="AntiqueMinigame" type="Node2D" node_paths=PackedStringArray("sisyphus_animation", "boulder", "_game_timer", "_minigame_ui")]
 z_index = 6
 script = ExtResource("1_64iqb")
-force_per_scroll = 100
+force_per_scroll = 80
 sisyphus_animation = NodePath("Sisyphus/AnimatedSprite2D")
 boulder = NodePath("Sisyphus/Boulder/BoulderSprite")
 _duration = 5.0
