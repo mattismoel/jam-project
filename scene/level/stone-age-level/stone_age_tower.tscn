@@ -67,6 +67,7 @@ _tower = NodePath("../../..")
 script = ExtResource("7_lio6j")
 _tower = NodePath("..")
 _line_offset = Vector2i(-20, 0)
+_skull_offset = null
 
 [editable path="Gondola"]
 [editable path="Mammoth"]

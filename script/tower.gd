@@ -5,8 +5,12 @@ signal began_ride(with_force: float)
 signal finished(height: float)
 signal height_changed
 
-@export var minimum_score: float = 0.2
 @export var target_force: float = 1000
+@export var minimum_score: float = 0.2:
+    set(_v):
+        minimum_score = _v
+        height_changed.emit()
+        
 @export_range(0.0, 1000) var height: int = 100:
     set(_v):
         height = _v
