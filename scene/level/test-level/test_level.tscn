@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://5o1j2pyr513q"]
 
 [ext_resource type="PackedScene" uid="uid://do0fo4pradjea" path="res://scene/level/test-level/test_tower.tscn" id="1_f7t71"]
-[ext_resource type="Texture2D" uid="uid://cg2ualoxer1lb" path="res://scene/level/test-level/asset/background.png" id="1_k0tjo"]
 [ext_resource type="Script" path="res://scene/level/level.gd" id="1_yhrht"]
 [ext_resource type="PackedScene" uid="uid://bqjvqdiebn7pk" path="res://scene/tutorial-blueprint/test_tutorial.tscn" id="2_306l3"]
+[ext_resource type="Texture2D" uid="uid://krm7ay70mvps" path="res://scene/level/test-level/asset/background-new.png" id="3_3r3jh"]
 [ext_resource type="PackedScene" uid="uid://dhfup8p5rsx5h" path="res://scene/level/test-level/test_minigame.tscn" id="3_3x0y1"]
 [ext_resource type="Script" path="res://script/score_manager.gd" id="3_6lw1i"]
 
@@ -14,8 +14,8 @@ _tower = NodePath("TestTower")
 _blueprint = NodePath("TestTutorial")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(0, -72)
-texture = ExtResource("1_k0tjo")
+position = Vector2(0, -30)
+texture = ExtResource("3_3r3jh")
 centered = false
 
 [node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("tower")]
@@ -23,7 +23,7 @@ script = ExtResource("3_6lw1i")
 tower = NodePath("../TestTower")
 
 [node name="TestTower" parent="." instance=ExtResource("1_f7t71")]
-position = Vector2(228, 156)
+position = Vector2(228, 200)
 
 [node name="TestTutorial" parent="." instance=ExtResource("2_306l3")]
 visible = false
